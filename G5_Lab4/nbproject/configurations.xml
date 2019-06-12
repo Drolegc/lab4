@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="100">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="HeaderFiles"
+                   displayName="Header Files"
+                   projectFiles="true">
+      <itemPath>classes/headers/Cine.h</itemPath>
+      <itemPath>classes/headers/Credito.h</itemPath>
+      <itemPath>classes/headers/Debito.h</itemPath>
+      <itemPath>datatypes/headers/DtCine.h</itemPath>
+      <itemPath>datatypes/headers/DtDireccion.h</itemPath>
+      <itemPath>datatypes/headers/DtFecha.h</itemPath>
+      <itemPath>datatypes/headers/DtFuncion.h</itemPath>
+      <itemPath>datatypes/headers/DtHora.h</itemPath>
+      <itemPath>datatypes/headers/DtPelicula.h</itemPath>
+      <itemPath>datatypes/headers/DtSala.h</itemPath>
+      <itemPath>classes/headers/Funcion.h</itemPath>
+      <itemPath>classes/interfaces/ISistema.h</itemPath>
+      <itemPath>src/headers/Pelicula.h</itemPath>
+      <itemPath>classes/headers/Reserva.h</itemPath>
+      <itemPath>classes/headers/Sala.h</itemPath>
+      <itemPath>classes/headers/Usuario.h</itemPath>
+    </logicalFolder>
+    <logicalFolder name="ResourceFiles"
+                   displayName="Resource Files"
+                   projectFiles="true">
+    </logicalFolder>
+    <logicalFolder name="SourceFiles"
+                   displayName="Source Files"
+                   projectFiles="true">
+      <itemPath>classes/sources/Cine.cpp</itemPath>
+      <itemPath>classes/sources/Credito.cpp</itemPath>
+      <itemPath>classes/sources/Debito.cpp</itemPath>
+      <itemPath>datatypes/sources/DtDireccion.cpp</itemPath>
+      <itemPath>datatypes/sources/DtFecha.cpp</itemPath>
+      <itemPath>datatypes/sources/DtHora.cpp</itemPath>
+      <itemPath>classes/sources/Funcion.cpp</itemPath>
+      <itemPath>classes/sources/Pelicula.cpp</itemPath>
+      <itemPath>classes/sources/Reserva.cpp</itemPath>
+      <itemPath>classes/sources/Sala.cpp</itemPath>
+      <itemPath>classes/sources/Usuario.cpp</itemPath>
+      <itemPath>main.cpp</itemPath>
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Debug" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+      </compileType>
+      <item path="classes/headers/Cine.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="classes/headers/Credito.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="classes/headers/Debito.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="classes/headers/Funcion.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="classes/headers/Reserva.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="classes/headers/Sala.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="classes/headers/Usuario.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="classes/interfaces/ISistema.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="classes/sources/Cine.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="classes/sources/Credito.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="classes/sources/Debito.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="classes/sources/Funcion.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="classes/sources/Pelicula.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="classes/sources/Reserva.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="classes/sources/Sala.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="classes/sources/Usuario.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="datatypes/headers/DtCine.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="datatypes/headers/DtDireccion.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="datatypes/headers/DtFecha.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="datatypes/headers/DtFuncion.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="datatypes/headers/DtHora.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="datatypes/headers/DtPelicula.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="datatypes/headers/DtSala.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="datatypes/sources/DtDireccion.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="datatypes/sources/DtFecha.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="datatypes/sources/DtHora.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/headers/Pelicula.h" ex="false" tool="3" flavor2="0">
+      </item>
+    </conf>
+    <conf name="Release" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <developmentMode>5</developmentMode>
+        </cTool>
+        <ccTool>
+          <developmentMode>5</developmentMode>
+          <standard>11</standard>
+        </ccTool>
+        <fortranCompilerTool>
+          <developmentMode>5</developmentMode>
+        </fortranCompilerTool>
+        <asmTool>
+          <developmentMode>5</developmentMode>
+        </asmTool>
+      </compileType>
+      <item path="classes/headers/Cine.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="classes/headers/Credito.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="classes/headers/Debito.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="classes/headers/Funcion.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="classes/headers/Reserva.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="classes/headers/Sala.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="classes/headers/Usuario.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="classes/interfaces/ISistema.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="classes/sources/Cine.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="classes/sources/Credito.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="classes/sources/Debito.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="classes/sources/Funcion.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="classes/sources/Pelicula.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="classes/sources/Reserva.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="classes/sources/Sala.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="classes/sources/Usuario.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="datatypes/headers/DtCine.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="datatypes/headers/DtDireccion.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="datatypes/headers/DtFecha.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="datatypes/headers/DtFuncion.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="datatypes/headers/DtHora.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="datatypes/headers/DtPelicula.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="datatypes/headers/DtSala.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="datatypes/sources/DtDireccion.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="datatypes/sources/DtFecha.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="datatypes/sources/DtHora.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/headers/Pelicula.h" ex="false" tool="3" flavor2="0">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>
