@@ -4,12 +4,16 @@
 #include "../../datatypes/headers/DtFecha.h"
 #include "../../datatypes/headers/DtHora.h"
 #include "../../datatypes/headers/DtFuncion.h"
+#include "../../ICollection/interfaces/ICollection.h"
+#include "../../ICollection/interfaces/IDictionary.h"
 
-class Funcion {
+class Funcion : public ICollectible {
     private:
         int numero;
         DtFecha fecha;
         DtHora hora;
+        ICollection* Reserva;
+        IDictionary* Peliculas;
     public:
         Funcion(int numero, DtFecha fecha, DtHora hora);
         
@@ -21,8 +25,10 @@ class Funcion {
         void setFecha(DtFecha fecha);
         void setHora(DtHora hora);
         
-        DtFuncion getFuncion();
-        void eliminarFuncion(int numero);
+        bool tienePeli(ICollectible* p);
+        ICollectible* obtenerFuncion();
+        ICollection* obtenerFunciones();
+        void eliminarFunciones();
         
         ~Funcion();
 };

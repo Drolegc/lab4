@@ -3,8 +3,11 @@
 
 #include <string>
 #include "../../datatypes/headers/DtPelicula.h"
+#include "../../ICollection/interfaces/ICollectible.h"
+#include "../../ICollection/interfaces/ICollection.h"
+#include "../../ICollection/interfaces/IIterator.h"
 
-class Pelicula : ISistema {
+class Pelicula : public ICollection {
     private:
         std::string titulo;
         std::string urlPoster;
@@ -23,7 +26,7 @@ class Pelicula : ISistema {
         void setSinopsis(std::string sinopsis);
         void setPuntajePromedio(int puntajePromedio);
         
-        DtPelicula listarPeliculas();
+        ICollection* listarPeliculas();
         void eliminarPelicula(std::string titulo);
         DtPelicula verInfoAdicional();
         

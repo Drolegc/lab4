@@ -3,8 +3,9 @@
 
 #include "../../datatypes/headers/DtDireccion.h"
 #include "../../datatypes/headers/DtCine.h"
+#include "../../ICollection/interfaces/ICollection.h"
 
-class Cine : ISistema{
+class Cine {
     private:
         int numero;
         DtDireccion direccion;
@@ -17,7 +18,7 @@ class Cine : ISistema{
         void setNumero(int numero);
         void setDireccion(DtDireccion direccion);
         
-        DtCine listarCines();
+        ICollection* listarCines();
         
         ~Cine();
 };

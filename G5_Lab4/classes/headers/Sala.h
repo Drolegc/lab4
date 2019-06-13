@@ -1,9 +1,10 @@
 #ifndef SALA_H
 #define SALA_H
 
+#include "../../ICollection/interfaces/ICollectible.h"
 #include "../../datatypes/headers/DtSala.h"
 
-class Sala {
+class Sala : public ICollectible {
     private:
         int numero;
         int capacidad;
