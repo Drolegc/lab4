@@ -1,25 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/* 
- * File:   main.cpp
- * Author: smunoz
- *
- * Created on 10 de junio de 2019, 03:58 PM
- */
-
 #include <cstdlib>
+#include <iostream>
+#include "classes/interfaces/ControladorSistema.h"
 
 using namespace std;
 
-/*
- * 
- */
 int main(int argc, char** argv) {
-
+    
     return 0;
 }
 

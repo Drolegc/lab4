@@ -5,6 +5,7 @@
                    displayName="Header Files"
                    projectFiles="true">
       <itemPath>classes/headers/Cine.h</itemPath>
+      <itemPath>classes/interfaces/ControladorSistema.h</itemPath>
       <itemPath>classes/headers/Credito.h</itemPath>
       <itemPath>classes/headers/Debito.h</itemPath>
       <itemPath>datatypes/headers/DtCine.h</itemPath>
@@ -15,7 +16,6 @@
       <itemPath>datatypes/headers/DtPelicula.h</itemPath>
       <itemPath>datatypes/headers/DtSala.h</itemPath>
       <itemPath>classes/headers/Funcion.h</itemPath>
-      <itemPath>classes/interfaces/ISistema.h</itemPath>
       <itemPath>src/headers/Pelicula.h</itemPath>
       <itemPath>classes/headers/Reserva.h</itemPath>
       <itemPath>classes/headers/Sala.h</itemPath>
@@ -77,7 +77,10 @@
       </item>
       <item path="classes/headers/Usuario.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="classes/interfaces/ISistema.h" ex="false" tool="3" flavor2="0">
+      <item path="classes/interfaces/ControladorSistema.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="classes/sources/Cine.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -155,7 +158,10 @@
       </item>
       <item path="classes/headers/Usuario.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="classes/interfaces/ISistema.h" ex="false" tool="3" flavor2="0">
+      <item path="classes/interfaces/ControladorSistema.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="classes/sources/Cine.cpp" ex="false" tool="1" flavor2="0">
       </item>

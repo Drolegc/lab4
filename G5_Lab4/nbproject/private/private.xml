@@ -7,9 +7,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/smunoz/Escritorio/lab4/G5_Lab4/datatypes/sources/DtFecha.cpp</file>
-            <file>file:/home/smunoz/Escritorio/lab4/G5_Lab4/datatypes/headers/DtHora.h</file>
-            <file>file:/home/smunoz/Escritorio/lab4/G5_Lab4/datatypes/sources/DtHora.cpp</file>
+            <file>file:/home/smunoz/Escritorio/lab4/G5_Lab4/classes/headers/Sala.h</file>
+            <file>file:/home/smunoz/Escritorio/lab4/G5_Lab4/classes/headers/Reserva.h</file>
+            <file>file:/home/smunoz/Escritorio/lab4/G5_Lab4/classes/headers/Funcion.h</file>
+            <file>file:/home/smunoz/Escritorio/lab4/G5_Lab4/classes/sources/Funcion.cpp</file>
+            <file>file:/home/smunoz/Escritorio/lab4/G5_Lab4/classes/interfaces/ControladorSistema.h</file>
         </group>
     </open-files>
 </project-private>

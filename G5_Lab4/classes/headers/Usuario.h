@@ -3,7 +3,7 @@
 
 #include <string>
 
-class Usuario : ISistema{
+class Usuario : ICollectible{
     private:
         std::string nickname;
         std::string urlImagen;
