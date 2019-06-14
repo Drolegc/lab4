@@ -29,6 +29,7 @@ class Pelicula : public ICollection {
         ICollection* listarPeliculas();
         void eliminarPelicula(std::string titulo);
         DtPelicula verInfoAdicional();
+        DtPelicula seleccionarPelicula(std::string titulo);
         
         ~Pelicula();
 };

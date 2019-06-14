@@ -20,3 +20,7 @@ void DtHora::setHora(int hora) {
 void DtHora::setMinutos(int minutos) {
     this->minutos = minutos;
 }
+
+DtHora::~DtHora() {
+    
+}

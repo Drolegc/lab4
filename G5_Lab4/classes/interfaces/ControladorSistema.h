@@ -1,30 +1,30 @@
 #ifndef CONTROLADORSISTEMA_H
-#define CONTROLADORSISTEMA_H
+#define COTROLADORSISTEMA_H
 
 #include "../headers/Pelicula.h"
 #include "../headers/Cine.h"
 #include "../headers/Credito.h"
 #include "../headers/Debito.h"
 #include "../headers/Usuario.h"
-#include "../../ICollection/interfaces/ICollection.h"
+#include "../interfaces/ISistema.h"
 
-class ControladorSistema {
+class ControladorSistema : ISistema {
     private:
-        ICollection* Pelicula;
-        ICollection* Cine;
-        ICollection* Usuario;
+        IDictionary* Pelicula;
+        IDictionary* Cine;
+        IDictionary* Usuario;
         ICollection* Reserva;
-        static ControladorSistema* instance;
     public:
-        static ControladorSistema* getInstance();
-        virtual DtPelicula verInfoAdicional() = 0;
-        virtual void reservaDebito(int asientos, int costoTotal, std::string bancoEmisor, int funcion) = 0;
-        virtual void reservaCredito(int asientos, std::string financiera, int porcentajeDescuento, int funcion) = 0;
-        virtual void eliminarPelicula(std::string titulo) = 0;
-        virtual ICollection* listarPeliculas() = 0;
-        virtual void iniciarSesion(std::string nickname, std::string contrasenia) = 0;
-        virtual ICollection* listarCines() = 0;
+        ControladorSistema();
+        void altaFuncion(DtFecha fecha, DtHora hora);
+        DtPelicula verInfoAdicional() = 0;
+        void reservaDebito(int asientos, int costoTotal, std::string bancoEmisor, int funcion) = 0;
+        void reservaCredito(int asientos, std::string financiera, int porcentajeDescuento, int funcion) = 0;
+        void eliminarPelicula(std::string titulo) = 0;
+        ICollection* listarPeliculas() = 0;
+        void iniciarSesion(std::string nickname, std::string contrasenia) = 0;
+        ICollection* listarCines() = 0;
+        ~ControladorSistema();
 };
 
-#endif /* CONTROLADORSISTEMA_H */
-
+#endif /* CONTROLADORSSISTEMA_H */
