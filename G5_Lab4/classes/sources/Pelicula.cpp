@@ -35,22 +35,6 @@ void Pelicula::setPuntajePromedio(int puntajePromedio) {
     this->puntajePromedio = puntajePromedio;
 }
 
-ICollection* Pelicula::listarPeliculas() {
-    ICollection* listaPeliculas = new list();
-    IIterator* it = Pelicula->getIterator();
-    
-    while(it->hasCurrent()) {
-        listaPeliculas->add(it->getCurrent());
-        it->next();
-    }
-    delete it;
-    return listaPeliculas;
-}
-
-//ICollection* Pelicula::seleccionarPelicula(std::string titulo) {
-//    IKey* clave = 
-//}
-
 Pelicula::~Pelicula() {
     
 }
