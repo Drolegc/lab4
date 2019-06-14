@@ -15,7 +15,9 @@
       <itemPath>datatypes/headers/DtHora.h</itemPath>
       <itemPath>datatypes/headers/DtPelicula.h</itemPath>
       <itemPath>datatypes/headers/DtSala.h</itemPath>
+      <itemPath>classes/interfaces/Fabrica.h</itemPath>
       <itemPath>classes/headers/Funcion.h</itemPath>
+      <itemPath>classes/interfaces/ISistema.h</itemPath>
       <itemPath>src/headers/Pelicula.h</itemPath>
       <itemPath>classes/headers/Reserva.h</itemPath>
       <itemPath>classes/headers/Sala.h</itemPath>
@@ -29,11 +31,13 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>classes/sources/Cine.cpp</itemPath>
+      <itemPath>classes/interfaces/ControladorSistema.cpp</itemPath>
       <itemPath>classes/sources/Credito.cpp</itemPath>
       <itemPath>classes/sources/Debito.cpp</itemPath>
       <itemPath>datatypes/sources/DtDireccion.cpp</itemPath>
       <itemPath>datatypes/sources/DtFecha.cpp</itemPath>
       <itemPath>datatypes/sources/DtHora.cpp</itemPath>
+      <itemPath>classes/interfaces/Fabrica.cpp</itemPath>
       <itemPath>classes/sources/Funcion.cpp</itemPath>
       <itemPath>classes/sources/Pelicula.cpp</itemPath>
       <itemPath>classes/sources/Reserva.cpp</itemPath>
@@ -77,10 +81,21 @@
       </item>
       <item path="classes/headers/Usuario.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="classes/interfaces/ControladorSistema.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
       <item path="classes/interfaces/ControladorSistema.h"
             ex="false"
             tool="3"
             flavor2="0">
+      </item>
+      <item path="classes/interfaces/Fabrica.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="classes/interfaces/Fabrica.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="classes/interfaces/ISistema.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="classes/sources/Cine.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -158,10 +173,21 @@
       </item>
       <item path="classes/headers/Usuario.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="classes/interfaces/ControladorSistema.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
       <item path="classes/interfaces/ControladorSistema.h"
             ex="false"
             tool="3"
             flavor2="0">
+      </item>
+      <item path="classes/interfaces/Fabrica.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="classes/interfaces/Fabrica.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="classes/interfaces/ISistema.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="classes/sources/Cine.cpp" ex="false" tool="1" flavor2="0">
       </item>

@@ -35,6 +35,8 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/classes/interfaces/ControladorSistema.o \
+	${OBJECTDIR}/classes/interfaces/Fabrica.o \
 	${OBJECTDIR}/classes/sources/Cine.o \
 	${OBJECTDIR}/classes/sources/Credito.o \
 	${OBJECTDIR}/classes/sources/Debito.o \
@@ -72,6 +74,16 @@ LDLIBSOPTIONS=
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/g5_lab4: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/g5_lab4 ${OBJECTFILES} ${LDLIBSOPTIONS}
+
+${OBJECTDIR}/classes/interfaces/ControladorSistema.o: classes/interfaces/ControladorSistema.cpp
+	${MKDIR} -p ${OBJECTDIR}/classes/interfaces
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/classes/interfaces/ControladorSistema.o classes/interfaces/ControladorSistema.cpp
+
+${OBJECTDIR}/classes/interfaces/Fabrica.o: classes/interfaces/Fabrica.cpp
+	${MKDIR} -p ${OBJECTDIR}/classes/interfaces
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/classes/interfaces/Fabrica.o classes/interfaces/Fabrica.cpp
 
 ${OBJECTDIR}/classes/sources/Cine.o: classes/sources/Cine.cpp
 	${MKDIR} -p ${OBJECTDIR}/classes/sources

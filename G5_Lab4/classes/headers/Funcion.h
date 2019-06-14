@@ -24,7 +24,8 @@ class Funcion : public ICollectible {
         void setNumero(int numero);
         void setFecha(DtFecha fecha);
         void setHora(DtHora hora);
-        
+
+        Funcion altaFuncion(DtHora hora, DtFecha fecha);
         bool tienePeli(ICollectible* p);
         ICollectible* obtenerFuncion();
         ICollection* obtenerFunciones();
