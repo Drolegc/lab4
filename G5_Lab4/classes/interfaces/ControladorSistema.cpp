@@ -4,47 +4,74 @@ ControladorSistema::ControladorSistema() {
     
 }
 
-ICollection* ControladorSistema::listarPeliculas() {
-    ICollection* lisPeliculas = new list();
-    IIterator *it = Pelicula->getIterator();    
-    while(it->hasCurrent()){
-        Pelicula* pelicula = (Pelicula*) it->getCurrent();
-        std::string titulo = pelicula->getTitulo();
-        lisPeliculas->add(titulo);   
-        it->next();
-    }
-    delete it;
-    return lisPeliculas;
+void ControladorSistema::altaCine(DtDireccion direccion) {
+    int asd;
+    std::cout << "Llegamos a entrar a la función";
+    std::cin >> asd;
+//    int numero = 0;
+//    IDictionary* listaCines = new list(Cine);
+//    IIterator* it = listaCines->getIterator();
+//    while(it->hasCurrent()) {
+//        Cine* cine = (Cine*) it->getCurrent();
+//        numero = cine->getNumero();
+//        it->next();
+//    }
+//    numero = numero + 1;
+//    Cine cine = new Cine();
+//    cine->setNumero(numero)
+//    cine->setDireccion(direccion);
+//    int seguirAgregandoSalas = 1;
+//    while(seguirAgregandoSalas != 0) {
+//        
+//    }
+//    listaCines->add(numero, cine);
 }
 
-ICollection* ControladorSistema::listarCines() {
-    ICollection listaCines = new list();
-    IIterator *it = Cine->getIterator();    
-    while(it->hasCurrent()){
-        Cine* cine = (Cine*) it->getCurrent();
-        int numero = cine->getNumero();
-        listaCines->add(numero);   
-        it->next();
-    }
-    delete it;
-    return listaCines;
-}
-
-//void ControladorSistema::eliminarPelicula(string titulo){
-    // Corresponde al caso de uso eliminar pelicula
-//    IKey clave = new KeyString(titulo);
-//    Pelicula *p;
+//void ControladorSistema::eliminarPelicula(std::string titulo) {
+//    // Corresponde al caso de uso eliminar pelicula
+//    IKey* clave = new String(titulo);
+//    ICollectible* (Pelicula *) p;
 //    p = (Pelicula *) Pelicula->find(clave);
 //    Pelicula->remove(p);
 //    delete p;
 //    delete clave;       
 //}
 
-//DtPelicula ControladorSistema::seleccionarPelicula(string titulo){
-    //Corresponde al caso de uso Ver informacion de pelicula
-//    IKey clave = new KeyString(titulo);
+//ICollection* ControladorSistema::listarCines() {
+//    ICollection* listaCines = new list();
+//    IIterator* it = Cine->getIterator();    
+//    while(it->hasCurrent()){
+//        Cine* cine = (Cine*) it->getCurrent();
+//        int numero = cine->getNumero();
+//        listaCines->add(numero);   
+//        it->next();
+//    }
+//    delete it;
+//    return listaCines;
+//}
+
+//ICollection* ControladorSistema::listarPeliculas() {
+//    ICollection* lisPeliculas = new list();
+//    IIterator *it = Pelicula->getIterator();    
+//    while(it->hasCurrent()){
+//        Pelicula* pelicula = (Pelicula*) it->getCurrent();
+//        std::string titulo = pelicula->getTitulo();
+//        lisPeliculas->add(titulo);   
+//        it->next();
+//    }
+//    delete it;
+//    return lisPeliculas;
+//}
+
+//DtPelicula ControladorSistema::seleccionarPelicula(std::string titulo) {
+//    //Corresponde al caso de uso Ver informacion de pelicula
+//    IKey clave = new String(titulo);
 //    DtPelicula *p;
 //    p = (DtPelicula *) Pelicula->find(clave);
 //
 //    return p;
 //}
+
+ControladorSistema::~ControladorSistema() {
+    
+}

@@ -1,6 +1,6 @@
 #include "../headers/Credito.h"
 
-Credito::Credito(int asientos, int costoTotal, int porcentajeDescuento, std::string financiera) {
+Credito::Credito(int asientos, int costoTotal, int porcentajeDescuento, std::string financiera) : Reserva(asientos, costoTotal){
     this->asientos = asientos;
     this->costoTotal = costoTotal;
     this->porcentajeDescuento = porcentajeDescuento;

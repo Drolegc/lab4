@@ -1,6 +1,6 @@
 #include "../headers/Cine.h"
 
-Cine::Cine(int numero, DtDireccion direccion) {
+Cine::Cine(int numero, DtDireccion direccion) : direccion(direccion) {
     this->numero = numero;
     this->direccion = direccion;
 }

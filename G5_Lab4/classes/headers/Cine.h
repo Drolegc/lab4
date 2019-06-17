@@ -1,14 +1,15 @@
 #ifndef CINE_H
 #define CINE_H
 
+#include "../../ICollection/interfaces/IDictionary.h"
 #include "../../datatypes/headers/DtDireccion.h"
 #include "../../datatypes/headers/DtCine.h"
-#include "../../ICollection/interfaces/ICollection.h"
 
 class Cine {
     private:
         int numero;
         DtDireccion direccion;
+        IDictionary* salas;
     public:
         Cine(int numero, DtDireccion direccion);
         
@@ -18,7 +19,7 @@ class Cine {
         void setNumero(int numero);
         void setDireccion(DtDireccion direccion);
         
-        ICollection* listarCines();
+        void agregarSala(int capacidad);
         
         ~Cine();
 };

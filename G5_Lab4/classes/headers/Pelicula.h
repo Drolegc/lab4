@@ -2,12 +2,10 @@
 #define PELICULA_H
 
 #include <string>
-#include "../../datatypes/headers/DtPelicula.h"
 #include "../../ICollection/interfaces/ICollectible.h"
-#include "../../ICollection/interfaces/ICollection.h"
-#include "../../ICollection/interfaces/IIterator.h"
+#include "../../datatypes/headers/DtPelicula.h"
 
-class Pelicula : public ICollection {
+class Pelicula : public ICollectible {
     private:
         std::string titulo;
         std::string urlPoster;
@@ -26,10 +24,10 @@ class Pelicula : public ICollection {
         void setSinopsis(std::string sinopsis);
         void setPuntajePromedio(int puntajePromedio);
         
-        ICollection* listarPeliculas();
-        void eliminarPelicula(std::string titulo);
-        DtPelicula verInfoAdicional();
-        DtPelicula seleccionarPelicula(std::string titulo);
+//        ICollection* listarPeliculas();
+//        void eliminarPelicula(std::string titulo);
+//        DtPelicula verInfoAdicional();
+//        DtPelicula seleccionarPelicula(std::string titulo);
         
         ~Pelicula();
 };

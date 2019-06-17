@@ -1,6 +1,6 @@
 #include "../headers/Debito.h"
 
-Debito::Debito(int asientos, int costoTotal, std::string bancoEmisor) {
+Debito::Debito(int asientos, int costoTotal, std::string bancoEmisor) : Reserva(asientos, costoTotal) {
     this->asientos = asientos;
     this->costoTotal = costoTotal;
     this->bancoEmisor = bancoEmisor;
