@@ -19,7 +19,7 @@ class DtDireccion {
         void setNumero(int numero);
         void setCiudad(std::string ciudad);
         
-        ~DtDireccion();
+        virtual ~DtDireccion();
 };
 
 #endif /* DTDIRECCION_H */

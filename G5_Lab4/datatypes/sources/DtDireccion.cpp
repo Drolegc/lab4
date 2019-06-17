@@ -22,6 +22,10 @@ void DtDireccion::setCalle(std::string calle) {
     this->calle = calle;
 }
 
+void DtDireccion::setNumero(int numero) {
+    this->numero = numero;
+}
+
 void DtDireccion::setCiudad(std::string ciudad) {
     this->ciudad = ciudad;
 }

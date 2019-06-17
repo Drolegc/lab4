@@ -1,128 +1,136 @@
-#
-#  There exist several targets which are by default empty and which can be 
-#  used for execution of your targets. These targets are usually executed 
-#  before and after some main targets. They are: 
-#
-#     .build-pre:              called before 'build' target
-#     .build-post:             called after 'build' target
-#     .clean-pre:              called before 'clean' target
-#     .clean-post:             called after 'clean' target
-#     .clobber-pre:            called before 'clobber' target
-#     .clobber-post:           called after 'clobber' target
-#     .all-pre:                called before 'all' target
-#     .all-post:               called after 'all' target
-#     .help-pre:               called before 'help' target
-#     .help-post:              called after 'help' target
-#
-#  Targets beginning with '.' are not intended to be called on their own.
-#
-#  Main targets can be executed directly, and they are:
-#  
-#     build                    build a specific configuration
-#     clean                    remove built files from a configuration
-#     clobber                  remove all built files
-#     all                      build all configurations
-#     help                     print help mesage
-#  
-#  Targets .build-impl, .clean-impl, .clobber-impl, .all-impl, and
-#  .help-impl are implemented in nbproject/makefile-impl.mk.
-#
-#  Available make variables:
-#
-#     CND_BASEDIR                base directory for relative paths
-#     CND_DISTDIR                default top distribution directory (build artifacts)
-#     CND_BUILDDIR               default top build directory (object files, ...)
-#     CONF                       name of current configuration
-#     CND_PLATFORM_${CONF}       platform name (current configuration)
-#     CND_ARTIFACT_DIR_${CONF}   directory of build artifact (current configuration)
-#     CND_ARTIFACT_NAME_${CONF}  name of build artifact (current configuration)
-#     CND_ARTIFACT_PATH_${CONF}  path to build artifact (current configuration)
-#     CND_PACKAGE_DIR_${CONF}    directory of package (current configuration)
-#     CND_PACKAGE_NAME_${CONF}   name of package (current configuration)
-#     CND_PACKAGE_PATH_${CONF}   path to package (current configuration)
-#
-# NOCDDL
+OBJETOS = ICollectible.o IKey.o OrderedKey.o IIterator.o ICollection.o \
+ListNode.o ListIterator.o List.o IDictionary.o OrderedDictionaryEntry.o \
+OrderedDictionary.o \
+DtCine.o DtDireccion.o DtFecha.o DtFuncion.o DtHora.o DtPelicula.o DtSala.o \
+Cine.o Credito.o Debito.o Funcion.o Pelicula.o Reserva.o Sala.o Usuario.o \
+ControladorSistema.o Fabrica.o ISistema.o
 
+FUENTES = ICollection/interfaces/ICollectible.cpp ICollection/interfaces/ICollectible.h \
+ICollection/interfaces/IKey.cpp ICollection/interfaces/IKey.h \
+ICollection/interfaces/OrderedKey.cpp ICollection/interfaces/OrderedKey.h \
+ICollection/interfaces/IIterator.cpp ICollection/interfaces/IIterator.h \
+ICollection/interfaces/ICollection.cpp ICollection/interfaces/ICollection.h \
+ICollection/collections/ListNode.cpp ICollection/collections/ListNode.h \
+ICollection/collections/ListIterator.cpp ICollection/collections/ListIterator.h \
+ICollection/collections/List.cpp ICollection/collections/List.h \
+ICollection/interfaces/IDictionary.cpp ICollection/interfaces/IDictionary.h \
+ICollection/collections/OrderedDictionaryEntry.cpp ICollection/collections/OrderedDictionaryEntry.h \
+ICollection/collections/OrderedDictionary.cpp ICollection/collections/OrderedDictionary.h \
+datatypes/sources/DtCine.cpp datatypes/headers/DtCine.h \
+datatypes/sources/DtDireccion.cpp datatypes/headers/DtDireccion.h \
+datatypes/sources/DtFecha.cpp datatypes/headers/DtFecha.h \
+datatypes/sources/DtFuncion.cpp datatypes/headers/DtFuncion.h \
+datatypes/sources/DtHora.cpp datatypes/headers/DtHora.h \
+datatypes/sources/DtPelicula.cpp datatypes/headers/DtPelicula.h \
+datatypes/sources/DtSala.cpp datatypes/headers/DtSala.h \
+classes/sources/Cine.cpp classes/headers/Cine.h \
+classes/sources/Credito.cpp classes/headers/Credito.h \
+classes/sources/Debito.cpp classes/headers/Debito.h \
+classes/sources/Funcion.cpp classes/headers/Funcion.h \
+classes/sources/Pelicula.cpp classes/headers/Pelicula.h \
+classes/sources/Reserva.cpp classes/headers/Reserva.h \
+classes/sources/Sala.cpp classes/headers/Sala.h \
+classes/sources/Usuario.cpp classes/headers/Usuario.h \
+classes/interfaces/ControladorSistema.cpp classes/interfaces/ControladorSistema.h \
+classes/interfaces/Fabrica.cpp classes/interfaces/Fabirca.h \
+classes/interfaces/ISistema.cpp classes/interfaces/ISistema.h
 
-# Environment 
-MKDIR=mkdir
-CP=cp
-CCADMIN=CCadmin
+CC = g++
+OPCIONES = -std=c++11 -g -Wall -Werror
 
+main: $(OBJETOS) main.cpp Makefile
+	$(CC) $(OPCIONES) $(OBJETOS) main.cpp -o main
 
-# build
-build: .build-post
+ICollectible.o: ICollection/interfaces/ICollectible.h ICollection/interfaces/ICollectible.cpp
+	$(CC) $(OPCIONES) -c ICollection/interfaces/ICollectible.cpp -o ICollectible.o
 
-.build-pre:
-# Add your pre 'build' code here...
+IKey.o: ICollection/interfaces/IKey.h ICollection/interfaces/IKey.cpp
+	$(CC) $(OPCIONES) -c ICollection/interfaces/IKey.cpp -o IKey.o
 
-.build-post: .build-impl
-# Add your post 'build' code here...
+OrderedKey.o: ICollection/interfaces/OrderedKey.h ICollection/interfaces/OrderedKey.cpp IKey.o
+	$(CC) $(OPCIONES) -c ICollection/interfaces/OrderedKey.cpp -o OrderedKey.o
 
+IIterator.o: ICollection/interfaces/IIterator.h ICollection/interfaces/IIterator.cpp ICollectible.o
+	$(CC) $(OPCIONES) -c ICollection/interfaces/IIterator.cpp -o IIterator.o
 
-# clean
-clean: .clean-post
+ICollection.o: ICollection/interfaces/ICollection.h ICollection/interfaces/ICollection.cpp IIterator.o
+	$(CC) $(OPCIONES) -c ICollection/interfaces/ICollection.cpp -o ICollection.o
 
-.clean-pre:
-# Add your pre 'clean' code here...
+ListNode.o: ICollection/collections/ListNode.h ICollection/collections/ListNode.cpp ICollection.o
+	$(CC) $(OPCIONES) -c ICollection/collections/ListNode.cpp -o ListNode.o
 
-.clean-post: .clean-impl
-# Add your post 'clean' code here...
+ListIterator.o: ICollection/collections/ListIterator.h ICollection/collections/ListIterator.cpp ListNode.o
+	$(CC) $(OPCIONES) -c ICollection/collections/ListIterator.cpp -o ListIterator.o
 
+List.o: ICollection/collections/List.h ICollection/collections/List.cpp ListNode.o ListIterator.o
+	$(CC) $(OPCIONES) -c ICollection/collections/List.cpp -o List.o
 
-# clobber
-clobber: .clobber-post
+IDictionary.o: ICollection/interfaces/IDictionary.h ICollection/interfaces/IDictionary.cpp IKey.o ICollectible.o IIterator.o
+	$(CC) $(OPCIONES) -c ICollection/interfaces/IDictionary.cpp -o IDictionary.o
 
-.clobber-pre:
-# Add your pre 'clobber' code here...
+OrderedDictionaryEntry.o: ICollection/collections/OrderedDictionaryEntry.h ICollection/collections/OrderedDictionaryEntry.cpp OrderedKey.o ICollectible.o
+	$(CC) $(OPCIONES) -c ICollection/collections/OrderedDictionaryEntry.cpp -o OrderedDictionaryEntry.o
 
-.clobber-post: .clobber-impl
-# Add your post 'clobber' code here...
+OrderedDictionary.o: ICollection/collections/OrderedDictionary.h ICollection/collections/OrderedDictionary.cpp OrderedDictionaryEntry.o ListNode.o IDictionary.o ListIterator.o
+	$(CC) $(OPCIONES) -c ICollection/collections/OrderedDictionary.cpp -o OrderedDictionary.o
+	
+DtCine.o: datatypes/sources/DtCine.cpp datatypes/headers/DtCine.h
+	$(CC) $(OPCIONES) -c datatypes/sources/DtCine.cpp -o DtCine.o
+	
+DtDireccion.o: datatypes/sources/DtDireccion.cpp datatypes/headers/DtDireccion.h
+	$(CC) $(OPCIONES) -c datatypes/sources/DtDireccion.cpp -o DtDireccion.o
+	
+DtFecha.o: datatypes/sources/DtFecha.cpp datatypes/headers/DtFecha.h
+	$(CC) $(OPCIONES) -c datatypes/sources/DtFecha.cpp -o DtFecha.o
+	
+DtFuncion.o: datatypes/sources/DtFuncion.cpp datatypes/headers/DtFuncion.h
+	$(CC) $(OPCIONES) -c datatypes/sources/DtFuncion.cpp -o DtFuncion.o
+	
+DtHora.o: datatypes/sources/DtHora.cpp datatypes/headers/DtHora.h
+	$(CC) $(OPCIONES) -c datatypes/sources/DtHora.cpp -o DtHora.o
+	
+DtPelicula.o: datatypes/sources/DtPelicula.cpp datatypes/headers/DtPelicula.h
+	$(CC) $(OPCIONES) -c datatypes/sources/DtPelicula.cpp -o DtPelicula.o
+	
+DtSala.o: datatypes/sources/DtSala.cpp datatypes/headers/DtSala.h
+	$(CC) $(OPCIONES) -c datatypes/sources/DtSala.cpp -o DtSala.o
+	
+Cine.o: classes/sources/Cine.cpp classes/headers/Cine.h
+	$(CC) $(OPCIONES) -c classes/sources/Cine.cpp -o Cine.o
+	
+Credito.o: classes/sources/Credito.cpp classes/headers/Credito.h
+	$(CC) $(OPCIONES) -c classes/sources/Credito.cpp -o Credito.o
+	
+Debito.o: classes/sources/Debito.cpp classes/headers/Debito.h
+	$(CC) $(OPCIONES) -c classes/sources/Debito.cpp -o Debito.o
+	
+Funcion.o: classes/sources/Funcion.cpp classes/headers/Funcion.h
+	$(CC) $(OPCIONES) -c classes/sources/Funcion.cpp -o Funcion.o
+	
+Pelicula.o: classes/sources/Pelicula.cpp classes/headers/Pelicula.h
+	$(CC) $(OPCIONES) -c classes/sources/Pelicula.cpp -o Pelicula.o
+	
+Reserva.o: classes/sources/Reserva.cpp classes/headers/Reserva.h
+	$(CC) $(OPCIONES) -c classes/sources/Reserva.cpp -o Reserva.o
+	
+Sala.o: classes/sources/Sala.cpp classes/headers/Sala.h
+	$(CC) $(OPCIONES) -c classes/sources/Sala.cpp -o Sala.o
+	
+Usuario.o: classes/sources/Usuario.cpp classes/headers/Usuario.h
+	$(CC) $(OPCIONES) -c classes/sources/Usuario.cpp -o Usuario.o
+	
+ControladorSistema.o: classes/interfaces/ControladorSistema.cpp classes/interfaces/ControladorSistema.h
+	$(CC) $(OPCIONES) -c classes/interfaces/ControladorSistema.cpp -o ControladorSistema.o
+	
+Fabrica.o: classes/interfaces/Fabrica.cpp classes/interfaces/Fabrica.h
+	$(CC) $(OPCIONES) -c classes/interfaces/Fabrica.cpp -o Fabrica.o
+	
+ISistema.o: classes/interfaces/ISistema.cpp classes/interfaces/ISistema.h
+	$(CC) $(OPCIONES) -c classes/interfaces/ISistema.cpp -o ISistema.o
+	
+clean:
+	rm -f $(OBJETOS) main
 
-
-# all
-all: .all-post
-
-.all-pre:
-# Add your pre 'all' code here...
-
-.all-post: .all-impl
-# Add your post 'all' code here...
-
-
-# build tests
-build-tests: .build-tests-post
-
-.build-tests-pre:
-# Add your pre 'build-tests' code here...
-
-.build-tests-post: .build-tests-impl
-# Add your post 'build-tests' code here...
-
-
-# run tests
-test: .test-post
-
-.test-pre: build-tests
-# Add your pre 'test' code here...
-
-.test-post: .test-impl
-# Add your post 'test' code here...
-
-
-# help
-help: .help-post
-
-.help-pre:
-# Add your pre 'help' code here...
-
-.help-post: .help-impl
-# Add your post 'help' code here...
-
-
-
-# include project implementation makefile
-include nbproject/Makefile-impl.mk
-
-# include project make variables
-include nbproject/Makefile-variables.mk
+rebuild:
+	make clean
+	make

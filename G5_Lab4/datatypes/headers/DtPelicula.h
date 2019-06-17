@@ -1,14 +1,21 @@
 #ifndef DTPELICULA_H
 #define DTPELICULA_H
-using namespace std;
-class DtPelicula {
-    public:
-        DtPelicula(string titulo, string urlPoster, string sinopsis, int puntajePromedio);
 
-        string getTitulo();
-        string urpPoster();
-        string sinopsis();
-        int puntajePromedio();
+#include <string>
+
+class DtPelicula {
+    private:
+        std::string titulo;
+        std::string urlPoster;
+        std::string sinopsis;
+        int puntajePromedio;
+    public:
+        DtPelicula(std::string titulo, std::string urlPoster, std::string sinopsis);
+
+        std::string getTitulo();
+        std::string getUrlPoster();
+        std::string getSinopsis();
+        int getPuntajePromedio();
 
         void setTitulo(std::string titulo);
         void setUrlPoster(std::string urlPoster);
@@ -16,13 +23,6 @@ class DtPelicula {
         void setPuntajePromedio(int puntajePromedio);
 
         virtual ~DtPelicula();
-        
-    private:
-    string titulo;
-    string urlPoster;
-    string sinopsis;
-    int puntajePromedio;
-
 };
 
 #endif /* DTPELICULA_H */

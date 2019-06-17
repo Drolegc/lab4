@@ -1,9 +1,9 @@
 #ifndef RESERVA_H
 #define RESERVA_H
 
-#include "../../ICollection/interfaces/ICollection.h"
+#include "../../ICollection/interfaces/ICollectible.h"
 
-class Reserva : public ICollection {
+class Reserva : public ICollectible {
     protected:
         int asientos;
         int costoTotal;
@@ -18,7 +18,7 @@ class Reserva : public ICollection {
         
         void eliminarReservas();
         
-        ~Reserva();
+        virtual ~Reserva();
 };
 
 #endif /* RESERVA_H */

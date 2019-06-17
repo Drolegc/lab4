@@ -1,12 +1,12 @@
 #include "Fabrica.h"
 
-Fabrica* Fabrica::instance = 0;
+ISistema* Fabrica::controladorSistema = 0;
 
-Fabrica* Fabrica::getInstance() {
-    if(instance == 0) {
-        instance = new Fabrica();
+ISistema* Fabrica::getISistema() {
+    if(controladorSistema == NULL) {
+        controladorSistema = new ControladorSistema();
     }
-    return instance;
+    return controladorSistema;
 }
 
 Fabrica::Fabrica() {
