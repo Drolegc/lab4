@@ -2,10 +2,17 @@
 #define CONTROLADORSISTEMA_H
 
 #include <iostream>
-#include "../../ICollection/String.h"
+/* -- L.h de las key tipo int e string -- */
+#include "../../ICollection/StringKey.h"
+/* -- INTERFACES -- */
 #include "../../ICollection/interfaces/ICollection.h"
 #include "../../ICollection/interfaces/IDictionary.h"
+/* -- COLLECTIONS -- */
+#include "../../ICollection/collections/OrderedDictionary.h"
+/* -- DataTypes -- */
 #include "../../datatypes/headers/DtDireccion.h"
+#include "../../datatypes/headers/DtPelicula.h"
+/* -- CLASES -- */
 #include "../headers/Pelicula.h"
 #include "../headers/Cine.h"
 #include "../headers/Credito.h"
@@ -15,10 +22,10 @@
 
 class ControladorSistema : public ISistema {
     private:
-        IDictionary* Pelicula;
-        IDictionary* Cine;
-        IDictionary* Usuario;
-        ICollection* Reserva;
+        IDictionary* dicPelicula;
+        IDictionary* dicCine;
+        IDictionary* dicUsuario;
+        ICollection* colReserva;
     public:
         ControladorSistema();
         
@@ -35,7 +42,7 @@ class ControladorSistema : public ISistema {
         
 //        void eliminarPelicula(std::string titulo);
 //        ICollection* listarPeliculas();
-//        DtPelicula seleccionarPelicula(std::string titulo);
+        DtPelicula seleccionarPelicula(std::string titulo);
 //        DtPelicula verInfoAdicional();
         
         /****************************** RESERVAS ******************************/
