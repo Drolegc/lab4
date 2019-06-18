@@ -19,6 +19,7 @@ class ISistema {
 //        virtual void reservaDebito(int asientos, int costoTotal, std::string bancoEmisor, int funcion);
 //        virtual void reservaCredito(int asientos, std::string financiera, int porcentajeDescuento, int funcion);
        virtual DtPelicula seleccionarPelicula(std::string titulo) = 0;
+       virtual ICollection* verInfoAdicional(DtPelicula p) = 0;
 //        virtual DtPelicula verInfoAdicional();
         virtual ~ISistema();
 };

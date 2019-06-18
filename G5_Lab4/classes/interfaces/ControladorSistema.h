@@ -4,10 +4,10 @@
 #include <iostream>
 /* -- L.h de las key tipo int e string -- */
 #include "../../ICollection/StringKey.h"
-/* -- INTERFACES -- */
+/* -- INTERFACES Y COLLECTIONS -- */
 #include "../../ICollection/interfaces/ICollection.h"
+#include "../../ICollection/collections/List.h"
 #include "../../ICollection/interfaces/IDictionary.h"
-/* -- COLLECTIONS -- */
 #include "../../ICollection/collections/OrderedDictionary.h"
 /* -- DataTypes -- */
 #include "../../datatypes/headers/DtDireccion.h"
@@ -44,6 +44,7 @@ class ControladorSistema : public ISistema {
 //        ICollection* listarPeliculas();
         DtPelicula seleccionarPelicula(std::string titulo);
 //        DtPelicula verInfoAdicional();
+        ICollection* verInfoAdicional(DtPelicula p);
         
         /****************************** RESERVAS ******************************/
         

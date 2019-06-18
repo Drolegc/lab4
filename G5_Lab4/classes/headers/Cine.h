@@ -2,14 +2,17 @@
 #define CINE_H
 
 #include "../../ICollection/interfaces/IDictionary.h"
+#include "../../ICollection/collections/OrderedDictionary.h"
 #include "../../datatypes/headers/DtDireccion.h"
 #include "../../datatypes/headers/DtCine.h"
+#include "../../ICollection/StringKey.h"
 
 class Cine {
     private:
         int numero;
         DtDireccion direccion;
-        IDictionary* salas;
+        IDictionary* dicSalas;
+        IDictionary* dicPeliculas;
     public:
         Cine(int numero, DtDireccion direccion);
         
@@ -20,6 +23,8 @@ class Cine {
         void setDireccion(DtDireccion direccion);
         
         void agregarSala(int capacidad);
+        //Leandro: tienePeli para el caso de uso CrearReserva
+        bool tienePeli(StringKey* clave);
         
         ~Cine();
 };

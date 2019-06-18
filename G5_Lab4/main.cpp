@@ -6,6 +6,7 @@
 #include "datatypes/headers/DtDireccion.h"
 
 void MostrarDtPelicula(DtPelicula p);
+void MostrarCines(ICollection* c);
 
 int main() {
     
@@ -37,10 +38,20 @@ int main() {
                 case 2:
                     std::cout<<"¿Que pelicula quieres ver? ";
                     std::string titulo;
+                    int YN;
                     std::cin>>titulo;
                     DtPelicula peli = controladorSistema->seleccionarPelicula(titulo);
                     std::cout<<peli.getTitulo();
+                    std::cout<<"¿Quieres ver en que cines esta esta pelicula?"<<std::endl;
+                    std::cin>>YN;
+                    if(YN == 'Y'){
+                        ICollection *cines = controladorSistema->verInfoAdicional(peli);
+                        MostrarCines(cines);
+                    }else{
+                        break;
+                    }
                 break;
+                
             }
         }
         catch (std::invalid_argument) {
@@ -48,4 +59,14 @@ int main() {
         }
     }
     return 0;
+}
+
+void MostrarCines(ICollection* c){
+    IIterator * it = c->getIterator();
+    while(it->hasCurrent())
+    {
+        Cine * cine = dynamic_cast<Cine *>(it->getCurrent());
+        std::cout<<cine->getNumero()<<std::endl;;
+    }
+    
 }

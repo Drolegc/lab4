@@ -81,6 +81,27 @@ DtPelicula ControladorSistema::seleccionarPelicula(std::string titulo)
     }
 }
 
+ICollection* ControladorSistema::verInfoAdicional(DtPelicula p){
+    //Primero obtener el objeto pelicula
+    //clave y coleccionable
+    StringKey *clave = new StringKey(p.getTitulo());
+    //ICollectible * peli = dicPelicula->find(clave);
+    //Crear una coleccion vacia para agregar los cines
+    ICollection * CinesConPeli = new List();
+    //Obtenemos el iterador del diccionario de Cines
+    IIterator *it = dicCine->getIterator();
+    
+    while(it->hasCurrent()){
+        Cine *c = dynamic_cast<Cine*>(it->getCurrent());
+        if(c->tienePeli(clave)){
+            CinesConPeli->add(it->getCurrent());
+        }
+    }
+
+    return CinesConPeli;
+}
+
+
 ControladorSistema::~ControladorSistema()
 {
 }
