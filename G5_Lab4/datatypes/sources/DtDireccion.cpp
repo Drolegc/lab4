@@ -5,7 +5,9 @@ DtDireccion::DtDireccion(std::string calle, int numero, std::string ciudad) {
     this->numero = numero;
     this->ciudad = ciudad;
 }
+DtDireccion::DtDireccion(){
 
+}
 std::string DtDireccion::getCalle() {
     return this->calle;
 }
@@ -16,6 +18,10 @@ std::string DtDireccion::getCiudad() {
 
 int DtDireccion::getNumero() {
     return this->numero;
+}
+std::ostream& operator<<(std::ostream &o, DtDireccion df){
+    o<<std::string("Cine: ") << df.getCalle() << df.getNumero()<<std::string(", ")<< df.getCiudad()<<std::endl;
+    return o;
 }
 
 void DtDireccion::setCalle(std::string calle) {
@@ -31,5 +37,5 @@ void DtDireccion::setCiudad(std::string ciudad) {
 }
 
 DtDireccion::~DtDireccion() {
-    
+
 }

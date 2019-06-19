@@ -14,6 +14,7 @@ class ISistema {
         ISistema();
         virtual void altaFuncion(DtFecha fecha, DtHora hora) = 0;
         virtual void altaPelicula(DtPelicula datos) = 0;
+        virtual void comentarPelicula() = 0;
 //        virtual void eliminarPelicula(std::string titulo);
 //        virtual void iniciarSesion(std::string nickname, std::string contrasenia);
 //        virtual ICollection* listarCines();
@@ -23,6 +24,8 @@ class ISistema {
 //        virtual DtPelicula seleccionarPelicula(std::string titulo);
 //        virtual DtPelicula verInfoAdicional();
         virtual ~ISistema();
+        virtual void listarCines() = 0;
+        virtual void altaCine(DtDireccion direccion) = 0;
 };
 
 #endif /* ISISTEMA_H */
