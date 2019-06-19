@@ -5,6 +5,8 @@
  * Created on 29 de mayo de 2011, 06:53 PM
  */
 
+#ifndef PROG4_STRING_H
+#define	PROG4_STRING_H
 
 #include "interfaces/ICollectible.h"
 #include "interfaces/OrderedKey.h"
@@ -30,5 +32,5 @@ public:
     
 };
 
-//#endif	/* PROG4_STRING_H */
+#endif	/* PROG4_STRING_H */
 
