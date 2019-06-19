@@ -5,7 +5,7 @@
 #include "../../datatypes/headers/DtDireccion.h"
 #include "../../datatypes/headers/DtCine.h"
 
-class Cine {
+class Cine : public ICollectible {
     private:
         int numero;
         DtDireccion direccion;

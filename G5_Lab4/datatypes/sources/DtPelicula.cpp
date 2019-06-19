@@ -1,6 +1,6 @@
 #include "../headers/DtPelicula.h"
 
-DtPelicula::DtPelicula(std::string titulo, std::string urlPoster, std::string sinopsis) {
+DtPelicula::DtPelicula(std::string titulo, std::string urlPoster, std::string sinopsis, int puntajePromedio) {
     this->titulo = titulo;
     this->urlPoster = urlPoster;
     this->sinopsis = sinopsis;
@@ -16,7 +16,7 @@ std::string DtPelicula::getUrlPoster() {
 }
 
 std::string DtPelicula::getSinopsis() {
-    return this->urlPoster;
+    return this->sinopsis;
 }
 
 int DtPelicula::getPuntajePromedio() {
@@ -37,6 +37,12 @@ void DtPelicula::setSinopsis(std::string sinopsis) {
 
 void DtPelicula::setPuntajePromedio(int puntajePromedio) {
     this->puntajePromedio = puntajePromedio;
+}
+
+std::ostream& operator<<(std::ostream &o, DtPelicula* dtP) {
+    o<<std::string("Titulo: ") << dtP->getTitulo() << std::string(" - UrlPoster: ") << dtP->getUrlPoster() <<
+            std::string(" - Sinopsis: ") << dtP->getSinopsis() << std::string(" - Puntaje Promedio: ") << dtP->getPuntajePromedio() << std::endl;
+    return o;
 }
 
 DtPelicula::~DtPelicula() {
