@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   String.h
  * Author: igui
  *
@@ -22,15 +22,15 @@ private:
 public:
     // construye el Datatype a partir de un puntero a caracter
     String(const char *s = "");
-    
+
     // da el valor del string
     const char *getValue() const;
-    
+
     ComparisonRes compare(OrderedKey *k) const;
-    
+
     virtual ~String();
-    
+
 };
 
-//#endif	/* PROG4_STRING_H */
+#endif	/* PROG4_STRING_H */
 
