@@ -37,6 +37,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/classes/interfaces/ControladorSistema.o \
 	${OBJECTDIR}/classes/interfaces/Fabrica.o \
+	${OBJECTDIR}/classes/interfaces/ISistema.o \
 	${OBJECTDIR}/classes/sources/Cine.o \
 	${OBJECTDIR}/classes/sources/Credito.o \
 	${OBJECTDIR}/classes/sources/Debito.o \
@@ -45,9 +46,13 @@ OBJECTFILES= \
 	${OBJECTDIR}/classes/sources/Reserva.o \
 	${OBJECTDIR}/classes/sources/Sala.o \
 	${OBJECTDIR}/classes/sources/Usuario.o \
+	${OBJECTDIR}/datatypes/sources/DtCine.o \
 	${OBJECTDIR}/datatypes/sources/DtDireccion.o \
 	${OBJECTDIR}/datatypes/sources/DtFecha.o \
+	${OBJECTDIR}/datatypes/sources/DtFuncion.o \
 	${OBJECTDIR}/datatypes/sources/DtHora.o \
+	${OBJECTDIR}/datatypes/sources/DtPelicula.o \
+	${OBJECTDIR}/datatypes/sources/DtSala.o \
 	${OBJECTDIR}/main.o
 
 
@@ -84,6 +89,11 @@ ${OBJECTDIR}/classes/interfaces/Fabrica.o: classes/interfaces/Fabrica.cpp
 	${MKDIR} -p ${OBJECTDIR}/classes/interfaces
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/classes/interfaces/Fabrica.o classes/interfaces/Fabrica.cpp
+
+${OBJECTDIR}/classes/interfaces/ISistema.o: classes/interfaces/ISistema.cpp
+	${MKDIR} -p ${OBJECTDIR}/classes/interfaces
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/classes/interfaces/ISistema.o classes/interfaces/ISistema.cpp
 
 ${OBJECTDIR}/classes/sources/Cine.o: classes/sources/Cine.cpp
 	${MKDIR} -p ${OBJECTDIR}/classes/sources
@@ -125,6 +135,11 @@ ${OBJECTDIR}/classes/sources/Usuario.o: classes/sources/Usuario.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/classes/sources/Usuario.o classes/sources/Usuario.cpp
 
+${OBJECTDIR}/datatypes/sources/DtCine.o: datatypes/sources/DtCine.cpp
+	${MKDIR} -p ${OBJECTDIR}/datatypes/sources
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/datatypes/sources/DtCine.o datatypes/sources/DtCine.cpp
+
 ${OBJECTDIR}/datatypes/sources/DtDireccion.o: datatypes/sources/DtDireccion.cpp
 	${MKDIR} -p ${OBJECTDIR}/datatypes/sources
 	${RM} "$@.d"
@@ -135,10 +150,25 @@ ${OBJECTDIR}/datatypes/sources/DtFecha.o: datatypes/sources/DtFecha.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/datatypes/sources/DtFecha.o datatypes/sources/DtFecha.cpp
 
+${OBJECTDIR}/datatypes/sources/DtFuncion.o: datatypes/sources/DtFuncion.cpp
+	${MKDIR} -p ${OBJECTDIR}/datatypes/sources
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/datatypes/sources/DtFuncion.o datatypes/sources/DtFuncion.cpp
+
 ${OBJECTDIR}/datatypes/sources/DtHora.o: datatypes/sources/DtHora.cpp
 	${MKDIR} -p ${OBJECTDIR}/datatypes/sources
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/datatypes/sources/DtHora.o datatypes/sources/DtHora.cpp
+
+${OBJECTDIR}/datatypes/sources/DtPelicula.o: datatypes/sources/DtPelicula.cpp
+	${MKDIR} -p ${OBJECTDIR}/datatypes/sources
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/datatypes/sources/DtPelicula.o datatypes/sources/DtPelicula.cpp
+
+${OBJECTDIR}/datatypes/sources/DtSala.o: datatypes/sources/DtSala.cpp
+	${MKDIR} -p ${OBJECTDIR}/datatypes/sources
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/datatypes/sources/DtSala.o datatypes/sources/DtSala.cpp
 
 ${OBJECTDIR}/main.o: main.cpp
 	${MKDIR} -p ${OBJECTDIR}

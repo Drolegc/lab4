@@ -2,13 +2,15 @@
 #define FABRICA_H
 
 #include <iostream>
+#include "ISistema.h"
+#include "ControladorSistema.h"
 
 class Fabrica {
     private:
-        static ISistema* instance;
+        static ISistema* controladorSistema;
         Fabrica();
     public:
-        static ISistema* getInstance();
+        static ISistema* getISistema();
 };
 
 #endif /* FABRICA_H */

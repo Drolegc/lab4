@@ -2,6 +2,7 @@
 #define CREDITO_H
 
 #include <string>
+#include "../headers/Reserva.h"
 
 class Credito : public Reserva {
     private:

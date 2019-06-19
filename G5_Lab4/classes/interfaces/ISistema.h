@@ -2,17 +2,26 @@
 #define ISISTEMA_H
 
 #include "../../ICollection/interfaces/ICollection.h"
+#include "../../datatypes/headers/DtDireccion.h"
+#include "../../datatypes/headers/DtFecha.h"
+#include "../../datatypes/headers/DtHora.h"
+#include "../../datatypes/headers/DtPelicula.h"
 
 class ISistema {
     public:
-        virtual void altaFuncion(DtFecha fecha, DtHora hora);
-        virtual DtPelicula verInfoAdicional() = 0;
-        virtual void reservaDebito(int asientos, int costoTotal, std::string bancoEmisor, int funcion) = 0;
-        virtual void reservaCredito(int asientos, std::string financiera, int porcentajeDescuento, int funcion) = 0;
-        virtual void eliminarPelicula(std::string titulo) = 0;
-        virtual ICollection* listarPeliculas() = 0;
-        virtual void iniciarSesion(std::string nickname, std::string contrasenia) = 0;
-        virtual ICollection* listarCines() = 0;
+        ISistema();
+        virtual void altaCine(DtDireccion direccion) = 0;
+        virtual void listarCines() = 0;
+//        virtual void altaFuncion(DtFecha fecha, DtHora hora);
+//        virtual void eliminarPelicula(std::string titulo);
+//        virtual void iniciarSesion(std::string nickname, std::string contrasenia);
+//        virtual ICollection* listarCines();
+//        virtual ICollection* listarPeliculas();
+//        virtual void reservaDebito(int asientos, int costoTotal, std::string bancoEmisor, int funcion);
+//        virtual void reservaCredito(int asientos, std::string financiera, int porcentajeDescuento, int funcion);
+//        virtual DtPelicula seleccionarPelicula(std::string titulo);
+//        virtual DtPelicula verInfoAdicional();
+        virtual ~ISistema();
 };
 
 #endif /* ISISTEMA_H */
