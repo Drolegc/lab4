@@ -7,6 +7,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/home/smunoz/Escritorio/lab4/G5_Lab4/classes/interfaces/ControladorSistema.cpp</file>
             <file>file:/home/smunoz/Escritorio/lab4/G5_Lab4/classes/headers/Pelicula.h</file>
             <file>file:/home/smunoz/Escritorio/lab4/G5_Lab4/classes/sources/Pelicula.cpp</file>
@@ -14,6 +15,9 @@
             <file>file:/home/smunoz/Escritorio/lab4/G5_Lab4/classes/interfaces/ISistema.h</file>
             <file>file:/home/smunoz/Escritorio/lab4/G5_Lab4/Makefile</file>
             <file>file:/home/smunoz/Escritorio/lab4/G5_Lab4/classes/interfaces/ControladorSistema.h</file>
+=======
+            <file>file:/home/bruno/Descargas/lab4-master/G5_Lab4/main.cpp</file>
+>>>>>>> development
         </group>
     </open-files>
 </project-private>

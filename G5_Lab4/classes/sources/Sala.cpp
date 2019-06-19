@@ -22,5 +22,14 @@ void Sala::setCapacidad(int capacidad) {
 }
 
 Sala::~Sala() {
-    
+
+}
+void Sala::listarSalas(IDictionary* salas){
+    IIterator* it = salas->getIterator();
+    while (it->hasCurrent()) {
+        Sala* currentSala = dynamic_cast<Sala*>(it->getCurrent());
+        std::cout << new DtSala(currentSala->getCapacidad(), currentSala->getNumero()) <<std::endl;
+        it->next();
+    }
+    delete it;
 }

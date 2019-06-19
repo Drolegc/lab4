@@ -32,5 +32,5 @@ public:
     
 };
 
-#endif	/* PROG4_STRING_H */
+//#endif	/* PROG4_STRING_H */
 

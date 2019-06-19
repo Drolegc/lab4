@@ -23,6 +23,8 @@ class ISistema {
 //        virtual DtPelicula seleccionarPelicula(std::string titulo);
 //        virtual DtPelicula verInfoAdicional();
         virtual ~ISistema();
+        virtual void listarCines() = 0;
+        virtual void altaCine(DtDireccion direccion) = 0;
 };
 
 #endif /* ISISTEMA_H */
