@@ -7,12 +7,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/smunoz/Escritorio/lab4/G5_Lab4/datatypes/sources/DtSala.cpp</file>
             <file>file:/home/smunoz/Escritorio/lab4/G5_Lab4/classes/interfaces/ControladorSistema.cpp</file>
-            <file>file:/home/smunoz/Escritorio/lab4/G5_Lab4/classes/interfaces/ISistema.cpp</file>
-            <file>file:/home/smunoz/Escritorio/lab4/G5_Lab4/datatypes/sources/DtFuncion.cpp</file>
-            <file>file:/home/smunoz/Escritorio/lab4/G5_Lab4/datatypes/sources/DtCine.cpp</file>
-            <file>file:/home/smunoz/Escritorio/lab4/G5_Lab4/classes/headers/Cine.h</file>
+            <file>file:/home/smunoz/Escritorio/lab4/G5_Lab4/classes/headers/Pelicula.h</file>
+            <file>file:/home/smunoz/Escritorio/lab4/G5_Lab4/classes/sources/Pelicula.cpp</file>
+            <file>file:/home/smunoz/Escritorio/lab4/G5_Lab4/main.cpp</file>
             <file>file:/home/smunoz/Escritorio/lab4/G5_Lab4/classes/interfaces/ISistema.h</file>
             <file>file:/home/smunoz/Escritorio/lab4/G5_Lab4/Makefile</file>
             <file>file:/home/smunoz/Escritorio/lab4/G5_Lab4/classes/interfaces/ControladorSistema.h</file>

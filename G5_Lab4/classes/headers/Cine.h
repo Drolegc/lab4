@@ -7,7 +7,7 @@
 #include "../../datatypes/headers/DtCine.h"
 #include "../../ICollection/StringKey.h"
 
-class Cine {
+class Cine : public ICollectible {
     private:
         int numero;
         DtDireccion direccion;

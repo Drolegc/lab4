@@ -1,6 +1,10 @@
 #include "../headers/Pelicula.h"
 
-Pelicula::Pelicula(std::string titulo, std::string urlPoster, std::string sinopsis) {
+Pelicula::Pelicula() {
+    
+}
+
+Pelicula::Pelicula(std::string titulo, std::string urlPoster, std::string sinopsis, int puntajePromedio) {
     this->titulo = titulo;
     this->urlPoster = urlPoster;
     this->sinopsis = sinopsis;
@@ -16,7 +20,11 @@ std::string Pelicula::getUrlPoster() {
 }
 
 std::string Pelicula::getSinopsis() {
-    return this->urlPoster;
+    return this->sinopsis;
+}
+
+int Pelicula::getPuntajePromedio() {
+    return this->puntajePromedio;
 }
 
 void Pelicula::setTitulo(std::string titulo) {
@@ -33,6 +41,17 @@ void Pelicula::setSinopsis(std::string sinopsis) {
 
 void Pelicula::setPuntajePromedio(int puntajePromedio) {
     this->puntajePromedio = puntajePromedio;
+}
+
+void Pelicula::listarPeliculas(IDictionary* dicPeliculas) {
+    IIterator* it = dicPeliculas->getIterator();
+    while (it->hasCurrent()) {
+    Pelicula* currentPelicula = dynamic_cast<Pelicula*>(it->getCurrent());
+    std::cout << new DtPelicula(currentPelicula->getTitulo(), currentPelicula->getUrlPoster(),
+            currentPelicula->getSinopsis(), currentPelicula->getPuntajePromedio());
+    it->next();
+    }
+    delete it;
 }
 
 Pelicula::~Pelicula() {

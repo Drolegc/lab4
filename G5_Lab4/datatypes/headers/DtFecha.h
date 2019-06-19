@@ -1,11 +1,14 @@
 #ifndef DTFECHA_H
 #define DTFECHA_H
 
+#include <stdexcept>
+
 class DtFecha {
     private:
         int dia;
         int mes;
         int anio;
+        bool isValid();
     public:
         DtFecha(int dia, int mes, int anio);
         

@@ -1,33 +1,30 @@
 #include "ControladorSistema.h"
 #include "../../ICollection/StringKey.h"
 
-ControladorSistema::ControladorSistema()
-{
+ControladorSistema::ControladorSistema() {
     dicPelicula = new OrderedDictionary();
+    dicCine = new OrderedDictionary();
+    dicUsuario = new OrderedDictionary();
+    colReserva = new OrderedDictionary();
+    
 }
 
-void ControladorSistema::altaCine(DtDireccion direccion)
-{
-    int asd;
-    std::cout << "Llegamos a entrar a la función";
-    std::cin >> asd;
-    //    int numero = 0;
-    //    IDictionary* listaCines = new list(Cine);
-    //    IIterator* it = listaCines->getIterator();
-    //    while(it->hasCurrent()) {
-    //        Cine* cine = (Cine*) it->getCurrent();
-    //        numero = cine->getNumero();
-    //        it->next();
-    //    }
-    //    numero = numero + 1;
-    //    Cine cine = new Cine();
-    //    cine->setNumero(numero)
-    //    cine->setDireccion(direccion);
-    //    int seguirAgregandoSalas = 1;
-    //    while(seguirAgregandoSalas != 0) {
-    //
-    //    }
-    //    listaCines->add(numero, cine);
+void ControladorSistema::altaFuncion(DtFecha fecha, DtHora hora) {
+//    std::string titulo;
+//    std::cout << "Seleccione una película de la siguiente lista: ";
+//    ControladorSistema::listarPeliculas();
+//    std::cin >> titulo;
+}
+
+void ControladorSistema::altaPelicula(DtPelicula datos) {
+    IKey* key = new StringKey(datos.getTitulo());
+//    key = datos.getTitulo();
+    Pelicula* pelicula = new Pelicula();
+    pelicula->setTitulo(datos.getTitulo());
+    pelicula->setUrlPoster(datos.getUrlPoster());
+    pelicula->setSinopsis(datos.getSinopsis());
+    pelicula->setPuntajePromedio(datos.getPuntajePromedio());
+    dicPelicula->add(key, pelicula);
 }
 
 //void ControladorSistema::eliminarPelicula(std::string titulo) {
@@ -40,31 +37,9 @@ void ControladorSistema::altaCine(DtDireccion direccion)
 //    delete clave;
 //}
 
-//ICollection* ControladorSistema::listarCines() {
-//    ICollection* listaCines = new list();
-//    IIterator* it = Cine->getIterator();
-//    while(it->hasCurrent()){
-//        Cine* cine = (Cine*) it->getCurrent();
-//        int numero = cine->getNumero();
-//        listaCines->add(numero);
-//        it->next();
-//    }
-//    delete it;
-//    return listaCines;
-//}
-
-//ICollection* ControladorSistema::listarPeliculas() {
-//    ICollection* lisPeliculas = new list();
-//    IIterator *it = Pelicula->getIterator();
-//    while(it->hasCurrent()){
-//        Pelicula* pelicula = (Pelicula*) it->getCurrent();
-//        std::string titulo = pelicula->getTitulo();
-//        lisPeliculas->add(titulo);
-//        it->next();
-//    }
-//    delete it;
-//    return lisPeliculas;
-//}
+void ControladorSistema::listarPeliculas() {
+    Pelicula::listarPeliculas(dicPelicula);
+}
 
 DtPelicula ControladorSistema::seleccionarPelicula(std::string titulo)
 {
@@ -74,7 +49,7 @@ DtPelicula ControladorSistema::seleccionarPelicula(std::string titulo)
     Pelicula *p = dynamic_cast<Pelicula *>(dicPelicula->find(clave));
     if (p != NULL)
     {
-        DtPelicula peli = DtPelicula(p->getTitulo(), p->getUrlPoster(), p->getSinopsis());
+        DtPelicula peli = DtPelicula(p->getTitulo(), p->getUrlPoster(), p->getSinopsis(),p->getPuntajePromedio());
         return peli;
     }else{
         throw std::invalid_argument("Disculpa, no tenemos esa pelicula pr el momento :/");

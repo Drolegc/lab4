@@ -1,6 +1,6 @@
 OBJETOS = ICollectible.o IKey.o OrderedKey.o IIterator.o ICollection.o \
 ListNode.o ListIterator.o List.o IDictionary.o OrderedDictionaryEntry.o \
-OrderedDictionary.o  Integer.o IntKey.o String.o StringKey.o \
+OrderedDictionary.o String.o StringKey.o \
 DtCine.o DtDireccion.o DtFecha.o DtFuncion.o DtHora.o DtPelicula.o DtSala.o \
 Cine.o Credito.o Debito.o Funcion.o Pelicula.o Reserva.o Sala.o Usuario.o \
 ControladorSistema.o Fabrica.o ISistema.o
@@ -20,6 +20,8 @@ ICollection/collections/List.cpp ICollection/collections/List.h \
 ICollection/interfaces/IDictionary.cpp ICollection/interfaces/IDictionary.h \
 ICollection/collections/OrderedDictionaryEntry.cpp ICollection/collections/OrderedDictionaryEntry.h \
 ICollection/collections/OrderedDictionary.cpp ICollection/collections/OrderedDictionary.h \
+ICollection/String.cpp ICollection/String.h \
+IColection/StringKey.cpp ICollection/StringKey.h \
 datatypes/sources/DtCine.cpp datatypes/headers/DtCine.h \
 datatypes/sources/DtDireccion.cpp datatypes/headers/DtDireccion.h \
 datatypes/sources/DtFecha.cpp datatypes/headers/DtFecha.h \
@@ -77,17 +79,16 @@ OrderedDictionaryEntry.o: ICollection/collections/OrderedDictionaryEntry.h IColl
 
 OrderedDictionary.o: ICollection/collections/OrderedDictionary.h ICollection/collections/OrderedDictionary.cpp OrderedDictionaryEntry.o ListNode.o IDictionary.o ListIterator.o
 	$(CC) $(OPCIONES) -c ICollection/collections/OrderedDictionary.cpp -o OrderedDictionary.o
-
-Integer.o: ICollection/Integer.h ICollection/Integer.cpp OrderedKey.o
-	$(CC) $(OPCIONES) -c ICollection/Integer.cpp -o Integer.o
-IntKey.o: ICollection/IntKey.h ICollection/IntKey.cpp
-	$(CC) $(OPCIONES) -c ICollection/IntKey.cpp -o IntKey.o
-
-String.o: ICollection/String.h ICollection/String.cpp OrderedKey.o
+	
+String.o: ICollection/String.h ICollection/String.cpp
 	$(CC) $(OPCIONES) -c ICollection/String.cpp -o String.o
-StringKey.o: ICollection/StringKey.h ICollection/StringKey.cpp OrderedKey.o
+	
+StringKey.o: ICollection/StringKey.h ICollection/StringKey.cpp
 	$(CC) $(OPCIONES) -c ICollection/StringKey.cpp -o StringKey.o
-
+	
+DtCine.o: datatypes/sources/DtCine.cpp datatypes/headers/DtCine.h
+	$(CC) $(OPCIONES) -c datatypes/sources/DtCine.cpp -o DtCine.o
+	
 DtDireccion.o: datatypes/sources/DtDireccion.cpp datatypes/headers/DtDireccion.h
 	$(CC) $(OPCIONES) -c datatypes/sources/DtDireccion.cpp -o DtDireccion.o
 

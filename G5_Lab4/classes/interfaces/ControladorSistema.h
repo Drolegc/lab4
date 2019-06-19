@@ -2,17 +2,14 @@
 #define CONTROLADORSISTEMA_H
 
 #include <iostream>
-/* -- L.h de las key tipo int e string -- */
 #include "../../ICollection/StringKey.h"
-/* -- INTERFACES Y COLLECTIONS -- */
+#include "../../ICollection/collections/List.h"
 #include "../../ICollection/interfaces/ICollection.h"
 #include "../../ICollection/collections/List.h"
 #include "../../ICollection/interfaces/IDictionary.h"
 #include "../../ICollection/collections/OrderedDictionary.h"
-/* -- DataTypes -- */
 #include "../../datatypes/headers/DtDireccion.h"
 #include "../../datatypes/headers/DtPelicula.h"
-/* -- CLASES -- */
 #include "../headers/Pelicula.h"
 #include "../headers/Cine.h"
 #include "../headers/Credito.h"
@@ -25,24 +22,26 @@ class ControladorSistema : public ISistema {
         IDictionary* dicPelicula;
         IDictionary* dicCine;
         IDictionary* dicUsuario;
-        ICollection* colReserva;
+        IDictionary* colReserva;
     public:
         ControladorSistema();
         
         /******************************** CINES ********************************/
         
         void altaCine(DtDireccion direccion);
-//        ICollection* listarCines();
         
         /****************************** FUNCIONES ******************************/
         
-//        void altaFuncion(DtFecha fecha, DtHora hora);
+        void altaFuncion(DtFecha fecha, DtHora hora);
         
         /****************************** PELICULAS ******************************/
         
+        void altaPelicula(DtPelicula datos);
 //        void eliminarPelicula(std::string titulo);
 //        ICollection* listarPeliculas();
         DtPelicula seleccionarPelicula(std::string titulo);
+        void listarPeliculas();
+//        DtPelicula seleccionarPelicula(std::string titulo);
 //        DtPelicula verInfoAdicional();
         ICollection* verInfoAdicional(DtPelicula p);
         
