@@ -40,7 +40,18 @@ void ControladorSistema::altaCine(DtDireccion direccion) {
     Cines->add(keyCine,nuevocine);
 }
 
-
+void ControladorSistema::comentarPelicula(){
+    int numpelicula;
+    std::string comentario;
+    Pelicula::listarPeliculas(dicPelicula);
+    std::cout << "Elija que pelicula va a comentar:";
+    std::cin >> numpelicula;
+    IntKey *key = new IntKey(numpelicula);
+    Pelicula *pelicula = dynamic_cast<Pelicula*>(dicPelicula->find(key));
+    std::cout <<"Escriba su comentario"<<std::endl;
+    std::cin >>comentario;
+    pelicula->setComentario(comentario);
+}
 void ControladorSistema::altaPelicula(DtPelicula datos) {
     IKey* key = new StringKey(datos.getTitulo());
 //    key = datos.getTitulo();
@@ -78,5 +89,5 @@ void ControladorSistema::listarPeliculas() {
 //}
 
 ControladorSistema::~ControladorSistema() {
-    
+
 }

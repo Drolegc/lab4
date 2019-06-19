@@ -26,5 +26,5 @@ class Cine :public ICollectible{
         ~Cine();
 };
 
-#endif /* CINE_H */
+#endif  /* CINE_H */
 

@@ -2,7 +2,7 @@ OBJETOS = ICollectible.o IKey.o OrderedKey.o IIterator.o ICollection.o \
 ListNode.o ListIterator.o List.o IDictionary.o OrderedDictionaryEntry.o \
 OrderedDictionary.o String.o StringKey.o IntKey.o \
 DtCine.o DtDireccion.o DtFecha.o DtFuncion.o DtHora.o DtPelicula.o DtSala.o \
-Cine.o Credito.o Debito.o Funcion.o Pelicula.o Reserva.o Sala.o Usuario.o \
+Cine.o Credito.o Debito.o Funcion.o Pelicula.o Reserva.o Sala.o Usuario.o Comentarios.o \
 ControladorSistema.o Fabrica.o ISistema.o
 
 FUENTES = ICollection/interfaces/ICollectible.cpp ICollection/interfaces/ICollectible.h \
@@ -28,6 +28,7 @@ datatypes/sources/DtPelicula.cpp datatypes/headers/DtPelicula.h \
 datatypes/sources/DtSala.cpp datatypes/headers/DtSala.h \
 classes/sources/Cine.cpp classes/headers/Cine.h \
 classes/sources/Credito.cpp classes/headers/Credito.h \
+classes/sources/Comentarios.cpp classes/headers/Comentarios.h \
 classes/sources/Debito.cpp classes/headers/Debito.h \
 classes/sources/Funcion.cpp classes/headers/Funcion.h \
 classes/sources/Pelicula.cpp classes/headers/Pelicula.h \
@@ -111,6 +112,9 @@ Cine.o: classes/sources/Cine.cpp classes/headers/Cine.h
 
 Credito.o: classes/sources/Credito.cpp classes/headers/Credito.h
 	$(CC) $(OPCIONES) -c classes/sources/Credito.cpp -o Credito.o
+
+Credito.o: classes/sources/Comentarios.cpp classes/headers/Comentarios.h
+	$(CC) $(OPCIONES) -c classes/sources/Comentarios.cpp -o Comentarios.o
 
 Debito.o: classes/sources/Debito.cpp classes/headers/Debito.h
 	$(CC) $(OPCIONES) -c classes/sources/Debito.cpp -o Debito.o

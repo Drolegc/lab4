@@ -1,7 +1,7 @@
 #include "../headers/Pelicula.h"
 
 Pelicula::Pelicula() {
-    
+    this->comentarios = new OrderedDictionary();
 }
 
 Pelicula::Pelicula(std::string titulo, std::string urlPoster, std::string sinopsis, int puntajePromedio) {
@@ -13,6 +13,20 @@ Pelicula::Pelicula(std::string titulo, std::string urlPoster, std::string sinops
 
 std::string Pelicula::getTitulo() {
     return this->titulo;
+}
+IDictionary *Pelicula::getComentarios(){
+    return this->comentarios;
+}
+void Pelicula::setComentario(std::string comentario){
+    IIterator *it  = this->comentarios->getIterator();
+    int numComentario = 0;
+    while (it->hasCurrent()) {
+        numComentario++;
+        it->next();
+    }
+    numComentario++;
+    IntKey* KeyComentario = new IntKey (numComentario);
+    this->comentarios->add(KeyComentario, new Comentarios(numComentario,comentario));
 }
 
 std::string Pelicula::getUrlPoster() {
@@ -55,5 +69,5 @@ void Pelicula::listarPeliculas(IDictionary* dicPeliculas) {
 }
 
 Pelicula::~Pelicula() {
-    
+
 }

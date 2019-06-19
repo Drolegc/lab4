@@ -81,6 +81,10 @@ int main() {
                     controladorSistema->listarCines();
                 }
                 break;
+                case 4: {
+                    controladorSistema->comentarPelicula();
+                }
+                break;
             }
         }
         catch (std::invalid_argument) {
