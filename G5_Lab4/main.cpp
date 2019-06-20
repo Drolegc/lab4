@@ -118,7 +118,15 @@ int main()
                         //Falta agregar UserLogeado y setReserva de user
 
                     }else if(YN == 'C'){
-
+                        int Asientos;
+                        std::string financiera;
+                                                std::cout<<"¿Cantidad de asientos?";
+                        std::cin>>Asientos;
+                        std::cout<<"Financiera de la tarjeta: "<<std::endl;
+                        std::cin>>financiera;
+                        std::cout<<"Procesando total..."<<std::endl;
+                        //recordar que id_cine funciona como id_funcion (cambiar nombre de variable)
+                        controladorSistema->pagoCredito(Asientos,financiera,id_cine);
                     }else{
 
                     }

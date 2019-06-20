@@ -3,6 +3,7 @@
 
 #include <string>
 #include "../../ICollection/interfaces/ICollectible.h"
+#include "../../ICollection/interfaces/ICollection.h"
 
 class Usuario : public ICollectible {
     private:
@@ -10,6 +11,7 @@ class Usuario : public ICollectible {
         std::string urlImagen;
         std::string contrasenia;
         bool isAdmin;
+        ICollection* reservas;
     public:
         Usuario(std::string nickname, std::string urlImagen, std::string contrasenia, bool isAdmin);
         
@@ -22,7 +24,9 @@ class Usuario : public ICollectible {
         void setUrlImagen(std::string urlImagen);
         void setContrasenia(std::string contrasenia);
         void setIsAdmin(bool estado);
-        
+        void setReserva(ICollectible* r);
+
+
         void iniciarSesion(std::string nickname, std::string contrasenia);
         
         ~Usuario();

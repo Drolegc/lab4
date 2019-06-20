@@ -181,18 +181,79 @@ void ControladorSistema::pagoDebito(int asientos, std::string banco, int funcion
         3 creamos la reserva con link a funcion
         "Me parece mas razonable que cuando un usuario quiere ver su reserva, que pueda ver a que funcion es"
         */
-       
-       Reserva* RDebito = new Debito(asientos,total,banco,f);
 
-       /*
+        Reserva *RDebito = new Debito(asientos, total, banco, f);
+
+        /*
        4 
        - Linkear usuario con reserva
        */
-      //Creo un setter de reserva
-      U->setReserva(RDebito);
+        //Creo un setter de reserva
+        U->setReserva(dynamic_cast<ICollectible*>(RDebito));
 
-      std::cout<<"Reserva mediante debito lista! Que disfrutes la pelicula! "<<std::endl;
+        std::cout << "Reserva mediante debito lista! Que disfrutes la pelicula! " << std::endl;
+    }
+}
 
+void ControladorSistema::pagoCredito(int asientos, std::string financiera, int funcion)
+{
+    //MOMENTANEAMENTE COMO NO TENEMOS UN MONTO PARA EL TOTAL, DIREMOS QUE EL PRECIO ESTA A 250 PESOS
+    int total = (asientos * 250) * 0.75; //Asumimos %15 porciento de descuentopor financiera
+    std::cout << "El total es: $" << total << std::endl;
+    std::cout << "¿Confirmar? Y/N" << std::endl;
+    char YN;
+    std::cin >> YN;
+    if (YN == 'Y')
+    {
+        //El usuario confirmo, por lo tanto hay que crear la reserva
+        //1 - buscar la funcion
+        //2 - obtener usuario logeado
+        //3 - crear reserva con la funcion
+        //4 - Linkear usuario con reserva
+
+        //1
+        /*
+        Iterar entre la colleccion de cines para encontrar la funcion
+        */
+        IIterator *it = this->dicCines->getIterator();
+        Funcion *f;
+        while (it->hasCurrent())
+        {
+            Cine *c = dynamic_cast<Cine *>(it->getCurrent());
+            if (c->getFuncion(funcion))
+            {
+                f = c->getFuncion(funcion);
+                break;
+            }
+            it->next();
+        }
+        /*
+       2
+       Obtener usuario logeado suponemos que el controlador tiene un usuario loageado que se puede obtener con getUsuarioLogeado
+       */
+
+        Usuario *U = this->getUsuarioLogeado();
+
+        /*
+        3 creamos la reserva con link a funcion
+        "Me parece mas razonable que cuando un usuario quiere ver su reserva, que pueda ver a que funcion es"
+        */
+
+        Reserva *RCredito = new Credito(asientos, total,15, financiera, f);
+
+        /*
+       4 
+       - Linkear usuario con reserva
+       */
+        //Creo un setter de reserva 
+        //Recordar que las reserrvas que tiene el user es una coleccion, 
+        //por lo tanto lo que se pasapor parametros tiene que ser un coleccionable
+        //para eso lo casteamos
+        U->setReserva(dynamic_cast<ICollectible*>(RCredito));
+
+        std::cout << "Reserva mediante credito lista! Que disfrutes la pelicula! " << std::endl;
+    }else{
+        throw std::invalid_argument("Reserva cancelada");
     }
 }
 

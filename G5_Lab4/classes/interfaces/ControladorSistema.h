@@ -53,6 +53,7 @@ class ControladorSistema : public ISistema {
 //        void reservaCredito(int asientos, std::string financiera, int porcentajeDescuento, int funcion);
 //        void reservaDebito(int asientos, int costoTotal, std::string bancoEmisor, int funcion);
         void pagoDebito(int asientos,std::string banco,int funcion);
+        void pagoCredito(int asientos,std::string financiera,int funcion);
 
         /****************************** USUARIOS ******************************/
 

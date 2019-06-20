@@ -39,6 +39,10 @@ void Usuario::setIsAdmin(bool estado) {
     this->isAdmin = estado;
 }
 
+void Usuario::setReserva(ICollectible* r){
+    this->reservas->add(r);
+}
+
 Usuario::~Usuario() {
     
 }

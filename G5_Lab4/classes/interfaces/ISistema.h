@@ -29,6 +29,7 @@ class ISistema {
         virtual void listarCines() = 0;
         virtual ICollection* SeleccionarCine(int numCine,std::string titulo) = 0;
         virtual void pagoDebito(int asientos,std::string banco,int funcion) = 0;
+        virtual void pagoCredito(int asientos,std::string financiera,int funcion) = 0;
 
 };
 
