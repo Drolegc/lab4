@@ -32,6 +32,14 @@ void Funcion::setHora(DtHora hora) {
     this->hora = hora;
 }
 
+bool Funcion::tienePeli(Pelicula* p){
+    if (this->pelicula == p){
+        return true;
+    }else{
+        return false;
+    }
+}
+
 //Funcion Funcion::altaFuncion(DtHora hora, DtFecha fecha) {
 //    int aux = 0;
 //    IKey* numero = new Integer();

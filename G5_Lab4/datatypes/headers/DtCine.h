@@ -2,25 +2,22 @@
 #define DTCINE_H
 
 #include "../../ICollection/interfaces/IDictionary.h"
+#include "../../ICollection/collections/List.h"
 #include "../../datatypes/headers/DtDireccion.h"
 
+
 class DtCine {
+    public:
+        DtCine(DtDireccion direccion, int numero);
+        friend std::ostream& operator<<(std::ostream &o, DtCine* df);
+        DtDireccion getDireccion();
+        int getNumero();
+        ~DtCine();
     private:
-        int numero;
         DtDireccion direccion;
         IDictionary* salas;
-    public:
-        DtCine(int numero, DtDireccion direccion);
-        
-        int getNumero();
-        DtDireccion getDireccion();
-        
-        void setNumero(int numero);
-        void setDireccion(DtDireccion direccion);
-        
-        void agregarSala(int capacidad);
-        
-        ~DtCine();
+        int numero;
+
 };
 #endif /* DTCINE_H */
 

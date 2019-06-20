@@ -7,13 +7,15 @@
 #include "../../ICollection/interfaces/ICollection.h"
 #include "../../ICollection/interfaces/IDictionary.h"
 
+#include "../../classes/headers/Pelicula.h"
+
 class Funcion : public ICollectible {
     private:
         int numero;
         DtFecha fecha;
         DtHora hora;
         ICollection* Reserva;
-        IDictionary* Peliculas;
+        Pelicula* pelicula;
     public:
         Funcion(int numero, DtFecha fecha, DtHora hora);
         
@@ -30,6 +32,7 @@ class Funcion : public ICollectible {
 //        ICollectible* obtenerFuncion();
 //        ICollection* obtenerFunciones();
 //        void eliminarFunciones();
+        bool tienePeli(Pelicula* p);
         
         ~Funcion();
 };
