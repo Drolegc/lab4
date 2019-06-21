@@ -113,7 +113,7 @@ Cine.o: classes/sources/Cine.cpp classes/headers/Cine.h
 Credito.o: classes/sources/Credito.cpp classes/headers/Credito.h
 	$(CC) $(OPCIONES) -c classes/sources/Credito.cpp -o Credito.o
 
-Credito.o: classes/sources/Comentarios.cpp classes/headers/Comentarios.h
+Comentarios.o: classes/sources/Comentarios.cpp classes/headers/Comentarios.h
 	$(CC) $(OPCIONES) -c classes/sources/Comentarios.cpp -o Comentarios.o
 
 Debito.o: classes/sources/Debito.cpp classes/headers/Debito.h

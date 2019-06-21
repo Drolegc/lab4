@@ -42,7 +42,7 @@ int main() {
 
     controladorSistema->altaPelicula(DtPelicula (titulo, urlPoster, sinopsis, puntajePromedio));
 
-    controladorSistema->listarPeliculas();
+//    controladorSistema->listarPeliculas();
 
     std::cout << "¡Bienvenido al sistema!" << std::endl;
     std::cout << "Comandos:" << std::endl;
@@ -60,22 +60,35 @@ int main() {
                     std::string calle;
                     std::string ciudad;
                     int numero;
-                    std::cout << "Ingrese la direcciรณn del cine (Calle - Numero - Ciudad): ";
+                    std::cout << "Ingrese la dirección del cine (Calle - Numero - Ciudad): ";
                     std::cin >> calle >> numero >> ciudad;
                     controladorSistema->altaCine(DtDireccion(calle, numero, ciudad));
                 }
                 break;
                 case 2: {
+                    
                     int dia;
                     int mes;
                     int anio;
                     int hora;
                     int minutos;
+                    int numeroCine;
+                    int numeroSala;
+                    std::string titulo;
+                    
+                    std::cout << std::endl; controladorSistema->listarPeliculas(); std::cout << std::endl;
+                    std::cout << "Seleccione la película deseada (titulo): ";
+                    std::cin >> titulo;
+                    std::cout << std::endl; controladorSistema->listarCines(); std::cout << std::endl;
+                    std::cout << "Seleccione el cine deseado (numeroCine): ";
+                    std::cin >> numeroCine;
+                    std::cout << "Seleccione la sala deseada (numeroSala): ";
+                    std::cin >> numeroSala;
                     std::cout << "Ingrese la fecha de la función (Dia - Mes - Año): ";
                     std::cin >> dia >> mes >> anio;
                     std::cout << "Ingrese la hora de la función (Hora - Minutos): ";
                     std::cin >> hora >> minutos;
-                    controladorSistema->altaFuncion(DtFecha(dia, mes, anio), DtHora(hora, minutos));
+                    controladorSistema->altaFuncion(titulo, numeroCine, numeroSala, DtFecha(dia, mes, anio), DtHora(hora, minutos));
                 }
                 case 3: {
                     controladorSistema->listarCines();

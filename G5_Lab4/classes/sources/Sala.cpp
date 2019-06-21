@@ -3,6 +3,7 @@
 Sala::Sala(int numero, int capacidad) {
     this->numero = numero;
     this->capacidad = capacidad;
+    this->dicFunciones = new OrderedDictionary();
 }
 
 int Sala::getNumero() {
@@ -11,6 +12,10 @@ int Sala::getNumero() {
 
 int Sala::getCapacidad() {
     return this->capacidad;
+}
+
+IDictionary* Sala::getDicFunciones() {
+    return this->dicFunciones;
 }
 
 void Sala::setNumero(int numero) {
