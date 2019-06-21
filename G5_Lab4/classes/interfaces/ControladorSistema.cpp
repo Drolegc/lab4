@@ -7,13 +7,43 @@ ControladorSistema::ControladorSistema() {
     Cines = new OrderedDictionary();
 }
 
-
-void ControladorSistema::altaFuncion(DtFecha fecha, DtHora hora) {
-//    std::string titulo;
-//    std::cout << "Seleccione una película de la siguiente lista: ";
-//    ControladorSistema::listarPeliculas();
-//    std::cin >> titulo;
+void ControladorSistema::altaFuncion(std::string titulo, int numeroCine, int numeroSala, DtFecha fecha, DtHora hora) {
+    
+    /********************* Obtengo la película específica *********************/
+    
+    IKey* keyPelicula = new StringKey(titulo);
+    Pelicula* pelicula = (Pelicula*) dicPelicula->find(keyPelicula);
+    delete keyPelicula;
+    
+    /*********************** Obtengo el cine específico ***********************/
+    
+    IKey* keyCine = new IntKey(numeroCine);
+    Cine* cine = (Cine*) Cines->find(keyCine);
+    delete keyCine;
+    
+    /*********************** Obtengo la sala específica ***********************/
+    
+    IKey* keySala = new IntKey(numeroSala);
+    IDictionary* dicSalas = cine->getSalas();
+    Sala* sala = (Sala*) dicSalas->find(keySala);
+    delete keySala;
+    
+    /**************************** Agrego la función ****************************/
+    
+    IDictionary* dicFunciones = sala->getDicFunciones();
+    IIterator* it = dicFunciones->getIterator();
+    int numeroFuncion = 0;
+    while(it->hasCurrent()) {
+        numeroFuncion++;
+        it->next();
+    }
+    numeroFuncion++;
+    ICollectible* funcion = new Funcion(numeroFuncion, fecha, hora, pelicula);
+    IKey* keyFuncion = new IntKey(numeroFuncion);
+    dicFunciones->add(keyFuncion, funcion);
+    delete it;
 }
+
 void ControladorSistema::altaCine(DtDireccion direccion) {
     int numero;
     std::cout << "Ingrese el numero del cine:";
@@ -40,7 +70,7 @@ void ControladorSistema::altaCine(DtDireccion direccion) {
     Cines->add(keyCine,nuevocine);
 }
 
-void ControladorSistema::comentarPelicula(){
+void ControladorSistema::comentarPelicula() {
     int numpelicula;
     std::string comentario;
     Pelicula::listarPeliculas(dicPelicula);
@@ -52,6 +82,7 @@ void ControladorSistema::comentarPelicula(){
     std::cin >>comentario;
     pelicula->setComentario(comentario);
 }
+
 void ControladorSistema::altaPelicula(DtPelicula datos) {
     IKey* key = new StringKey(datos.getTitulo());
 //    key = datos.getTitulo();
@@ -62,9 +93,11 @@ void ControladorSistema::altaPelicula(DtPelicula datos) {
     pelicula->setPuntajePromedio(datos.getPuntajePromedio());
     dicPelicula->add(key, pelicula);
 }
-void ControladorSistema::listarCines(){
+
+void ControladorSistema::listarCines() {
     Cine::listarCines(Cines);
 }
+
 //void ControladorSistema::eliminarPelicula(std::string titulo) {
 //    // Corresponde al caso de uso eliminar pelicula
 //    IKey* clave = new String(titulo);

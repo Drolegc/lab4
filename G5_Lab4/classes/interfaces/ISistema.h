@@ -12,7 +12,7 @@
 class ISistema {
     public:
         ISistema();
-        virtual void altaFuncion(DtFecha fecha, DtHora hora) = 0;
+        virtual void altaFuncion(std::string titulo, int numeroCine, int numeroSala, DtFecha fecha, DtHora hora) = 0;
         virtual void altaPelicula(DtPelicula datos) = 0;
         virtual void comentarPelicula() = 0;
 //        virtual void eliminarPelicula(std::string titulo);

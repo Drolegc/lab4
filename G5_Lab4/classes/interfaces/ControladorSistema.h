@@ -16,6 +16,7 @@
 #include "../headers/Credito.h"
 #include "../headers/Debito.h"
 #include "../headers/Usuario.h"
+#include "../headers/Funcion.h"
 #include "../interfaces/ISistema.h"
 
 class ControladorSistema : public ISistema {
@@ -25,19 +26,22 @@ class ControladorSistema : public ISistema {
         IDictionary* dicUsuario;
         IDictionary* Cines;
     public:
+        
         ControladorSistema();
-        void comentarPelicula();
+        
         /******************************** CINES ********************************/
 
         void altaCine(DtDireccion direccion);
+        void listarCines();
 
         /****************************** FUNCIONES ******************************/
 
-        void altaFuncion(DtFecha fecha, DtHora hora);
+        void altaFuncion(std::string titulo, int numeroCine, int numeroSala, DtFecha fecha, DtHora hora);
 
         /****************************** PELICULAS ******************************/
 
         void altaPelicula(DtPelicula datos);
+        void comentarPelicula();
 //        void eliminarPelicula(std::string titulo);
         void listarPeliculas();
 //        DtPelicula seleccionarPelicula(std::string titulo);
@@ -54,7 +58,6 @@ class ControladorSistema : public ISistema {
 
         /**********************************************************************/
 
-        void listarCines();
         ~ControladorSistema();
 };
 
