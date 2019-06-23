@@ -12,7 +12,7 @@
 class ISistema {
     public:
         ISistema();
-        virtual void altaFuncion(DtFecha fecha, DtHora hora) = 0;
+        virtual void altaFuncion(std::string titulo, int numeroCine, int numeroSala, DtFecha fecha, DtHora hora) = 0;
         virtual void altaPelicula(DtPelicula datos) = 0;
         virtual void altaCine(DtDireccion direccion) = 0;
         virtual void comentarPelicula() = 0;
@@ -28,8 +28,9 @@ class ISistema {
         virtual ~ISistema();
         virtual void listarCines() = 0;
         virtual ICollection* SeleccionarCine(int numCine,std::string titulo) = 0;
-        virtual void pagoDebito(int asientos,std::string banco,int funcion) = 0;
+        virtual void pagoDebito(int asientos,std::string banco,int funcion,int cine) = 0;
         virtual void pagoCredito(int asientos,std::string financiera,int funcion) = 0;
+        virtual void MostrarReservas()=0;
 
 };
 

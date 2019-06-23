@@ -17,6 +17,7 @@
 #include "../headers/Credito.h"
 #include "../headers/Debito.h"
 #include "../headers/Usuario.h"
+#include "../headers/Funcion.h"
 #include "../interfaces/ISistema.h"
 
 class ControladorSistema : public ISistema {
@@ -25,20 +26,24 @@ class ControladorSistema : public ISistema {
         IDictionary* colReserva;
         IDictionary* dicUsuario;
         IDictionary* dicCines;
+        Usuario* U;
     public:
+        
         ControladorSistema();
-        void comentarPelicula();
+        
         /******************************** CINES ********************************/
 
         void altaCine(DtDireccion direccion);
+        void listarCines();
 
         /****************************** FUNCIONES ******************************/
 
-        void altaFuncion(DtFecha fecha, DtHora hora);
+        void altaFuncion(std::string titulo, int numeroCine, int numeroSala, DtFecha fecha, DtHora hora);
 
         /****************************** PELICULAS ******************************/
 
         void altaPelicula(DtPelicula datos);
+        void comentarPelicula();
 //        void eliminarPelicula(std::string titulo);
 //        ICollection* listarPeliculas();
         DtPelicula seleccionarPelicula(std::string titulo);
@@ -52,16 +57,16 @@ class ControladorSistema : public ISistema {
 
 //        void reservaCredito(int asientos, std::string financiera, int porcentajeDescuento, int funcion);
 //        void reservaDebito(int asientos, int costoTotal, std::string bancoEmisor, int funcion);
-        void pagoDebito(int asientos,std::string banco,int funcion);
+        void pagoDebito(int asientos,std::string banco,int funcion,int cine);
         void pagoCredito(int asientos,std::string financiera,int funcion);
 
         /****************************** USUARIOS ******************************/
 
 //        void iniciarSesion(std::string nickname, std::string contrasenia);
-
+        Usuario* getUsuarioLogeado();
+        void MostrarReservas();
         /**********************************************************************/
 
-        void listarCines();
         ~ControladorSistema();
 };
 

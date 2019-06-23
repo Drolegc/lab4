@@ -31,6 +31,7 @@ class Cine :public ICollectible{
         void agregarSala(int capacidad);
         //Leandro: tienePeli para el caso de uso CrearReserva
         bool tienePeli(StringKey* clave);
+        void addPelicula(Pelicula* p);
         
         ~Cine();
 };

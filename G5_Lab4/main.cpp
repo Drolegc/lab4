@@ -47,14 +47,7 @@ int main()
 
     controladorSistema->altaPelicula(DtPelicula(titulo, urlPoster, sinopsis, puntajePromedio));
 
-    controladorSistema->listarPeliculas();
-    /* --- CREAR RESERVA --- */
-
-    std::string calle = "Spinola";
-    std::string ciudad = "Maldonado";
-    int numero = 99;
-
-    controladorSistema->altaCine(DtDireccion(calle, numero, ciudad));
+    //    controladorSistema->listarPeliculas();
 
     /* --- /CREAR RESERVA --- */
     std::cout << "¡Bienvenido al sistema!" << std::endl;
@@ -95,63 +88,84 @@ int main()
                 std::cin >> YN;
                 if (YN == 'Y')
                 {
+                    //OJO CON ESA VARIABLE CINESfUNCIONES
+
                     ICollection *cinesFunciones = controladorSistema->verInfoAdicional(peli);
                     MostrarCines(cinesFunciones);
+
                     int id_cine;
                     std::cout << "¿En que cine te gustaria? Ingresa su id: " << std::endl;
                     std::cin >> id_cine;
                     cinesFunciones = controladorSistema->SeleccionarCine(id_cine, peli.getTitulo());
                     MostrarFunciones(cinesFunciones);
-                    std::cout<<"¿En que funcion te gustaria? Ingresa su id "<<std::endl;
-                    std::cin>>id_cine; //Funciona como id_funcion
-                    std::cout<<"¿Pago debito (D) o credito (C)?"<<std::endl;
-                    if(YN = 'D'){
+
+                    std::cout << "¿En que funcion te gustaria? Ingresa su id " << std::endl;
+                    int id_funcion;
+                    std::cin >> id_funcion; //Funciona como id_funcion
+
+                    std::cout << "¿Pago debito (D) o credito (C)?" << std::endl;
+                    std::cin >> YN;
+                    if (YN == 'D')
+                    {
                         //Asientos,Banco id_funcion
                         int Asientos;
                         std::string banco;
-                        std::cout<<"¿Cantidad de asientos?";
-                        std::cin>>Asientos;
-                        std::cout<<"Banco de la tarjeta: "<<std::endl;
-                        std::cin>>banco;
-                        std::cout<<"Procesando total ..."<<std::endl;
-                        controladorSistema->pagoDebito(Asientos,banco,id_cine);
+                        std::cout << "¿Cantidad de asientos?";
+                        std::cin >> Asientos;
+                        std::cout << "Banco de la tarjeta: " << std::endl;
+                        std::cin >> banco;
+                        std::cout << "Procesando total ..." << std::endl;
+                        controladorSistema->pagoDebito(Asientos, banco, id_cine, id_funcion);
                         //Falta agregar UserLogeado y setReserva de user
-
-                    }else if(YN == 'C'){
+                    }
+                    else if (YN == 'C')
+                    {
                         int Asientos;
                         std::string financiera;
-                                                std::cout<<"¿Cantidad de asientos?";
-                        std::cin>>Asientos;
-                        std::cout<<"Financiera de la tarjeta: "<<std::endl;
-                        std::cin>>financiera;
-                        std::cout<<"Procesando total..."<<std::endl;
+                        std::cout << "¿Cantidad de asientos?";
+                        std::cin >> Asientos;
+                        std::cout << "Financiera de la tarjeta: " << std::endl;
+                        std::cin >> financiera;
+                        std::cout << "Procesando total..." << std::endl;
                         //recordar que id_cine funciona como id_funcion (cambiar nombre de variable)
-                        controladorSistema->pagoCredito(Asientos,financiera,id_cine);
-                    }else{
-
+                        controladorSistema->pagoCredito(Asientos, financiera, id_cine);
                     }
-                    
-                }
-                else
-                {
-                    break;
+                    else
+                    {
+                    }
                 }
             }
             break;
             case 3:
             {
+
                 int dia;
                 int mes;
                 int anio;
                 int hora;
                 int minutos;
+                int numeroCine;
+                int numeroSala;
+                std::string titulo;
+
+                std::cout << std::endl;
+                controladorSistema->listarPeliculas();
+                std::cout << std::endl;
+                std::cout << "Seleccione la película deseada (titulo): ";
+                std::cin >> titulo;
+                std::cout << std::endl;
+                controladorSistema->listarCines();
+                std::cout << std::endl;
+                std::cout << "Seleccione el cine deseado (numeroCine): ";
+                std::cin >> numeroCine;
+                std::cout << "Seleccione la sala deseada (numeroSala): ";
+                std::cin >> numeroSala;
                 std::cout << "Ingrese la fecha de la función (Dia - Mes - Año): ";
                 std::cin >> dia >> mes >> anio;
                 std::cout << "Ingrese la hora de la función (Hora - Minutos): ";
                 std::cin >> hora >> minutos;
-                controladorSistema->altaFuncion(DtFecha(dia, mes, anio), DtHora(hora, minutos));
+                controladorSistema->altaFuncion(titulo, numeroCine, numeroSala, DtFecha(dia, mes, anio), DtHora(hora, minutos));
             }
-            break;
             case 4:
             {
                 controladorSistema->listarCines();
@@ -160,6 +174,12 @@ int main()
             case 5:
             {
                 controladorSistema->comentarPelicula();
+            }
+            break;
+            
+            case 6:
+            {
+                controladorSistema->MostrarReservas();
             }
             break;
             }
@@ -182,7 +202,7 @@ void MostrarCines(ICollection *c)
     while (it->hasCurrent())
     {
         Cine *cine = dynamic_cast<Cine *>(it->getCurrent());
-        std::cout << cine->getNumero() << std::endl;
+        std::cout << "Id del cine: " << cine->getNumero() << std::endl;
         it->next();
     }
 }
@@ -197,8 +217,7 @@ void MostrarFunciones(ICollection *c)
     while (it->hasCurrent())
     {
         DtFuncion *f = dynamic_cast<DtFuncion *>(it->getCurrent());
-        std::cout << "Numero de funcion: " <<f->getNumero()<< std::endl;
+        std::cout << "Numero de funcion: " << f->getNumero() << std::endl;
         it->next();
     }
-
 }

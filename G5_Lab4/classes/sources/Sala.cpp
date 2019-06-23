@@ -3,25 +3,34 @@
 Sala::Sala(int numero, int capacidad) {
     this->numero = numero;
     this->capacidad = capacidad;
-    this->funcion = NULL;
-}
-
-Funcion* Sala::getFuncion(){
-    return this->funcion;
+    this->dicFunciones = new OrderedDictionary();
 }
 
 DtFuncion* Sala::getDtFuncion(Pelicula* p){
-    if(this->funcion){
-        if(this->funcion->tienePeli(p)){
-            int num = this->funcion->getNumero();
-            DtFecha dtf = this->funcion->getFecha();
-            DtHora dth = this->funcion->getHora();
-            DtFuncion * dtfuncion = new DtFuncion(num,dtf,dth);
-            return dtfuncion;
+    //BUSCAR LA PELICULA
+    IDictionary* funciones = this->getDicFunciones();
+    IIterator* it = funciones->getIterator();
+
+    while(it->hasCurrent()){
+        Funcion* f = dynamic_cast<Funcion*>(it->getCurrent());
+        if(f->tienePeli(p)){
+            DtFuncion* dtf = new DtFuncion(f->getNumero(),f->getFecha(),f->getHora(),p);
+            return dtf;
         }
     }
-    return NULL;
 
+    throw std::invalid_argument("");
+}
+
+Funcion* Sala::getFuncion(int id){
+    //Chequear si tenemos esa funcion, si no devolver NULL
+    IntKey* k = new IntKey(id);
+    ICollectible* f = dicFunciones->find(k);
+    if(f!=NULL){
+        return dynamic_cast<Funcion*>(f);
+    }else{
+        return NULL;
+    }
 }
 
 int Sala::getNumero() {
@@ -30,6 +39,10 @@ int Sala::getNumero() {
 
 int Sala::getCapacidad() {
     return this->capacidad;
+}
+
+IDictionary* Sala::getDicFunciones() {
+    return this->dicFunciones;
 }
 
 void Sala::setNumero(int numero) {

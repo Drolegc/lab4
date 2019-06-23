@@ -7,15 +7,57 @@ ControladorSistema::ControladorSistema()
     dicUsuario = new OrderedDictionary();
     dicPelicula = new OrderedDictionary();
     dicCines = new OrderedDictionary();
+    //usuario predeterminado
+    U = new Usuario("Pepe","LinkImg","alfanumerica",false);
 }
 
-void ControladorSistema::altaFuncion(DtFecha fecha, DtHora hora)
+void ControladorSistema::altaFuncion(std::string titulo, int numeroCine, int numeroSala, DtFecha fecha, DtHora hora)
 {
-    //    std::string titulo;
-    //    std::cout << "Seleccione una película de la siguiente lista: ";
-    //    ControladorSistema::listarPeliculas();
-    //    std::cin >> titulo;
+
+    /********************* Obtengo la película específica *********************/
+
+    IKey *keyPelicula = new StringKey(titulo);
+    Pelicula *pelicula = (Pelicula *)dicPelicula->find(keyPelicula);
+    delete keyPelicula;
+
+    /*********************** Obtengo el cine específico ***********************/
+
+    IKey *keyCine = new IntKey(numeroCine);
+    Cine *cine = (Cine *)dicCines->find(keyCine);
+    delete keyCine;
+
+    /*********************** Obtengo la sala específica ***********************/
+
+    IKey *keySala = new IntKey(numeroSala);
+    IDictionary *dicSalas = cine->getSalas();
+    Sala *sala = (Sala *)dicSalas->find(keySala);
+    delete keySala;
+
+    /**************************** Agrego la función ****************************/
+
+    IDictionary *dicFunciones = sala->getDicFunciones();
+    IIterator *it = dicFunciones->getIterator();
+    int numeroFuncion = 0;
+    while (it->hasCurrent())
+    {
+        numeroFuncion++;
+        it->next();
+    }
+    numeroFuncion++;
+    ICollectible *funcion = new Funcion(numeroFuncion, fecha, hora, pelicula);
+    IKey *keyFuncion = new IntKey(numeroFuncion);
+    dicFunciones->add(keyFuncion, funcion);
+    //Falta que la pelicula se sume al diccionario de peliculas de cine
+    //Ahora que se creo la funcion con la pelicula...
+    cine->addPelicula(pelicula);
+    delete it;
 }
+
+Usuario *ControladorSistema::getUsuarioLogeado()
+{
+    return this->U;
+}
+
 void ControladorSistema::altaCine(DtDireccion direccion)
 {
     int numero;
@@ -58,6 +100,7 @@ void ControladorSistema::comentarPelicula()
     std::cin >> comentario;
     pelicula->setComentario(comentario);
 }
+
 void ControladorSistema::altaPelicula(DtPelicula datos)
 {
     IKey *key = new StringKey(datos.getTitulo());
@@ -69,10 +112,12 @@ void ControladorSistema::altaPelicula(DtPelicula datos)
     pelicula->setPuntajePromedio(datos.getPuntajePromedio());
     dicPelicula->add(key, pelicula);
 }
+
 void ControladorSistema::listarCines()
 {
     Cine::listarCines(dicCines);
 }
+
 //void ControladorSistema::eliminarPelicula(std::string titulo) {
 //    // Corresponde al caso de uso eliminar pelicula
 //    IKey* clave = new String(titulo);
@@ -121,8 +166,10 @@ ICollection *ControladorSistema::verInfoAdicional(DtPelicula p)
         Cine *c = dynamic_cast<Cine *>(it->getCurrent());
         if (c->tienePeli(clave))
         {
+            std::cout << "Tiene peli" << std::endl;
             CinesConPeli->add(it->getCurrent());
         }
+        it->next();
     }
 
     return CinesConPeli;
@@ -132,13 +179,15 @@ ICollection *ControladorSistema::SeleccionarCine(int numCine, std::string titulo
 {
     IntKey *k = new IntKey(numCine);
     Cine *c = dynamic_cast<Cine *>(this->dicCines->find(k));
+
     StringKey *tituloKey = new StringKey(titulo);
     Pelicula *peliAux = dynamic_cast<Pelicula *>(this->dicPelicula->find(tituloKey));
+
     ICollection *funciones = c->getFunciones(peliAux);
     return funciones;
 }
 
-void ControladorSistema::pagoDebito(int asientos, std::string banco, int funcion)
+void ControladorSistema::pagoDebito(int asientos, std::string banco, int funcion, int cine)
 {
     //MOMENTANEAMENTE COMO NO TENEMOS UN MONTO PARA EL TOTAL, DIREMOS QUE EL PRECIO ESTA A 250 PESOS
     int total = asientos * 250;
@@ -148,6 +197,7 @@ void ControladorSistema::pagoDebito(int asientos, std::string banco, int funcion
     std::cin >> YN;
     if (YN == 'Y')
     {
+        std::getchar();
         //El usuario confirmo, por lo tanto hay que crear la reserva
         //1 - buscar la funcion
         //2 - obtener usuario logeado
@@ -156,40 +206,52 @@ void ControladorSistema::pagoDebito(int asientos, std::string banco, int funcion
 
         //1
         /*
+        
         Iterar entre la colleccion de cines para encontrar la funcion
+        Corregir, ya deberia de tener el cine - Ademas diferentes cines pueden tener funciones con el mismo id
+        
         */
-        IIterator *it = this->dicCines->getIterator();
-        Funcion *f;
+
+        IntKey *k = new IntKey(cine);
+        Cine *c = dynamic_cast<Cine *>(dicCines->find(k));
+
+        Funcion *f = NULL;
+
+        IDictionary *ds = c->getSalas();
+
+        IIterator *it = ds->getIterator();
+
         while (it->hasCurrent())
         {
-            Cine *c = dynamic_cast<Cine *>(it->getCurrent());
-            if (c->getFuncion(funcion))
+            Sala *s = dynamic_cast<Sala *>(it->getCurrent());
+            f = s->getFuncion(funcion);
+            if (f != NULL)
             {
-                f = c->getFuncion(funcion);
                 break;
             }
             it->next();
         }
+
         /*
        2
        Obtener usuario logeado suponemos que el controlador tiene un usuario loageado que se puede obtener con getUsuarioLogeado
        */
-
-        Usuario *U = this->getUsuarioLogeado();
+        
+        Usuario *U = this->U;
 
         /*
         3 creamos la reserva con link a funcion
         "Me parece mas razonable que cuando un usuario quiere ver su reserva, que pueda ver a que funcion es"
         */
-
+       
         Reserva *RDebito = new Debito(asientos, total, banco, f);
-
         /*
        4 
        - Linkear usuario con reserva
        */
         //Creo un setter de reserva
-        U->setReserva(dynamic_cast<ICollectible*>(RDebito));
+        ICollectible* res = dynamic_cast<ICollectible*>(RDebito);
+        U->setReserva(res);
 
         std::cout << "Reserva mediante debito lista! Que disfrutes la pelicula! " << std::endl;
     }
@@ -239,22 +301,42 @@ void ControladorSistema::pagoCredito(int asientos, std::string financiera, int f
         "Me parece mas razonable que cuando un usuario quiere ver su reserva, que pueda ver a que funcion es"
         */
 
-        Reserva *RCredito = new Credito(asientos, total,15, financiera, f);
+        Reserva *RCredito = new Credito(asientos, total, 15, financiera, f);
 
         /*
        4 
        - Linkear usuario con reserva
        */
-        //Creo un setter de reserva 
-        //Recordar que las reserrvas que tiene el user es una coleccion, 
+        //Creo un setter de reserva
+        //Recordar que las reserrvas que tiene el user es una coleccion,
         //por lo tanto lo que se pasapor parametros tiene que ser un coleccionable
         //para eso lo casteamos
-        U->setReserva(dynamic_cast<ICollectible*>(RCredito));
+        U->setReserva(dynamic_cast<ICollectible *>(RCredito));
 
         std::cout << "Reserva mediante credito lista! Que disfrutes la pelicula! " << std::endl;
-    }else{
+    }
+    else
+    {
         throw std::invalid_argument("Reserva cancelada");
     }
+}
+
+void ControladorSistema::MostrarReservas(){
+    ICollection* c = U->getReservas();
+    IIterator* it = c->getIterator();
+    
+    while (it->hasCurrent())
+    {
+        if(dynamic_cast<Debito*>(it->getCurrent())){
+            Debito* d = dynamic_cast<Debito*>(it->getCurrent());
+            std::cout<<"Asientos debito: "<<d->getAsientos()<<std::endl;
+        }else{
+            Credito* cr = dynamic_cast<Credito*>(it->getCurrent());
+            std::cout<<"Asientos credito: "<<cr->getAsientos()<<std::endl;
+        }
+        it->next();
+    }
+    
 }
 
 ControladorSistema::~ControladorSistema()
