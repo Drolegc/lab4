@@ -15,6 +15,7 @@ class ISistema {
         virtual void altaFuncion(std::string titulo, int numeroCine, int numeroSala, DtFecha fecha, DtHora hora) = 0;
         virtual void altaPelicula(DtPelicula datos) = 0;
         virtual void comentarPelicula() = 0;
+        virtual void infoPeliculas() = 0;
 //        virtual void eliminarPelicula(std::string titulo);
 //        virtual void iniciarSesion(std::string nickname, std::string contrasenia);
 //        virtual ICollection* listarCines();

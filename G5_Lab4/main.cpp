@@ -80,7 +80,7 @@ int main() {
                 }
                 break;
                 case 2: {
-                    
+
                     int dia;
                     int mes;
                     int anio;
@@ -89,7 +89,7 @@ int main() {
                     int numeroCine;
                     int numeroSala;
                     std::string titulo;
-                    
+
                     std::cout << std::endl; controladorSistema->listarPeliculas(); std::cout << std::endl;
                     std::cout << "Seleccione la película deseada (titulo): ";
                     std::cin >> titulo;
@@ -110,6 +110,9 @@ int main() {
                 break;
                 case 4: {
                     controladorSistema->comentarPelicula();
+                }
+                case 5: {
+                    controladorSistema->infoPeliculas();
                 }
                 break;
             }

@@ -163,8 +163,11 @@ void ControladorSistema::infoPeliculas(){
                         if(nombrePelicula == peliculas->getTitulo()){
                             std::cout << new DtCine(cine->getDireccion(),cine->getNumero())<<std::endl;
                         }
+                        ItFunciones->next();
                     }
+                    SalaIterator->next();
                 }
+                iteratorCine->next();
             }
         }
     }
