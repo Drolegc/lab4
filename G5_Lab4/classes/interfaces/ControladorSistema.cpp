@@ -46,21 +46,23 @@ void ControladorSistema::altaFuncion(std::string titulo, int numeroCine, int num
 
 void ControladorSistema::altaCine(DtDireccion direccion) {
     int numero;
-    std::cout << "Ingrese el numero del cine:";
+    std::cout << "                  ID CINE(n°): ";
     std::cin >> numero;
     Cine* nuevocine = new Cine(new DtCine(direccion,numero));
     int agregarmas = 1;
     int capacidadSala;
     int numeroSala;
     while(agregarmas!=0){
-        std::cout <<"Ingrese la capacidad:";
+        std::cout << "           ═══════ NUEVA SALA ════════════════════════════════════════          " << std::endl;
+        std::cout <<"                     CAPACIDAD:";
         std::cin >>capacidadSala;
-        std::cout <<"Ingrese el numero de sala:";
+        std::cout <<"                    N° DE SALA:";
         std::cin>>numeroSala;
         IntKey* keysala = new IntKey {numeroSala};
         Sala* sala = new Sala(capacidadSala,numeroSala);
         nuevocine->getSalas()->add(keysala,sala);
-        std::cout <<"Para salir presione 0:";
+        std::cout << " "<< std::endl;
+        std::cout <<"                    Para terminar de ingresar salas ingrese 0:";//wtf, por que no 
         std::cin >>agregarmas;
         if(agregarmas == 0){
             break;
