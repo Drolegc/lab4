@@ -25,10 +25,6 @@ void Sala::setNumero(int numero) {
 void Sala::setCapacidad(int capacidad) {
     this->capacidad = capacidad;
 }
-IDictionary* Sala::getDicFunciones() {
-    return this->dicFunciones;
-}
-
 Sala::~Sala() {
 
 }

@@ -8,28 +8,28 @@ ControladorSistema::ControladorSistema() {
 }
 
 void ControladorSistema::altaFuncion(std::string titulo, int numeroCine, int numeroSala, DtFecha fecha, DtHora hora) {
-    
+
     /********************* Obtengo la película específica *********************/
-    
+
     IKey* keyPelicula = new StringKey(titulo);
     Pelicula* pelicula = (Pelicula*) dicPelicula->find(keyPelicula);
     delete keyPelicula;
-    
+
     /*********************** Obtengo el cine específico ***********************/
-    
+
     IKey* keyCine = new IntKey(numeroCine);
     Cine* cine = (Cine*) Cines->find(keyCine);
     delete keyCine;
-    
+
     /*********************** Obtengo la sala específica ***********************/
-    
+
     IKey* keySala = new IntKey(numeroSala);
     IDictionary* dicSalas = cine->getSalas();
     Sala* sala = (Sala*) dicSalas->find(keySala);
     delete keySala;
-    
+
     /**************************** Agrego la función ****************************/
-    
+
     IDictionary* dicFunciones = sala->getDicFunciones();
     IIterator* it = dicFunciones->getIterator();
     int numeroFuncion = 0;
@@ -103,12 +103,12 @@ void ControladorSistema::comentarPelicula(){
         comentarioAcomentar->setComentarios("   " + comentario);
     }
 }
-void ControladorSistema::login(std::string nickname, std::String password){
-    StringKey *key = new StringKey(nickname);
-    Usuario u* = new  dynamic_cast<Usuario*>(dicUsuario->find(key));
-    if(u != NULL){
-        if (u->getContrasenia() == password){
-            this->sesion = u;
+void ControladorSistema::login(std::string nickname, std::string password){
+    StringKey *userKey = new StringKey(nickname);
+    Usuario* user = dynamic_cast <Usuario*>(dicUsuario->find(userKey));
+    if(user != NULL){
+        if (user->getContrasenia() == password){
+            this->sesion = user;
         }else{
             std::cout <<"Password incorrecta"<<std::endl;
         }

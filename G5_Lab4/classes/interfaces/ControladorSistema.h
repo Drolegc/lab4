@@ -41,7 +41,8 @@ class ControladorSistema : public ISistema {
         void altaFuncion(std::string titulo, int numeroCine, int numeroSala, DtFecha fecha, DtHora hora);
 
         /****************************** PELICULAS ******************************/
-
+    
+        void login(std::string nickname, std::string password);
         void altaPelicula(DtPelicula datos);
         void comentarPelicula();
 //        void eliminarPelicula(std::string titulo);
