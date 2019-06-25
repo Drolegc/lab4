@@ -15,6 +15,7 @@
 #include "../headers/Sala.h"
 #include "../headers/Credito.h"
 #include "../headers/Debito.h"
+#include "../headers/Funcion.h"
 #include "../headers/Usuario.h"
 #include "../headers/Funcion.h"
 #include "../interfaces/ISistema.h"
@@ -25,12 +26,13 @@ class ControladorSistema : public ISistema {
         IDictionary* colReserva;
         IDictionary* dicUsuario;
         IDictionary* Cines;
+        Usuario *sesion;
     public:
         
         ControladorSistema();
         
         /******************************** CINES ********************************/
-
+        void infoPeliculas();
         void altaCine(DtDireccion direccion);
         void listarCines();
 
