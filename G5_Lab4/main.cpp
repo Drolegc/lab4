@@ -5,6 +5,7 @@
 #include "classes/interfaces/Fabrica.h"
 #include "datatypes/headers/DtDireccion.h"
 #include "datatypes/headers/DtPelicula.h"
+#include "classes/sources/auxiliar.cpp"
 
 int main() {
 
@@ -43,16 +44,19 @@ int main() {
     controladorSistema->altaPelicula(DtPelicula (titulo, urlPoster, sinopsis, puntajePromedio));
 
 //    controladorSistema->listarPeliculas();
+    
+    /*/std::cout << "                   ¡Bienvenido al sistema!" << std::endl;
+    std::cout << "                   Comandos:" << std::endl;
+    std::cout << "                   1) Agregar cine" << std::endl;
+    std::cout << "                   2) Agregar función" << std::endl;
+    std::cout << "                   3) Listar cines" << std::endl;
+    std::cout << "                   0) Salir" << std::endl;*/
 
-    std::cout << "¡Bienvenido al sistema!" << std::endl;
-    std::cout << "Comandos:" << std::endl;
-    std::cout << "1) Agregar cine" << std::endl;
-    std::cout << "2) Agregar función" << std::endl;
-    std::cout << "3) Listar cines" << std::endl;
-    std::cout << "0) Salir" << std::endl;
     int command = -1;
     while(command != 0) {
-        std::cout << ">";
+        logo();
+        lista_comandos();
+        muestroCursor(4);
         std::cin >> command;
         try {
             switch (command) {
@@ -60,8 +64,18 @@ int main() {
                     std::string calle;
                     std::string ciudad;
                     int numero;
-                    std::cout << "Ingrese la dirección del cine (Calle - Numero - Ciudad): ";
-                    std::cin >> calle >> numero >> ciudad;
+                    logo();
+                    std::cout << "        \033[1;31m>>>>>>>>>>\033[0m    ALTA CINE - INGRESE DATOS DEL CINE     \033[1;31m<<<<<<<<<<\033[0m                   " << std::endl;
+                    std::cout << "                  DIRECCIÓN:          " << std::endl;
+                    std::cout << "           ═══════════════════════════════════════════════════════════          " << std::endl;
+
+
+                    std::cout << "                        CALLE: ";
+                    std::cin >> calle;
+                    std::cout << "                       NUMERO: ";
+                    std::cin >> numero ;
+                    std::cout << "                       CIUDAD: ";
+                    std::cin >> ciudad ;
                     controladorSistema->altaCine(DtDireccion(calle, numero, ciudad));
                 }
                 break;
@@ -101,7 +115,7 @@ int main() {
             }
         }
         catch (std::invalid_argument) {
-            std::cout << "¡Error!" << std::endl;
+            std::cout << "\033[1;31m¡Error!\033[0m" << std::endl;
         }
     }
     return 0;
