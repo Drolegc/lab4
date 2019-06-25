@@ -28,7 +28,6 @@ Pelicula* Funcion::getPelicula() {
 void Funcion::setNumero(int numero) {
     this->numero = numero;
 }
-
 void Funcion::setFecha(DtFecha fecha) {
     this->fecha = fecha;
 }

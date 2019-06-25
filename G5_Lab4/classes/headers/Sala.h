@@ -18,7 +18,7 @@ class Sala : public ICollectible {
         static void listarSalas(IDictionary *salas);
         void setNumero(int numero);
         void setCapacidad(int capacidad);
-
+        void getFunciones();
         DtSala getSala();
 
         ~Sala();
