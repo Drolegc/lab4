@@ -1,10 +1,10 @@
 #include "../headers/DtFuncion.h"
 
-DtFuncion::DtFuncion(int numero, DtFecha fecha, DtHora hora, Pelicula* pelicula) : fecha(fecha), hora(hora) {
+DtFuncion::DtFuncion(int numero, DtFecha fecha, DtHora hora, std::string tituloPelicula) : fecha(fecha), hora(hora) {
     this->numero = numero;
     this->fecha = fecha;
     this->hora = hora;
-    this->pelicula = pelicula;
+    this->tituloPelicula = tituloPelicula;
 }
 
 DtFecha DtFuncion::getFecha() {
@@ -19,8 +19,12 @@ int DtFuncion::getNumero() {
     return this->numero;
 }
 
-Pelicula* DtFuncion::getPelicula() {
-    return this->pelicula;
+//Pelicula* DtFuncion::getPelicula() {
+//    return this->pelicula;
+//}
+
+std::string DtFuncion::getTituloPelicula() {
+    return this->tituloPelicula;
 }
 
 void DtFuncion::setFecha(DtFecha fecha) {
@@ -35,14 +39,18 @@ void DtFuncion::setNumero(int numero) {
     this->numero = numero;
 }
 
-void DtFuncion::setPelicula(Pelicula* pelicula) {
-    this->pelicula = pelicula;
+//void DtFuncion::setPelicula(Pelicula* pelicula) {
+//    this->pelicula = pelicula;
+//}
+
+void DtFuncion::setTituloPelicula(std::string tituloPelicula) {
+    this->tituloPelicula = tituloPelicula;
 }
 
 std::ostream& operator<<(std::ostream &o, DtFuncion* dtF) {
-    o<<std::string("Funcion: ") << dtF->getNumero() << std::string(" - Pelicula: ") << dtF->getPelicula()
+    o<<std::string("Funcion: ") << dtF->getNumero() << std::string(" - Pelicula: ") << dtF->getTituloPelicula()
             << std::string(" - Fecha: ") << dtF->getFecha().getDia() << std::string("/") << dtF->getFecha().getMes()
             << std::string("/") << dtF->getFecha().getAnio() << std::string(" - Hora: ") << dtF->getHora().getHora()
-            << std::string(":") << dtF->getHora().getMinutos();
+            << std::string(":") << dtF->getHora().getMinutos() << std::endl << std::endl;
     return o;
 }

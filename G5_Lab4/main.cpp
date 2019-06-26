@@ -1,5 +1,6 @@
 #include <cstdlib>
 #include <iostream>
+#include <stdexcept>
 
 //#include "classes/interfaces/ISistema.h"
 #include "classes/interfaces/Fabrica.h"
@@ -28,14 +29,14 @@ int main() {
 
     controladorSistema->altaPelicula(DtPelicula (titulo, urlPoster, sinopsis, puntajePromedio));
 
-    titulo = "Buscando a Nemo";
+    titulo = "Buscando_a_Nemo";
     urlPoster = "www.buscandoanemo.com";
     sinopsis = "Sinopsis de Buscando a Nemo";
     puntajePromedio = 0;
 
     controladorSistema->altaPelicula(DtPelicula (titulo, urlPoster, sinopsis, puntajePromedio));
 
-    titulo = "Rapido y Furioso";
+    titulo = "Rapido_y_Furioso";
     urlPoster = "www.fastandfurious.com";
     sinopsis= "Sinopsis de Rapido y Furioso";
     puntajePromedio = 0;
@@ -48,7 +49,7 @@ int main() {
     std::cout << "Comandos:" << std::endl;
     std::cout << "1) Agregar cine" << std::endl;
     std::cout << "2) Agregar función" << std::endl;
-    std::cout << "3) Listar cines" << std::endl;
+    std::cout << "3) Eliminar pelicula" << std::endl;
     std::cout << "0) Salir" << std::endl;
     int command = -1;
     while(command != 0) {
@@ -90,18 +91,35 @@ int main() {
                     std::cin >> hora >> minutos;
                     controladorSistema->altaFuncion(titulo, numeroCine, numeroSala, DtFecha(dia, mes, anio), DtHora(hora, minutos));
                 }
+                break;
                 case 3: {
-                    controladorSistema->listarCines();
+                    std::string titulo;
+                    std::string confirmacion;
+                    std::cout << std::endl; controladorSistema->listarPeliculas(); std::cout << std::endl;
+                    std::cout << "Seleccione la película deseada (titulo): ";
+                    std::cin >> titulo;
+                    std::cout << "¿Está seguro que desea eliminar la película? (s/n): ";
+                    std::cin >> confirmacion;
+                    if(confirmacion == "s") {
+                        controladorSistema->eliminarPelicula(titulo);
+                    }
+                    else if(confirmacion == "n") {
+                        std::cout << "Se ha cancelado la remoción de la película." << std::endl;
+                        break;
+                    }
+                    else {
+                        throw std::invalid_argument("Debe ingresar s o n, no se admiten otras opciones");
+                    }
                 }
                 break;
                 case 4: {
-                    controladorSistema->comentarPelicula();
+//                    controladorSistema->comentarPelicula();
                 }
                 break;
             }
         }
-        catch (std::invalid_argument) {
-            std::cout << "¡Error!" << std::endl;
+        catch (std::invalid_argument &ia) {
+            std::cout << "¡Error!: " << ia.what() << std::endl;
         }
     }
     return 0;

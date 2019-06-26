@@ -19,10 +19,12 @@
 #include "../headers/Funcion.h"
 #include "../interfaces/ISistema.h"
 
+//class Funcion;
+
 class ControladorSistema : public ISistema {
     private:
+        ICollection* colReserva;
         IDictionary* dicPelicula;
-        IDictionary* colReserva;
         IDictionary* dicUsuario;
         IDictionary* Cines;
     public:
@@ -37,12 +39,13 @@ class ControladorSistema : public ISistema {
         /****************************** FUNCIONES ******************************/
 
         void altaFuncion(std::string titulo, int numeroCine, int numeroSala, DtFecha fecha, DtHora hora);
+//        void listarFunciones();
 
         /****************************** PELICULAS ******************************/
 
         void altaPelicula(DtPelicula datos);
         void comentarPelicula();
-//        void eliminarPelicula(std::string titulo);
+        void eliminarPelicula(std::string titulo);
         void listarPeliculas();
 //        DtPelicula seleccionarPelicula(std::string titulo);
 //        DtPelicula verInfoAdicional();

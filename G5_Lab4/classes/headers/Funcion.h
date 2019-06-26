@@ -6,6 +6,7 @@
 #include "../../datatypes/headers/DtFuncion.h"
 #include "../../ICollection/interfaces/ICollection.h"
 #include "../../ICollection/interfaces/IDictionary.h"
+#include "../../ICollection/collections/List.h"
 #include "Pelicula.h"
 
 class Pelicula;
@@ -15,7 +16,7 @@ class Funcion : public ICollectible {
         int numero;
         DtFecha fecha;
         DtHora hora;
-        ICollection* Reserva;
+        ICollection* colReserva;
         Pelicula* pelicula;
         
     public:
@@ -25,6 +26,7 @@ class Funcion : public ICollectible {
         DtFecha getFecha();
         DtHora getHora();
         Pelicula* getPelicula();
+        ICollection* getColReserva();
         
         void setNumero(int numero);
         void setFecha(DtFecha fecha);
