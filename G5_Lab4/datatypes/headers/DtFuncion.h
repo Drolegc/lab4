@@ -5,10 +5,11 @@
 #include "DtFecha.h"
 #include "DtHora.h"
 #include "../../classes/headers/Pelicula.h"
+#include "../../ICollection/interfaces/ICollectible.h"
 
 class Pelicula;
 
-class DtFuncion {
+class DtFuncion:public ICollectible  {
     private:
         int numero;
         DtFecha fecha;
@@ -35,4 +36,3 @@ class DtFuncion {
 };
 
 #endif /* DTFUNCION_H */
-

@@ -9,6 +9,7 @@ Pelicula::Pelicula(std::string titulo, std::string urlPoster, std::string sinops
     this->urlPoster = urlPoster;
     this->sinopsis = sinopsis;
     this->puntajePromedio = 0;
+    this->comentarios = new OrderedDictionary();
 }
 
 std::string Pelicula::getTitulo() {

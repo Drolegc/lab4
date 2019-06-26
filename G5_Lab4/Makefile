@@ -8,6 +8,10 @@ ControladorSistema.o Fabrica.o ISistema.o
 FUENTES = ICollection/interfaces/ICollectible.cpp ICollection/interfaces/ICollectible.h \
 ICollection/interfaces/IKey.cpp ICollection/interfaces/IKey.h \
 ICollection/interfaces/OrderedKey.cpp ICollection/interfaces/OrderedKey.h \
+ICollection/String.cpp ICollection/String.h \
+ICollection/StringKey.cpp ICollection/StringKey.h \
+ICollection/Integer.cpp ICollection/Integer.h \
+ICollection/IntKey.cpp ICollection/IntKey.h \
 ICollection/interfaces/IIterator.cpp ICollection/interfaces/IIterator.h \
 ICollection/interfaces/ICollection.cpp ICollection/interfaces/ICollection.h \
 ICollection/collections/ListNode.cpp ICollection/collections/ListNode.h \

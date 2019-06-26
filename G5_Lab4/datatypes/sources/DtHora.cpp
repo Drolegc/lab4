@@ -30,6 +30,8 @@ bool DtHora::isValid() {
             this->minutos >= 00 && this->minutos <= 59;
 }
 
+
+
 DtHora::~DtHora() {
     
 }

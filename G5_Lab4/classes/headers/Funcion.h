@@ -11,6 +11,8 @@
 
 class Pelicula;
 
+#include "../../classes/headers/Pelicula.h"
+
 class Funcion : public ICollectible {
     private:
         int numero;
@@ -28,6 +30,7 @@ class Funcion : public ICollectible {
         Pelicula* getPelicula();
         ICollection* getColReserva();
         
+        bool tienePeli(Pelicula* p);
         void setNumero(int numero);
         void setFecha(DtFecha fecha);
         void setHora(DtHora hora);

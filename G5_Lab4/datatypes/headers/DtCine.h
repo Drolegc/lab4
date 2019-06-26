@@ -1,7 +1,11 @@
 #ifndef DTCINE_H
 #define DTCINE_H
-#include <iostream>
+
+#include "../../ICollection/interfaces/IDictionary.h"
+#include "../../ICollection/collections/List.h"
 #include "../../datatypes/headers/DtDireccion.h"
+
+
 class DtCine {
     public:
         DtCine(DtDireccion direccion, int numero);
@@ -11,9 +15,9 @@ class DtCine {
         ~DtCine();
     private:
         DtDireccion direccion;
+        IDictionary* salas;
         int numero;
 
 };
-
 #endif /* DTCINE_H */
 

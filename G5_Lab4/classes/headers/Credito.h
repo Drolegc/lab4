@@ -9,7 +9,7 @@ class Credito : public Reserva {
         int porcentajeDescuento;
         std::string financiera;
     public:
-        Credito(int asientos, int costoTotal, int porcentajeDescuento, std::string financiera);
+        Credito(int asientos, int costoTotal, int porcentajeDescuento, std::string financiera,Funcion* f);
         
         int getPorcentajeDescuento();
         std::string getFinanciera();
