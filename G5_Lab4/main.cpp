@@ -6,7 +6,7 @@
 #include "classes/interfaces/Fabrica.h"
 #include "datatypes/headers/DtDireccion.h"
 #include "datatypes/headers/DtPelicula.h"
-#include "classes/sources/auxiliar.cpp"
+#include "auxiliar.cpp"
 
 void MostrarDtPelicula(DtPelicula p);
 void MostrarCines(ICollection *c);
@@ -186,6 +186,15 @@ int main()
                 controladorSistema->infoPeliculas();
             }
             break;
+                case 5: {
+                    logo();
+
+                    controladorSistema-> verComentariosypuntajedepelicula();
+                }
+                break;
+
+                
+
             }
         }
         catch (std::invalid_argument)

@@ -70,7 +70,7 @@ class ControladorSistema : public ISistema {
         Usuario* getUsuarioLogeado();
         void MostrarReservas();
         /**********************************************************************/
-
+        void verComentariosypuntajedepelicula();
         ~ControladorSistema();
 };
 

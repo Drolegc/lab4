@@ -40,8 +40,8 @@ void DtPelicula::setPuntajePromedio(int puntajePromedio) {
 }
 
 std::ostream& operator<<(std::ostream &o, DtPelicula* dtP) {
-    o<<std::string("Titulo: ") << dtP->getTitulo() << std::string(" - UrlPoster: ") << dtP->getUrlPoster() <<
-            std::string(" - Sinopsis: ") << dtP->getSinopsis() << std::string(" - Puntaje Promedio: ") << dtP->getPuntajePromedio() << std::endl;
+    o<<std::string("                            Titulo: ") << dtP->getTitulo() << std::string("\n                         UrlPoster: ") << dtP->getUrlPoster() <<
+            std::string("\n                          Sinopsis: ") << dtP->getSinopsis() << std::string("\n                  Puntaje Promedio: ") << dtP->getPuntajePromedio() << std::endl;
     return o;
 }
 

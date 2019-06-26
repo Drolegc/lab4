@@ -57,8 +57,41 @@ Usuario *ControladorSistema::getUsuarioLogeado()
     return this->sesion;
 }
 
-void ControladorSistema::altaCine(DtDireccion direccion)
-{
+void ControladorSistema::verComentariosypuntajedepelicula(){
+    std::string nombrePelicula;
+    Pelicula::listarPeliculas(dicPelicula);
+    std::cout << "Elija pelicula:";
+    std::cin >> nombrePelicula;
+    StringKey *key = new StringKey(nombrePelicula);
+    Pelicula *pelicula = dynamic_cast<Pelicula*>(dicPelicula->find(key));
+    int puntaje=pelicula->getPuntajePromedio();
+    //logo();
+    std::cout << "           ═══════════════════════════════════════════════════════════          " << std::endl;
+    std::cout << "                PELICULA:" << std::endl;
+    std::cout <<"                            Titulo: "<<pelicula->getTitulo() << std::endl;
+    std::cout <<"                  Puntaje promedio: "<< puntaje <<"(x)usuarios\n"<< std::endl;
+    std::cout << "           ───────────────────────────────────────────────────────────          " << std::endl;
+    std::cout << "                COMENTARIOS:" << std::endl;
+    std::cout <<"                         USUARIOX: "<< std::endl;
+    IDictionary* comentarios =  pelicula->getComentarios();
+    Comentarios::listaComentarios(comentarios);
+    std::cout << " " << std::endl;
+    std::cout << "           ───────────────────────────────────────────────────────────          " << std::endl;
+    std::cout << "                PUNTAJES " << std::endl;
+    std::cout <<"                          USUARIOX: 5 Puntos"<< std::endl;
+    std::cout <<"                          USUARIOB: 2 Puntos"<< std::endl;
+    std::cout << " " << std::endl;
+    std::cout << "           ═══════════════════════════════════════════════════════════          " << std::endl;
+
+
+
+
+
+}
+
+
+
+void ControladorSistema::altaCine(DtDireccion direccion) {
     int numero;
     std::cout << "                  ID CINE(n°): ";
     std::cin >> numero;
