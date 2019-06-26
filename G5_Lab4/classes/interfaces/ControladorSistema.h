@@ -20,6 +20,7 @@
 #include "../headers/Funcion.h"
 #include "../interfaces/ISistema.h"
 
+
 class ControladorSistema : public ISistema {
     private:
         IDictionary* dicPelicula;
@@ -60,7 +61,7 @@ class ControladorSistema : public ISistema {
 //        void iniciarSesion(std::string nickname, std::string contrasenia);
 
         /**********************************************************************/
-
+        void verComentariosypuntajedepelicula();
         ~ControladorSistema();
 };
 

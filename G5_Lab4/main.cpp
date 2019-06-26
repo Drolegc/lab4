@@ -5,7 +5,7 @@
 #include "classes/interfaces/Fabrica.h"
 #include "datatypes/headers/DtDireccion.h"
 #include "datatypes/headers/DtPelicula.h"
-#include "classes/sources/auxiliar.cpp"
+#include "auxiliar.cpp"
 
 int main() {
 
@@ -53,10 +53,10 @@ int main() {
     std::cout << "                   0) Salir" << std::endl;*/
 
     int command = -1;
-    while(command != 0) {
+    while(command !=0) {
         logo();
         lista_comandos();
-        muestroCursor(4);
+        muestroCursor(9);
         std::cin >> command;
         try {
             switch (command) {
@@ -112,6 +112,15 @@ int main() {
                     controladorSistema->comentarPelicula();
                 }
                 break;
+                case 5: {
+                    logo();
+
+                    controladorSistema-> verComentariosypuntajedepelicula();
+                }
+                break;
+
+                
+
             }
         }
         catch (std::invalid_argument) {

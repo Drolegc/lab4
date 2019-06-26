@@ -59,10 +59,14 @@ void Pelicula::setPuntajePromedio(int puntajePromedio) {
 
 void Pelicula::listarPeliculas(IDictionary* dicPeliculas) {
     IIterator* it = dicPeliculas->getIterator();
+    std::cout << "               PELICULAS" << std::endl;
+    std::cout << "           ═══════════════════════════════════════════════════════════          " << std::endl;
     while (it->hasCurrent()) {
     Pelicula* currentPelicula = dynamic_cast<Pelicula*>(it->getCurrent());
     std::cout << new DtPelicula(currentPelicula->getTitulo(), currentPelicula->getUrlPoster(),
             currentPelicula->getSinopsis(), currentPelicula->getPuntajePromedio());
+    std::cout << "           ═══════════════════════════════════════════════════════════          " << std::endl;
+
     it->next();
     }
     delete it;

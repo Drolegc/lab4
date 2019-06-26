@@ -26,6 +26,7 @@ class ISistema {
         virtual ~ISistema();
         virtual void listarCines() = 0;
         virtual void altaCine(DtDireccion direccion) = 0;
+        virtual void verComentariosypuntajedepelicula()=0;
 };
 
 #endif /* ISISTEMA_H */
