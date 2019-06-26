@@ -1,5 +1,6 @@
 #ifndef CINE_H
 #define CINE_H
+
 #include "../../ICollection/interfaces/IDictionary.h"
 #include "../../ICollection/collections/OrderedDictionary.h"
 #include "../../datatypes/headers/DtDireccion.h"
@@ -9,6 +10,7 @@
 #include "../../ICollection/interfaces/ICollectible.h"
 #include "../../classes/headers/Pelicula.h"
 class DtCine;
+
 class Cine :public ICollectible{
     private:
         int numero;

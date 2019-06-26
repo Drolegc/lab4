@@ -1,5 +1,6 @@
 #include <cstdlib>
 #include <iostream>
+#include <stdexcept>
 
 //#include "classes/interfaces/ISistema.h"
 #include "classes/interfaces/Fabrica.h"
@@ -34,14 +35,14 @@ int main()
 
     controladorSistema->altaPelicula(DtPelicula(titulo, urlPoster, sinopsis, puntajePromedio));
 
-    titulo = "Buscando a Nemo";
+    titulo = "Buscando_a_Nemo";
     urlPoster = "www.buscandoanemo.com";
     sinopsis = "Sinopsis de Buscando a Nemo";
     puntajePromedio = 0;
 
     controladorSistema->altaPelicula(DtPelicula(titulo, urlPoster, sinopsis, puntajePromedio));
 
-    titulo = "Rapido y Furioso";
+    titulo = "Rapido_y_Furioso";
     urlPoster = "www.fastandfurious.com";
     sinopsis = "Sinopsis de Rapido y Furioso";
     puntajePromedio = 0;

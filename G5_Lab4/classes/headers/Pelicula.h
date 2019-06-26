@@ -10,6 +10,10 @@
 #include "../../ICollection/collections/OrderedDictionary.h"
 #include "../../ICollection/interfaces/IIterator.h"
 #include "Comentarios.h"
+#include "Funcion.h"
+
+class Funcion;
+
 class Pelicula : public ICollectible {
     private:
         std::string titulo;
@@ -25,18 +29,16 @@ class Pelicula : public ICollectible {
         std::string getUrlPoster();
         std::string getSinopsis();
         int getPuntajePromedio();
+        
         void setComentario(std::string comentario);
         void setTitulo(std::string titulo);
         void setUrlPoster(std::string urlPoster);
         void setSinopsis(std::string sinopsis);
         void setPuntajePromedio(int puntajePromedio);
+        
         IDictionary * getComentarios();
         DtPelicula* obtenerDtPelicula();
         static void listarPeliculas(IDictionary* peliculas);
-
-//        void eliminarPelicula(std::string titulo);
-//        DtPelicula verInfoAdicional();
-//        DtPelicula seleccionarPelicula(std::string titulo);
 
         ~Pelicula();
 };

@@ -1,9 +1,8 @@
 #include "ControladorSistema.h"
 #include "../../ICollection/StringKey.h"
 
-ControladorSistema::ControladorSistema()
-{
-    colReserva = new OrderedDictionary();
+ControladorSistema::ControladorSistema() {
+    colReserva = new List();
     dicUsuario = new OrderedDictionary();
     dicPelicula = new OrderedDictionary();
     dicCines = new OrderedDictionary();
@@ -191,14 +190,63 @@ void ControladorSistema::listarCines(){
     Cine::listarCines(dicCines);
 }
 
-//void ControladorSistema::eliminarPelicula(std::string titulo) {
-//    // Corresponde al caso de uso eliminar pelicula
-//    IKey* clave = new String(titulo);
-//    ICollectible* (Pelicula *) p;
-//    p = (Pelicula *) Pelicula->find(clave);
-//    Pelicula->remove(p);
-//    delete p;
-//    delete clave;
+void ControladorSistema::eliminarPelicula(std::string titulo) {
+    
+    IIterator* iteratorCine = Cines->getIterator();
+    while(iteratorCine->hasCurrent()){
+        Cine* cine =  dynamic_cast<Cine*>(iteratorCine->getCurrent());
+        IDictionary* sala = cine->getSalas();
+        IIterator* SalaIterator = sala->getIterator();
+        while(SalaIterator->hasCurrent()){
+            Sala* sala =  dynamic_cast<Sala*>(SalaIterator->getCurrent());
+            IDictionary* funciones = sala->getDicFunciones();
+            IIterator* ItFunciones = funciones->getIterator();
+            while(ItFunciones->hasCurrent()){
+                Funcion* f = dynamic_cast<Funcion*>(ItFunciones->getCurrent());
+                Pelicula* peliculaFuncion = f->getPelicula();
+                if(titulo == peliculaFuncion->getTitulo()) {
+                    ICollection* colReserva = f->getColReserva();
+                    IIterator* itColReserva = colReserva->getIterator();
+                    while(itColReserva->hasCurrent()) {
+                        ICollectible* reserva = dynamic_cast<Reserva*> (itColReserva->getCurrent());
+                        delete reserva;
+                        itColReserva->next();
+                    }
+                    delete peliculaFuncion;
+                    delete f;
+                }
+                ItFunciones->next();
+            }
+            SalaIterator->next();
+        }
+        iteratorCine->next();
+    }
+    IKey* tituloPelicula = new StringKey(titulo);
+    ICollectible* pelicula = dicPelicula->find(tituloPelicula);
+    dicPelicula->remove(tituloPelicula);
+    delete tituloPelicula;
+    delete pelicula;
+}
+
+//void ControladorSistema::listarFunciones() {
+//    IIterator* iteratorCine = Cines->getIterator();
+//    while(iteratorCine->hasCurrent()){
+//        Cine* cine =  dynamic_cast<Cine*>(iteratorCine->getCurrent());
+//        IDictionary* sala = cine->getSalas();
+//        IIterator* SalaIterator = sala->getIterator();
+//        while(SalaIterator->hasCurrent()){
+//            Sala* sala =  dynamic_cast<Sala*>(SalaIterator->getCurrent());
+//            IDictionary* funciones = sala->getDicFunciones();
+//            IIterator* ItFunciones = funciones->getIterator();
+//            while(ItFunciones->hasCurrent()){
+//                Funcion* f = dynamic_cast<Funcion*>(ItFunciones->getCurrent());
+//                f->listarFunciones(funciones);
+//                ItFunciones->next();
+//            }
+//            SalaIterator->next();
+//        }
+//        iteratorCine->next();
+//    }
 //}
 
 void ControladorSistema::listarPeliculas()

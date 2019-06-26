@@ -7,6 +7,7 @@ Funcion::Funcion(int numero, DtFecha fecha, DtHora hora, Pelicula* pelicula) : f
     this->fecha = fecha;
     this->hora = hora;
     this->pelicula = pelicula;
+    this->colReserva = new List();
 }
 
 int Funcion::getNumero() {
@@ -23,6 +24,10 @@ DtHora Funcion::getHora() {
 
 Pelicula* Funcion::getPelicula() {
     return this->pelicula;
+}
+
+ICollection* Funcion::getColReserva() {
+    return this->colReserva;
 }
 
 void Funcion::setNumero(int numero) {
@@ -97,7 +102,8 @@ void Funcion::listarFunciones(IDictionary* funciones){
     IIterator* it = funciones->getIterator();
     while (it->hasCurrent()) {
         Funcion* currentFuncion = dynamic_cast<Funcion*>(it->getCurrent());
-        std::cout << new DtFuncion(currentFuncion->getNumero(), currentFuncion->getFecha(), currentFuncion->getHora(), currentFuncion->getPelicula());
+        std::cout << new DtFuncion(currentFuncion->getNumero(), currentFuncion->getFecha(),
+                currentFuncion->getHora(), currentFuncion->getPelicula()->getTitulo());
         it->next();
     }
     delete it;
