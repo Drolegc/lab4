@@ -23,6 +23,7 @@ class Sala : public ICollectible {
         DtFuncion* getDtFuncion(Pelicula* p);
         Funcion* getFuncion(int id);
 
+        void getFunciones();
         DtSala getSala();
 
         ~Sala();

@@ -19,16 +19,22 @@ void Comentarios::setComentario(std::string comentario){
 int Comentarios::getNumero(){
     return this->numero;
 }
-void Comentarios::setComentarios(Comentarios *comentario){
-
-    IntKey* keyCine = new IntKey (comentario->getNumero());
-    this->comentarios->add(keyCine,comentario);
+void Comentarios::setComentarios(std::string comentario){
+    IIterator *it  = this->comentarios->getIterator();
+    int numComentario = 0;
+    while (it->hasCurrent()) {
+        numComentario++;
+        it->next();
+    }
+    numComentario++;
+    IntKey* KeyComentario = new IntKey (numComentario);
+    this->comentarios->add(KeyComentario, new Comentarios(numComentario,comentario));
 }
 void Comentarios::listaComentarios(IDictionary *comentarios){
     IIterator* it = comentarios->getIterator();
     while (it->hasCurrent()) {
         Comentarios* currentcomentario =  dynamic_cast<Comentarios*>(it->getCurrent());
-        std::cout << currentcomentario->getComentario();
+        std::cout <<currentcomentario->getNumero()<<" - "<< currentcomentario->getComentario()<<std::endl;
         IDictionary* comentariosDeComentarios = currentcomentario->getComentarios();
         Comentarios::listaComentarios(comentariosDeComentarios);
         it->next();

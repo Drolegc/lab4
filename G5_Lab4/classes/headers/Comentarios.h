@@ -15,7 +15,7 @@ class Comentarios :public ICollectible{
         int getNumero();
         std::string getComentario();
         IDictionary *getComentarios();
-        void setComentarios(Comentarios *comentario);
+        void setComentarios(std::string comentario);
         void setComentario(std::string comentario);
         static void listaComentarios(IDictionary * comentarios);
         ~Comentarios();

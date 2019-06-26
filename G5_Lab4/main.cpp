@@ -5,6 +5,7 @@
 #include "classes/interfaces/Fabrica.h"
 #include "datatypes/headers/DtDireccion.h"
 #include "datatypes/headers/DtPelicula.h"
+#include "classes/sources/auxiliar.cpp"
 
 void MostrarDtPelicula(DtPelicula p);
 void MostrarCines(ICollection *c);
@@ -47,20 +48,12 @@ int main()
 
     controladorSistema->altaPelicula(DtPelicula(titulo, urlPoster, sinopsis, puntajePromedio));
 
-    //    controladorSistema->listarPeliculas();
-
-    /* --- /CREAR RESERVA --- */
-    std::cout << "¡Bienvenido al sistema!" << std::endl;
-    std::cout << "Comandos:" << std::endl;
-    std::cout << "1) Agregar cine" << std::endl;
-    std::cout << "2) ¡Crea tu reserva antes que se agoten los lugares!" << std::endl;
-    std::cout << "3) Agregar función" << std::endl;
-    std::cout << "4) Listar cines" << std::endl;
-    std::cout << "0) Salir" << std::endl;
     int command = -1;
     while (command != 0)
     {
-        std::cout << ">";
+        logo();
+        lista_comandos();
+        muestroCursor(4);
         std::cin >> command;
         try
         {
@@ -71,12 +64,52 @@ int main()
                 std::string calle;
                 std::string ciudad;
                 int numero;
-                std::cout << "Ingrese la direcciรณn del cine (Calle - Numero - Ciudad): ";
-                std::cin >> calle >> numero >> ciudad;
+                logo();
+                std::cout << "        \033[1;31m>>>>>>>>>>\033[0m    ALTA CINE - INGRESE DATOS DEL CINE     \033[1;31m<<<<<<<<<<\033[0m                   " << std::endl;
+                std::cout << "                  DIRECCIÓN:          " << std::endl;
+                std::cout << "           ═══════════════════════════════════════════════════════════          " << std::endl;
+
+                std::cout << "                        CALLE: ";
+                std::cin >> calle;
+                std::cout << "                       NUMERO: ";
+                std::cin >> numero;
+                std::cout << "                       CIUDAD: ";
+                std::cin >> ciudad;
                 controladorSistema->altaCine(DtDireccion(calle, numero, ciudad));
             }
             break;
             case 2:
+            {
+
+                int dia;
+                int mes;
+                int anio;
+                int hora;
+                int minutos;
+                int numeroCine;
+                int numeroSala;
+                std::string titulo;
+
+                std::cout << std::endl;
+                controladorSistema->listarPeliculas();
+                std::cout << std::endl;
+                std::cout << "Seleccione la película deseada (titulo): ";
+                std::cin >> titulo;
+                std::cout << std::endl;
+                controladorSistema->listarCines();
+                std::cout << std::endl;
+                std::cout << "Seleccione el cine deseado (numeroCine): ";
+                std::cin >> numeroCine;
+                std::cout << "Seleccione la sala deseada (numeroSala): ";
+                std::cin >> numeroSala;
+                std::cout << "Ingrese la fecha de la función (Dia - Mes - Año): ";
+                std::cin >> dia >> mes >> anio;
+                std::cout << "Ingrese la hora de la función (Hora - Minutos): ";
+                std::cin >> hora >> minutos;
+                controladorSistema->altaFuncion(titulo, numeroCine, numeroSala, DtFecha(dia, mes, anio), DtHora(hora, minutos));
+            }
+            break;
+            case 3:
             {
                 std::cout << "¿Que pelicula quieres ver? ";
                 std::string titulo;
@@ -132,40 +165,11 @@ int main()
                     }
                     else
                     {
+                        throw std::invalid_argument("");
                     }
                 }
             }
             break;
-            case 3:
-            {
-
-                int dia;
-                int mes;
-                int anio;
-                int hora;
-                int minutos;
-                int numeroCine;
-                int numeroSala;
-                std::string titulo;
-
-                std::cout << std::endl;
-                controladorSistema->listarPeliculas();
-                std::cout << std::endl;
-                std::cout << "Seleccione la película deseada (titulo): ";
-                std::cin >> titulo;
-                std::cout << std::endl;
-                controladorSistema->listarCines();
-                std::cout << std::endl;
-                std::cout << "Seleccione el cine deseado (numeroCine): ";
-                std::cin >> numeroCine;
-                std::cout << "Seleccione la sala deseada (numeroSala): ";
-                std::cin >> numeroSala;
-                std::cout << "Ingrese la fecha de la función (Dia - Mes - Año): ";
-                std::cin >> dia >> mes >> anio;
-                std::cout << "Ingrese la hora de la función (Hora - Minutos): ";
-                std::cin >> hora >> minutos;
-                controladorSistema->altaFuncion(titulo, numeroCine, numeroSala, DtFecha(dia, mes, anio), DtHora(hora, minutos));
-            }
             case 4:
             {
                 controladorSistema->listarCines();
@@ -176,17 +180,16 @@ int main()
                 controladorSistema->comentarPelicula();
             }
             break;
-            
             case 6:
             {
-                controladorSistema->MostrarReservas();
+                controladorSistema->infoPeliculas();
             }
             break;
             }
         }
         catch (std::invalid_argument)
         {
-            std::cout << "¡Error!" << std::endl;
+            std::cout << "\033[1;31m¡Error!\033[0m" << std::endl;
         }
     }
     return 0;
@@ -197,7 +200,8 @@ void MostrarCines(ICollection *c)
     IIterator *it = c->getIterator();
     if (!it->hasCurrent())
     {
-        std::cout << "sorry" << std::endl;
+        std::cout << "No tenemos cines :/" << std::endl;
+        throw std::invalid_argument("");
     }
     while (it->hasCurrent())
     {
@@ -212,7 +216,8 @@ void MostrarFunciones(ICollection *c)
     IIterator *it = c->getIterator();
     if (!it->hasCurrent())
     {
-        std::cout << "sorrySinFunciones" << std::endl;
+        std::cout << "Sin funciones para esa pelicula, vuelve pronto" << std::endl;
+        throw std::invalid_argument("");
     }
     while (it->hasCurrent())
     {
