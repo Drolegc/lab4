@@ -18,8 +18,8 @@ class ISistema {
         virtual void altaCine(DtDireccion direccion) = 0;
         virtual void comentarPelicula() = 0;
         virtual void infoPeliculas() = 0;
-        virtual void eliminarPelicula(std::string titulo) = 0;
-//        virtual void iniciarSesion(std::string nickname, std::string contrasenia);
+        virtual void eliminarPelicula() = 0;
+       virtual void iniciarSesion(std::string nickname, std::string contrasenia)=0;
         virtual void listarPeliculas() = 0;
 //        virtual void reservaDebito(int asientos, int costoTotal, std::string bancoEmisor, int funcion);
 //        virtual void reservaCredito(int asientos, std::string financiera, int porcentajeDescuento, int funcion);

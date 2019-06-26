@@ -1,5 +1,7 @@
 #include "ControladorSistema.h"
 #include "../../ICollection/StringKey.h"
+//#include "auxiliar.cpp"
+
 
 ControladorSistema::ControladorSistema() {
     colReserva = new List();
@@ -66,6 +68,7 @@ void ControladorSistema::verComentariosypuntajedepelicula(){
     Pelicula *pelicula = dynamic_cast<Pelicula*>(dicPelicula->find(key));
     int puntaje=pelicula->getPuntajePromedio();
     //logo();
+    system("clear");
     std::cout << "           ═══════════════════════════════════════════════════════════          " << std::endl;
     std::cout << "                PELICULA:" << std::endl;
     std::cout <<"                            Titulo: "<<pelicula->getTitulo() << std::endl;
@@ -82,6 +85,9 @@ void ControladorSistema::verComentariosypuntajedepelicula(){
     std::cout <<"                          USUARIOB: 2 Puntos"<< std::endl;
     std::cout << " " << std::endl;
     std::cout << "           ═══════════════════════════════════════════════════════════          " << std::endl;
+    std::cout << "                                   Presione enter  para continuar.." << std::endl;
+getchar();
+getchar();
 
 
 
@@ -99,8 +105,10 @@ void ControladorSistema::altaCine(DtDireccion direccion) {
     int agregarmas = 1;
     int capacidadSala;
     int numeroSala;
+    std::cout << "\n                   AGREGAR SALAS "<< std::endl;
     while(agregarmas!=0){
-        std::cout << "           ═══════ NUEVA SALA ════════════════════════════════════════          " << std::endl;
+        
+        std::cout << "           ═══════════════════════════════════════════════════════════          " << std::endl;
         std::cout <<"                     CAPACIDAD:";
         std::cin >>capacidadSala;
         std::cout <<"                    N° DE SALA:";
@@ -109,7 +117,8 @@ void ControladorSistema::altaCine(DtDireccion direccion) {
         Sala* sala = new Sala(capacidadSala,numeroSala);
         nuevocine->getSalas()->add(keysala,sala);
         std::cout << " "<< std::endl;
-        std::cout <<"                    Para terminar de ingresar salas ingrese 0:";//wtf, por que no 
+        std::cout <<"        Para continuar agregando salas ingrese 1,"<< std::endl;//wtf, por que no 
+        std::cout <<"        Para terminar de agregar salas ingrese 0: ";//wtf, por que no 
         std::cin >>agregarmas;
         if(agregarmas == 0){
             break;
@@ -152,17 +161,28 @@ void ControladorSistema::comentarPelicula(){
         comentarioAcomentar->setComentarios("   " + comentario);
     }
 }
-void ControladorSistema::login(std::string nickname, std::string password){
+void ControladorSistema::iniciarSesion(std::string nickname, std::string password){
     StringKey *userKey = new StringKey(nickname);
     Usuario* user = dynamic_cast <Usuario*>(dicUsuario->find(userKey));
     if(user != NULL){
         if (user->getContrasenia() == password){
             this->sesion = user;
+            
+            std::cout <<"\n\n                                       Bienvenido "<< user <<std::endl;
+            std::cout <<"                                       Presione enter para seguir.."<<std::endl;        
+            getchar();
+            getchar();
         }else{
-            std::cout <<"Password incorrecta"<<std::endl;
+            std::cout <<"\n\n                                       Password incorrecta"<<std::endl;
+            std::cout <<"                                       Presione enter para seguir.."<<std::endl;        
+            getchar();
+            getchar();
         }
     }else{
-        std::cout <<"El usuario no existe"<<std::endl;
+        std::cout <<"\n\n                                       El usuario no existe"<<std::endl;
+        std::cout <<"                                       Presione enter para seguir.."<<std::endl;
+        getchar();
+        getchar();
     }
 }
 void ControladorSistema::altaPelicula(DtPelicula datos) {
@@ -223,8 +243,12 @@ void ControladorSistema::listarCines(){
     Cine::listarCines(dicCines);
 }
 
-void ControladorSistema::eliminarPelicula(std::string titulo) {
-    
+void ControladorSistema::eliminarPelicula() {
+    std::string titulo;
+    std::cout << "\n          \033[1;31m>>>>>>>>>>\033[0m             ELIMINAR PELÌCULA           \033[1;31m<<<<<<<<<<\033[0m                   \n " << std::endl;
+    Pelicula::listarPeliculas(dicPelicula);
+    std::cout << "\n                        Seleccione pelicula a eliminar: ";
+    std::cin >> titulo;
     IIterator* iteratorCine = dicCines->getIterator();
     while(iteratorCine->hasCurrent()){
         Cine* cine =  dynamic_cast<Cine*>(iteratorCine->getCurrent());
@@ -259,6 +283,12 @@ void ControladorSistema::eliminarPelicula(std::string titulo) {
     dicPelicula->remove(tituloPelicula);
     delete tituloPelicula;
     delete pelicula;
+    //logo();
+    //ver cuando no hay peliculas para eliminar o la pelicula no existe?
+    std::cout << "\n        \033[1;31m>>>>>>>>>>\033[0m             PELICULA ELIMINADA             \033[1;31m<<<<<<<<<<\033[0m                   " << std::endl;
+    std::cout << "\n                                    Presione enter  para continuar..." << std::endl;
+    getchar();
+    getchar();
 }
 
 //void ControladorSistema::listarFunciones() {

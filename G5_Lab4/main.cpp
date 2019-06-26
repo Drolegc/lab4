@@ -64,12 +64,26 @@ int main()
             switch (command)
             {
             case 1:
-            {
+            {    
+                std::string nickname;
+                std::string contrasenia;
+                logo();
+                std::cout << "\n\n          \033[1;31m>>>>>>>>>>\033[0m             INICIO DE SESIÒN           \033[1;31m<<<<<<<<<<\033[0m                   " << std::endl;
+                std::cout << "\n\n                        USUARIO: ";
+                std::cin >> nickname;
+                std::cout << "                       PASSWORD: ";
+                std::cin >> contrasenia;
+                controladorSistema->iniciarSesion(nickname, contrasenia);
+                
+            }
+            break;
+            case 2:
+            {  //ALTA CINE
                 std::string calle;
                 std::string ciudad;
                 int numero;
                 logo();
-                std::cout << "        \033[1;31m>>>>>>>>>>\033[0m    ALTA CINE - INGRESE DATOS DEL CINE     \033[1;31m<<<<<<<<<<\033[0m                   " << std::endl;
+                std::cout << "\n        \033[1;31m>>>>>>>>>>\033[0m    ALTA CINE - INGRESE DATOS DEL CINE     \033[1;31m<<<<<<<<<<\033[0m                   \n\n" << std::endl;
                 std::cout << "                  DIRECCIÓN:          " << std::endl;
                 std::cout << "           ═══════════════════════════════════════════════════════════          " << std::endl;
 
@@ -82,9 +96,9 @@ int main()
                 controladorSistema->altaCine(DtDireccion(calle, numero, ciudad));
             }
             break;
-            case 2:
+            case 3:
             {
-
+                //ALTA FUNCION
                 int dia;
                 int mes;
                 int anio;
@@ -93,7 +107,7 @@ int main()
                 int numeroCine;
                 int numeroSala;
                 std::string titulo;
-
+                 logo();
                 std::cout << std::endl;
                 controladorSistema->listarPeliculas();
                 std::cout << std::endl;
@@ -113,8 +127,8 @@ int main()
                 controladorSistema->altaFuncion(titulo, numeroCine, numeroSala, DtFecha(dia, mes, anio), DtHora(hora, minutos));
             }
             break;
-            case 3:
-            {
+            case 4:
+            {    //crear reserva
                 std::cout << "¿Que pelicula quieres ver? ";
                 std::string titulo;
                 char YN;
@@ -175,27 +189,35 @@ int main()
 
             }
             break;
-            case 4:
-            {
-                controladorSistema->listarCines();
-            }
-            break;
             case 5:
-            {
-                controladorSistema->comentarPelicula();
+            {//Puntuar pelicula
+              //  controladorSistema->puntuarPelicula();
             }
             break;
             case 6:
             {
-                controladorSistema->infoPeliculas();
+                                controladorSistema->comentarPelicula();
+
             }
             break;
             case 7: {
-                 logo();
+                logo();
+                
+                controladorSistema->eliminarPelicula();
+            }
+            break;
+            case 8: {
+                logo();
 
-                    controladorSistema-> verComentariosypuntajedepelicula();
-                }
-                break;
+                controladorSistema->infoPeliculas();
+            }
+            break;
+            case 9: {
+                logo();
+
+                controladorSistema-> verComentariosypuntajedepelicula();
+            }
+            break;
 
                 
 
