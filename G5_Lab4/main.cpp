@@ -52,9 +52,12 @@ int main()
     int command = -1;
     while (command != 0)
     {
+
+
+
         logo();
         lista_comandos();
-        muestroCursor(4);
+        muestroCursor(9);
         std::cin >> command;
         try
         {
@@ -169,6 +172,7 @@ int main()
                         throw std::invalid_argument("");
                     }
                 }
+
             }
             break;
             case 4:
@@ -186,14 +190,15 @@ int main()
                 controladorSistema->infoPeliculas();
             }
             break;
-                case 5: {
-                    logo();
+            case 7: {
+                 logo();
 
                     controladorSistema-> verComentariosypuntajedepelicula();
                 }
                 break;
 
                 
+
 
             }
         }
