@@ -14,7 +14,7 @@ DtFuncion* Sala::getDtFuncion(Pelicula* p){
     while(it->hasCurrent()){
         Funcion* f = dynamic_cast<Funcion*>(it->getCurrent());
         if(f->tienePeli(p)){
-            DtFuncion* dtf = new DtFuncion(f->getNumero(),f->getFecha(),f->getHora(),p);
+            DtFuncion* dtf = new DtFuncion(f->getNumero(),f->getFecha(),f->getHora(),p->getTitulo());
             return dtf;
         }
     }

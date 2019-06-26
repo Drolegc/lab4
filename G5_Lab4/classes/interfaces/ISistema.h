@@ -31,7 +31,6 @@ class ISistema {
         virtual void pagoDebito(int asientos,std::string banco,int funcion,int cine) = 0;
         virtual void pagoCredito(int asientos,std::string financiera,int funcion) = 0;
         virtual void MostrarReservas()=0;
-        virtual void altaCine(DtDireccion direccion) = 0;
         virtual ~ISistema();
 };
 

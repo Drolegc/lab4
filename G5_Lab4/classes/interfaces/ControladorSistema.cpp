@@ -192,7 +192,7 @@ void ControladorSistema::listarCines(){
 
 void ControladorSistema::eliminarPelicula(std::string titulo) {
     
-    IIterator* iteratorCine = Cines->getIterator();
+    IIterator* iteratorCine = dicCines->getIterator();
     while(iteratorCine->hasCurrent()){
         Cine* cine =  dynamic_cast<Cine*>(iteratorCine->getCurrent());
         IDictionary* sala = cine->getSalas();
