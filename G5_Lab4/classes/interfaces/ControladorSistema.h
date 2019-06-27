@@ -49,7 +49,7 @@ class ControladorSistema : public ISistema {
         void login(std::string nickname, std::string password);
         void altaPelicula(DtPelicula datos);
         void comentarPelicula();
-        void eliminarPelicula(std::string titulo);
+        void eliminarPelicula();
         DtPelicula seleccionarPelicula(std::string titulo);
         void listarPeliculas();
 //        DtPelicula seleccionarPelicula(std::string titulo);
@@ -66,11 +66,11 @@ class ControladorSistema : public ISistema {
 
         /****************************** USUARIOS ******************************/
 
-//        void iniciarSesion(std::string nickname, std::string contrasenia);
+        void iniciarSesion(string nickname, string password);
         Usuario* getUsuarioLogeado();
         void MostrarReservas();
         /**********************************************************************/
-
+        void verComentariosypuntajedepelicula();
         ~ControladorSistema();
 };
 

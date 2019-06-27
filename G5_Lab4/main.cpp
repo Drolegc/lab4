@@ -6,7 +6,7 @@
 #include "classes/interfaces/Fabrica.h"
 #include "datatypes/headers/DtDireccion.h"
 #include "datatypes/headers/DtPelicula.h"
-#include "classes/sources/auxiliar.cpp"
+#include "auxiliar.cpp"
 
 void MostrarDtPelicula(DtPelicula p);
 void MostrarCines(ICollection *c);
@@ -52,21 +52,38 @@ int main()
     int command = -1;
     while (command != 0)
     {
+
+
+
         logo();
         lista_comandos();
-        muestroCursor(4);
+        muestroCursor(9);
         std::cin >> command;
         try
         {
             switch (command)
             {
             case 1:
-            {
+            {    
+                std::string nickname;
+                std::string contrasenia;
+                logo();
+                std::cout << "\n\n          \033[1;31m>>>>>>>>>>\033[0m             INICIO DE SESIÒN           \033[1;31m<<<<<<<<<<\033[0m                   " << std::endl;
+                std::cout << "\n\n                        USUARIO: ";
+                std::cin >> nickname;
+                std::cout << "                       PASSWORD: ";
+                std::cin >> contrasenia;
+                controladorSistema->iniciarSesion(nickname, contrasenia);
+                
+            }
+            break;
+            case 2:
+            {  //ALTA CINE
                 std::string calle;
                 std::string ciudad;
                 int numero;
                 logo();
-                std::cout << "        \033[1;31m>>>>>>>>>>\033[0m    ALTA CINE - INGRESE DATOS DEL CINE     \033[1;31m<<<<<<<<<<\033[0m                   " << std::endl;
+                std::cout << "\n        \033[1;31m>>>>>>>>>>\033[0m    ALTA CINE - INGRESE DATOS DEL CINE     \033[1;31m<<<<<<<<<<\033[0m                   \n\n" << std::endl;
                 std::cout << "                  DIRECCIÓN:          " << std::endl;
                 std::cout << "           ═══════════════════════════════════════════════════════════          " << std::endl;
 
@@ -79,9 +96,9 @@ int main()
                 controladorSistema->altaCine(DtDireccion(calle, numero, ciudad));
             }
             break;
-            case 2:
+            case 3:
             {
-
+                //ALTA FUNCION
                 int dia;
                 int mes;
                 int anio;
@@ -90,7 +107,7 @@ int main()
                 int numeroCine;
                 int numeroSala;
                 std::string titulo;
-
+                 logo();
                 std::cout << std::endl;
                 controladorSistema->listarPeliculas();
                 std::cout << std::endl;
@@ -110,8 +127,8 @@ int main()
                 controladorSistema->altaFuncion(titulo, numeroCine, numeroSala, DtFecha(dia, mes, anio), DtHora(hora, minutos));
             }
             break;
-            case 3:
-            {
+            case 4:
+            {    //crear reserva
                 std::cout << "¿Que pelicula quieres ver? ";
                 std::string titulo;
                 char YN;
@@ -169,23 +186,42 @@ int main()
                         throw std::invalid_argument("");
                     }
                 }
-            }
-            break;
-            case 4:
-            {
-                controladorSistema->listarCines();
+
             }
             break;
             case 5:
-            {
-                controladorSistema->comentarPelicula();
+            {//Puntuar pelicula
+              //  controladorSistema->puntuarPelicula();
             }
             break;
             case 6:
             {
+                                controladorSistema->comentarPelicula();
+
+            }
+            break;
+            case 7: {
+                logo();
+                
+                controladorSistema->eliminarPelicula();
+            }
+            break;
+            case 8: {
+                logo();
+
                 controladorSistema->infoPeliculas();
             }
             break;
+            case 9: {
+                logo();
+
+                controladorSistema-> verComentariosypuntajedepelicula();
+            }
+            break;
+
+                
+
+
             }
         }
         catch (std::invalid_argument)

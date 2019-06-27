@@ -11,19 +11,23 @@ std::cout << "           ██╗██║     ██║██╔██╗ █�
 std::cout << "           ██║██║     ██║██║╚██╗██║██╔══╝  ██║╚██╔╝██║██╔══██║╚════██║          " << std::endl;
 std::cout << "           ██║╚██████╗██║██║ ╚████║███████╗██║ ╚═╝ ██║██║  ██║███████║          " << std::endl;
 std::cout << "           ╚═╝ ╚═════╝╚═╝╚═╝  ╚═══╝╚══════╝╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝          " << std::endl;
-std::cout << "                                                  PA-CURE-UTEC-G5-2019            \n" << std::endl;
-std::cout << " " << std::endl;
-system(" aplay 2048MF.wav  > /dev/null 2>&1  ");
+std::cout << "                                                  PA-CURE-UTEC-G5-2019          " << std::endl;
+//system(" aplay 2048MF.wav  > /dev/null 2>&1  ");
 }
 void lista_comandos(){
-std::cout << "                   ╔═════════ MENU DE OPCIONES ═════════════╗                   " << std::endl;
-std::cout << "                   ║        1: Agregar cines.               ║░" << std::endl;
-std::cout << "                   ║        2: Agregar funcion.             ║░" << std::endl;
-std::cout << "                   ║        3: Reservar ya!                 ║░" << std::endl;
-std::cout << "                   ║        4: Listar salas                 ║░" << std::endl;
-std::cout << "                   ║        5: Salir                        ║░" << std::endl;
-std::cout << "                   ╚════════════════════════════════════════╝░" << std::endl;
-std::cout << "                    ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n" << std::endl;
+std::cout << "\n                   ╔═════════════ MENU DE OPCIONES ═════════════╗                   " << std::endl;
+std::cout << "                   ║   1: Iniciar sesión.                       ║░" << std::endl;
+std::cout << "                   ║   2: Alta cine.                            ║░" << std::endl;
+std::cout << "                   ║   3: Alta funcion                          ║░" << std::endl;
+std::cout << "                   ║   4: Crear reserva.                        ║░" << std::endl;
+std::cout << "                   ║   5: Puntuar película.                     ║░" << std::endl;
+std::cout << "                   ║   6: Comentar película                     ║░" << std::endl;
+std::cout << "                   ║   7: Eliminar película                     ║░" << std::endl;
+std::cout << "                   ║   8: Ver info de película                  ║░" << std::endl;
+std::cout << "                   ║   9: Comentarios y puntaje de película     ║░" << std::endl;
+std::cout << "                   ║   0: Salir.                                ║░" << std::endl;
+std::cout << "                   ╚════════════════════════════════════════════╝░" << std::endl;
+std::cout << "                    ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n" << std::endl;
 }
 
 //std::cout << "            >>>>>>>          PA-CURE-UTEC-G5-2019            <<<<<<<\n" << std::endl;
