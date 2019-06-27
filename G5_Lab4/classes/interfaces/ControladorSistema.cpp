@@ -266,9 +266,12 @@ void ControladorSistema::eliminarPelicula() {
                     IIterator* itColReserva = colReserva->getIterator();
                     while(itColReserva->hasCurrent()) {
                         ICollectible* reserva = dynamic_cast<Reserva*> (itColReserva->getCurrent());
+                        colReserva->remove(reserva);
                         delete reserva;
                         itColReserva->next();
                     }
+                    IKey* tituloPelicula = new StringKey(titulo);
+                    dicPelicula->remove(tituloPelicula);
                     delete peliculaFuncion;
                     delete f;
                 }
@@ -280,9 +283,12 @@ void ControladorSistema::eliminarPelicula() {
     }
     IKey* tituloPelicula = new StringKey(titulo);
     ICollectible* pelicula = dicPelicula->find(tituloPelicula);
-    dicPelicula->remove(tituloPelicula);
-    delete tituloPelicula;
-    delete pelicula;
+    if(pelicula != NULL) {
+        dicPelicula->remove(tituloPelicula);
+        delete tituloPelicula;
+        delete pelicula;
+    }
+    
     //logo();
     //ver cuando no hay peliculas para eliminar o la pelicula no existe?
     std::cout << "\n        \033[1;31m>>>>>>>>>>\033[0m             PELICULA ELIMINADA             \033[1;31m<<<<<<<<<<\033[0m                   " << std::endl;
