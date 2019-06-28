@@ -53,8 +53,6 @@ int main()
     while (command != 0)
     {
 
-
-
         logo();
         lista_comandos();
         muestroCursor(9);
@@ -64,7 +62,7 @@ int main()
             switch (command)
             {
             case 1:
-            {    
+            {
                 std::string nickname;
                 std::string contrasenia;
                 logo();
@@ -74,16 +72,16 @@ int main()
                 std::cout << "                       PASSWORD: ";
                 std::cin >> contrasenia;
                 controladorSistema->iniciarSesion(nickname, contrasenia);
-                
             }
             break;
             case 2:
-            {  //ALTA CINE
+            { //ALTA CINE
                 std::string calle;
                 std::string ciudad;
                 int numero;
                 logo();
-                std::cout << "\n        \033[1;31m>>>>>>>>>>\033[0m    ALTA CINE - INGRESE DATOS DEL CINE     \033[1;31m<<<<<<<<<<\033[0m                   \n\n" << std::endl;
+                std::cout << "\n        \033[1;31m>>>>>>>>>>\033[0m    ALTA CINE - INGRESE DATOS DEL CINE     \033[1;31m<<<<<<<<<<\033[0m                   \n\n"
+                          << std::endl;
                 std::cout << "                  DIRECCIÓN:          " << std::endl;
                 std::cout << "           ═══════════════════════════════════════════════════════════          " << std::endl;
 
@@ -107,7 +105,7 @@ int main()
                 int numeroCine;
                 int numeroSala;
                 std::string titulo;
-                 logo();
+                logo();
                 std::cout << std::endl;
                 controladorSistema->listarPeliculas();
                 std::cout << std::endl;
@@ -128,27 +126,35 @@ int main()
             }
             break;
             case 4:
-            {    //crear reserva
+            { //crear reserva
                 std::cout << "¿Que pelicula quieres ver? ";
                 std::string titulo;
                 char YN;
                 std::cin >> titulo;
                 DtPelicula peli = controladorSistema->seleccionarPelicula(titulo);
                 std::cout << peli.getTitulo() << std::endl;
-                std::cout << "¿Quieres ver en que cines esta la pelicula?" << std::endl;
+                std::cout << peli.getUrlPoster() << std::endl;
+                std::cout << peli.getSinopsis() << std::endl;
+                std::cout << peli.getPuntajePromedio() << std::endl;
+                std::cout << "¿Quieres ver en que cines esta la pelicula? (Y/N)" << std::endl;
                 std::cin >> YN;
                 if (YN == 'Y')
                 {
-                    //OJO CON ESA VARIABLE CINESfUNCIONES
+                    
 
-                    ICollection *cinesFunciones = controladorSistema->verInfoAdicional(peli);
-                    MostrarCines(cinesFunciones);
+                    ICollection *Dtcines = controladorSistema->verInfoAdicional(peli);
+                    Cine::CinesConPeli(Dtcines);
+                    delete Dtcines;
 
-                    int id_cine;
+                    int id_cine = 0;
                     std::cout << "¿En que cine te gustaria? Ingresa su id: " << std::endl;
                     std::cin >> id_cine;
-                    cinesFunciones = controladorSistema->SeleccionarCine(id_cine, peli.getTitulo());
-                    MostrarFunciones(cinesFunciones);
+                    
+                    ICollection* Dtfunciones;
+                    Dtfunciones = controladorSistema->SeleccionarCine(id_cine, peli.getTitulo());
+                    Funcion::FuncionesConPeli(Dtfunciones);
+
+                    delete Dtfunciones;
 
                     std::cout << "¿En que funcion te gustaria? Ingresa su id " << std::endl;
                     int id_funcion;
@@ -186,42 +192,39 @@ int main()
                         throw std::invalid_argument("");
                     }
                 }
-
             }
             break;
             case 5:
-            {//Puntuar pelicula
-              //  controladorSistema->puntuarPelicula();
+            { //Puntuar pelicula
+                //  controladorSistema->puntuarPelicula();
             }
             break;
             case 6:
             {
-                                controladorSistema->comentarPelicula();
-
+                controladorSistema->comentarPelicula();
             }
             break;
-            case 7: {
+            case 7:
+            {
                 logo();
-                
+
                 controladorSistema->eliminarPelicula();
             }
             break;
-            case 8: {
+            case 8:
+            {
                 logo();
 
                 controladorSistema->infoPeliculas();
             }
             break;
-            case 9: {
+            case 9:
+            {
                 logo();
 
-                controladorSistema-> verComentariosypuntajedepelicula();
+                controladorSistema->verComentariosypuntajedepelicula();
             }
             break;
-
-                
-
-
             }
         }
         catch (std::invalid_argument)
@@ -230,36 +233,4 @@ int main()
         }
     }
     return 0;
-}
-
-void MostrarCines(ICollection *c)
-{
-    IIterator *it = c->getIterator();
-    if (!it->hasCurrent())
-    {
-        std::cout << "No tenemos cines :/" << std::endl;
-        throw std::invalid_argument("");
-    }
-    while (it->hasCurrent())
-    {
-        Cine *cine = dynamic_cast<Cine *>(it->getCurrent());
-        std::cout << "Id del cine: " << cine->getNumero() << std::endl;
-        it->next();
-    }
-}
-
-void MostrarFunciones(ICollection *c)
-{
-    IIterator *it = c->getIterator();
-    if (!it->hasCurrent())
-    {
-        std::cout << "Sin funciones para esa pelicula, vuelve pronto" << std::endl;
-        throw std::invalid_argument("");
-    }
-    while (it->hasCurrent())
-    {
-        DtFuncion *f = dynamic_cast<DtFuncion *>(it->getCurrent());
-        std::cout << "Numero de funcion: " << f->getNumero() << std::endl;
-        it->next();
-    }
 }

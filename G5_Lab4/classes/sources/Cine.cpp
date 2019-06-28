@@ -20,6 +20,22 @@ void Cine::addPelicula(Pelicula *p)
     dicPeliculas->add(k, p);
 }
 
+void Cine::CinesConPeli(ICollection *c)
+{
+    IIterator *it = c->getIterator();
+    if (!it->hasCurrent())
+    {
+        std::cout << "No tenemos cines :/" << std::endl;
+        throw std::invalid_argument("");
+    }
+    while (it->hasCurrent())
+    {
+        Cine *cine = dynamic_cast<Cine *>(it->getCurrent());
+        std::cout << "Id del cine: " << cine->getNumero() << std::endl;
+        it->next();
+    }
+}
+
 void Cine::listarCines(IDictionary *cines)
 {
     IIterator *it = cines->getIterator();
@@ -37,11 +53,14 @@ void Cine::listarCines(IDictionary *cines)
 ICollection *Cine::getFunciones(Pelicula *p)
 {
     //CREO UNA COLLECCION DE FUNCIONES QUE TIENEN LA PELICULA DESEADA
+
     ICollection *funciones = new List();
-    IIterator *it = this->dicSalas->getIterator();
+    IIterator *it = dicSalas->getIterator();
+
     while (it->hasCurrent())
     {
         Sala *S = dynamic_cast<Sala *>(it->getCurrent());
+
         DtFuncion *dtf = S->getDtFuncion(p);
         funciones->add(dynamic_cast<ICollectible *>(dtf));
         it->next();
@@ -57,12 +76,11 @@ Funcion *Cine::getFuncion(int id_funcion)
 
     while (it->hasCurrent())
     {
-        //std::cout << "Pasad444as" << std::endl;
+
         Sala *S = dynamic_cast<Sala *>(it->getCurrent());
-        //std::cout << "Obrengo sala";
-        //Si casteo como Cine logra pasar, o al menos mostrar el mensaje anterior
+
         f = S->getFuncion(id_funcion);
-        //std::cout << "Obtengo la funcion";
+
         if (f != NULL)
         {
             return f;

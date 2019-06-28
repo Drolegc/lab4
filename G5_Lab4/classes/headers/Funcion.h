@@ -35,9 +35,12 @@ class Funcion : public ICollectible {
         void setFecha(DtFecha fecha);
         void setHora(DtHora hora);
         void setPelicula(Pelicula* pelicula);
+        void setReserva(ICollectible* c);
         
         void listarFunciones(IDictionary* funciones);
         
+        static void FuncionesConPeli(ICollection* c);
+
         ~Funcion();
 };
 

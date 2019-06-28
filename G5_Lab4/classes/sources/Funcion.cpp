@@ -109,6 +109,26 @@ void Funcion::listarFunciones(IDictionary* funciones){
     delete it;
 }
 
+void Funcion::setReserva(ICollectible* c){
+    colReserva->add(c);
+}
+
+void Funcion::FuncionesConPeli(ICollection *c)
+{
+    IIterator *it = c->getIterator();
+    if (!it->hasCurrent())
+    {
+        std::cout << "Sin funciones para esa pelicula, vuelve pronto" << std::endl;
+        throw std::invalid_argument("");
+    }
+    while (it->hasCurrent())
+    {
+        DtFuncion *f = dynamic_cast<DtFuncion *>(it->getCurrent());
+        std::cout << "Numero de funcion: " << f->getNumero() << std::endl;
+        it->next();
+    }
+}
+
 Funcion::~Funcion() {
 
 }

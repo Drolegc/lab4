@@ -31,14 +31,13 @@ class ControladorSistema : public ISistema {
         IDictionary* dicCines;
         Usuario *sesion;
     public:
-        
         ControladorSistema();
         
         /******************************** CINES ********************************/
         void infoPeliculas();
         void altaCine(DtDireccion direccion);
         void listarCines();
-
+        void control(string nombre_proc);
         /****************************** FUNCIONES ******************************/
 
         void altaFuncion(std::string titulo, int numeroCine, int numeroSala, DtFecha fecha, DtHora hora);

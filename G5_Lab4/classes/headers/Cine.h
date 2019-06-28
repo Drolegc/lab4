@@ -21,6 +21,7 @@ class Cine :public ICollectible{
         Cine(DtCine *cine);
         Cine(std::string calle,int num,std::string ciudad,int id);
         static void listarCines(IDictionary* cine);
+        static void CinesConPeli(ICollection* c);
         int getNumero();
         DtDireccion getDireccion();
         IDictionary* getSalas();
