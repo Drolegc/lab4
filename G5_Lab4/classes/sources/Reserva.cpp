@@ -1,8 +1,9 @@
 #include "../headers/Reserva.h"
 
-Reserva::Reserva(int asientos, int costoTotal) {
+Reserva::Reserva(int asientos, int costoTotal,Funcion* f) {
     this->asientos = asientos;
     this->costoTotal = costoTotal;
+    this->f=f;
 }
 
 int Reserva::getAsientos() {

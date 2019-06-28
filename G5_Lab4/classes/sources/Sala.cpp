@@ -6,6 +6,33 @@ Sala::Sala(int numero, int capacidad) {
     this->dicFunciones = new OrderedDictionary();
 }
 
+DtFuncion* Sala::getDtFuncion(Pelicula* p){
+    //BUSCAR LA PELICULA
+    IDictionary* funciones = this->getDicFunciones();
+    IIterator* it = funciones->getIterator();
+
+    while(it->hasCurrent()){
+        Funcion* f = dynamic_cast<Funcion*>(it->getCurrent());
+        if(f->tienePeli(p)){
+            DtFuncion* dtf = new DtFuncion(f->getNumero(),f->getFecha(),f->getHora(),p->getTitulo());
+            return dtf;
+        }
+    }
+
+    throw std::invalid_argument("");
+}
+
+Funcion* Sala::getFuncion(int id){
+    //Chequear si tenemos esa funcion, si no devolver NULL
+    IntKey* k = new IntKey(id);
+    ICollectible* f = dicFunciones->find(k);
+    if(f!=NULL){
+        return dynamic_cast<Funcion*>(f);
+    }else{
+        return NULL;
+    }
+}
+
 int Sala::getNumero() {
     return this->numero;
 }
