@@ -48,7 +48,8 @@ int main()
     puntajePromedio = 0;
 
     controladorSistema->altaPelicula(DtPelicula(titulo, urlPoster, sinopsis, puntajePromedio));
-
+    controladorSistema->altaUsuario("usuario1","url","password");
+    controladorSistema->altaUsuario("usuario2","url","password2");
     int command = -1;
     while (command != 0)
     {
@@ -64,7 +65,7 @@ int main()
             switch (command)
             {
             case 1:
-            {    
+            {
                 std::string nickname;
                 std::string contrasenia;
                 logo();
@@ -74,7 +75,7 @@ int main()
                 std::cout << "                       PASSWORD: ";
                 std::cin >> contrasenia;
                 controladorSistema->iniciarSesion(nickname, contrasenia);
-                
+
             }
             break;
             case 2:
@@ -191,7 +192,8 @@ int main()
             break;
             case 5:
             {//Puntuar pelicula
-              //  controladorSistema->puntuarPelicula();
+                logo();
+                controladorSistema->puntuarPelicula();
             }
             break;
             case 6:
@@ -202,7 +204,7 @@ int main()
             break;
             case 7: {
                 logo();
-                
+
                 controladorSistema->eliminarPelicula();
             }
             break;
@@ -217,16 +219,11 @@ int main()
 
                 controladorSistema-> verComentariosypuntajedepelicula();
             }
-            break;
-
-                
-
-
             }
         }
-        catch (std::invalid_argument)
+        catch (std::exception& e)
         {
-            std::cout << "\033[1;31m¡Error!\033[0m" << std::endl;
+            std::cout << "\033[1;31m Error: "<< e.what() <<"\033[0m" << std::endl;
         }
     }
     return 0;

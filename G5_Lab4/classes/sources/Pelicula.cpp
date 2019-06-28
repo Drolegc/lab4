@@ -3,6 +3,7 @@
 
 Pelicula::Pelicula() {
     this->comentarios = new OrderedDictionary();
+    this->puntajes = new List();
 }
 
 Pelicula::Pelicula(std::string titulo, std::string urlPoster, std::string sinopsis, int puntajePromedio) {
@@ -11,26 +12,25 @@ Pelicula::Pelicula(std::string titulo, std::string urlPoster, std::string sinops
     this->sinopsis = sinopsis;
     this->puntajePromedio = 0;
     this->comentarios = new OrderedDictionary();
+    this->puntajes = new List();
 }
-
+void Pelicula::setPuntaje(Puntajes* puntaje){
+    this->puntajes->add(puntaje);
+}
 std::string Pelicula::getTitulo() {
     return this->titulo;
 }
 IDictionary *Pelicula::getComentarios(){
     return this->comentarios;
 }
-void Pelicula::setComentario(std::string comentario){
-    IIterator *it  = this->comentarios->getIterator();
-    int numComentario = 0;
-    while (it->hasCurrent()) {
-        numComentario++;
-        it->next();
-    }
-    numComentario++;
+void Pelicula::setComentario(std::string comentario, Usuario *usuario){
+    int numComentario = this->comentarios->getSize() + 1;
     IntKey* KeyComentario = new IntKey (numComentario);
-    this->comentarios->add(KeyComentario, new Comentarios(numComentario,comentario));
+    this->comentarios->add(KeyComentario, new Comentarios(numComentario,comentario,usuario));
 }
-
+int Pelicula::getCantidadVecesPuntuada(){
+    return this->puntajes->getSize();
+}
 std::string Pelicula::getUrlPoster() {
     return this->urlPoster;
 }
@@ -40,7 +40,17 @@ std::string Pelicula::getSinopsis() {
 }
 
 int Pelicula::getPuntajePromedio() {
-    return this->puntajePromedio;
+  int puntaje = 0;
+  IIterator *it = this->puntajes->getIterator();
+  int tamanio = this->puntajes->getSize();
+  while(it->hasCurrent()){
+      Puntajes *p = dynamic_cast<Puntajes*>(it->getCurrent());
+      puntaje += p->getPuntaje();
+      it->next();
+  }
+  if(tamanio==0)
+    return puntaje;
+  return puntaje/tamanio;
 }
 
 void Pelicula::setTitulo(std::string titulo) {
@@ -53,10 +63,6 @@ void Pelicula::setUrlPoster(std::string urlPoster) {
 
 void Pelicula::setSinopsis(std::string sinopsis) {
     this->sinopsis = sinopsis;
-}
-
-void Pelicula::setPuntajePromedio(int puntajePromedio) {
-    this->puntajePromedio = puntajePromedio;
 }
 
 void Pelicula::listarPeliculas(IDictionary* dicPeliculas) {
