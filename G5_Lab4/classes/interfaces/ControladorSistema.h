@@ -68,7 +68,7 @@ class ControladorSistema : public ISistema {
         void MostrarReservas();
         void altaUsuario(std::string nickname, std::string urlimagen, std::string password);
         /**********************************************************************/
-        void verComentariosypuntajedepelicula();
+        void verComentariosypuntajedepelicula(string _titulo);
         ~ControladorSistema();
 };
 

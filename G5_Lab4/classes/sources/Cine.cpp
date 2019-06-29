@@ -26,7 +26,7 @@ void Cine::listarCines(IDictionary *cines)
     while (it->hasCurrent())
     {
         Cine *currentCine = dynamic_cast<Cine *>(it->getCurrent());
-        std::cout << new DtCine(currentCine->getDireccion(), currentCine->getNumero());
+        std::cout <<"              " << new DtCine(currentCine->getDireccion(), currentCine->getNumero());
         IDictionary *salas = currentCine->getSalas();
         Sala::listarSalas(salas);
         it->next();

@@ -34,7 +34,7 @@ class ISistema {
         virtual void pagoCredito(int asientos,std::string financiera,int funcion) = 0;
         virtual void MostrarReservas()=0;
         virtual ~ISistema();
-        virtual void verComentariosypuntajedepelicula()=0;
+        virtual void verComentariosypuntajedepelicula(std::string _titulo)=0;
 };
 
 #endif /* ISISTEMA_H */
