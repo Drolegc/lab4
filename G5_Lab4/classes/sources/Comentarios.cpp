@@ -34,7 +34,7 @@ void Comentarios::listaComentarios(IDictionary *comentarios){
         Comentarios* currentcomentario =  dynamic_cast<Comentarios*>(it->getCurrent());
         Usuario *u= currentcomentario->getUsuario();
         std::string nickname = u->getNickname();
-        std::cout <<currentcomentario->getNumero()<<" - " <<nickname<<" - "<< currentcomentario->getComentario()<<std::endl;
+        std::cout <<"                            " << currentcomentario->getNumero()<<" - " <<nickname<<" - "<< currentcomentario->getComentario()<<std::endl;
         IDictionary* comentariosDeComentarios = currentcomentario->getComentarios();
         Comentarios::listaComentarios(comentariosDeComentarios);
         it->next();
