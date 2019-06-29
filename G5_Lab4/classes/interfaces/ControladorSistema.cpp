@@ -64,6 +64,10 @@ Usuario *ControladorSistema::getUsuarioLogeado()
     return this->sesion;
 }
 
+bool ControladorSistema::getAdminStatus() {
+    return this->sesion->getIsAdmin();
+}
+
 void ControladorSistema::verComentariosypuntajedepelicula(std::string _titulo){
     StringKey *key = new StringKey(_titulo);
     Pelicula *pelicula = dynamic_cast<Pelicula*>(dicPelicula->find(key));
