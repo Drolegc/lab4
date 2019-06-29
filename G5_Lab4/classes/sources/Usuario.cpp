@@ -1,4 +1,6 @@
 #include "../headers/Usuario.h"
+#include "../headers/Debito.h"
+#include "../headers/Credito.h"
 
 Usuario::Usuario(std::string nickname, std::string urlImagen, std::string contrasenia, bool isAdmin) {
     this->nickname = nickname;
@@ -36,7 +38,7 @@ ICollection* Usuario::getReservas(){
         it->next();
     }
     return dtr;
-    
+
 }
 
 bool Usuario::getIsAdmin() {
@@ -65,5 +67,5 @@ void Usuario::setReserva(ICollectible* r){
 
 
 Usuario::~Usuario() {
-    
+
 }

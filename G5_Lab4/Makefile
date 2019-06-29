@@ -2,7 +2,7 @@ OBJETOS = ICollectible.o IKey.o OrderedKey.o IIterator.o ICollection.o \
 ListNode.o ListIterator.o List.o IDictionary.o OrderedDictionaryEntry.o \
 OrderedDictionary.o String.o StringKey.o IntKey.o \
 DtCine.o DtDireccion.o DtFecha.o DtFuncion.o DtHora.o DtPelicula.o DtSala.o \
-Cine.o Credito.o Debito.o Funcion.o Pelicula.o Reserva.o Sala.o Usuario.o Comentarios.o \
+Cine.o  Funcion.o Pelicula.o Reserva.o Credito.o Debito.o Sala.o Usuario.o Puntajes.o Comentarios.o \
 ControladorSistema.o Fabrica.o ISistema.o
 
 FUENTES = ICollection/interfaces/ICollectible.cpp ICollection/interfaces/ICollectible.h \
@@ -31,14 +31,15 @@ datatypes/sources/DtHora.cpp datatypes/headers/DtHora.h \
 datatypes/sources/DtPelicula.cpp datatypes/headers/DtPelicula.h \
 datatypes/sources/DtSala.cpp datatypes/headers/DtSala.h \
 classes/sources/Cine.cpp classes/headers/Cine.h \
-classes/sources/Credito.cpp classes/headers/Credito.h \
-classes/sources/Comentarios.cpp classes/headers/Comentarios.h \
-classes/sources/Debito.cpp classes/headers/Debito.h \
 classes/sources/Funcion.cpp classes/headers/Funcion.h \
-classes/sources/Pelicula.cpp classes/headers/Pelicula.h \
+classes/sources/Comentarios.cpp classes/headers/Comentarios.h \
 classes/sources/Reserva.cpp classes/headers/Reserva.h \
+classes/sources/Debito.cpp classes/headers/Debito.h \
+classes/sources/Credito.cpp classes/headers/Credito.h \
+classes/sources/Pelicula.cpp classes/headers/Pelicula.h \
 classes/sources/Sala.cpp classes/headers/Sala.h \
 classes/sources/Usuario.cpp classes/headers/Usuario.h \
+classes/sources/Puntajes.cpp classes/headers/Puntajes.h \
 classes/interfaces/ControladorSistema.cpp classes/interfaces/ControladorSistema.h \
 classes/interfaces/Fabrica.cpp classes/interfaces/Fabirca.h \
 classes/interfaces/ISistema.cpp classes/interfaces/ISistema.h
@@ -114,29 +115,33 @@ DtSala.o: datatypes/sources/DtSala.cpp datatypes/headers/DtSala.h
 Cine.o: classes/sources/Cine.cpp classes/headers/Cine.h
 	$(CC) $(OPCIONES) -c classes/sources/Cine.cpp -o Cine.o
 
-Credito.o: classes/sources/Credito.cpp classes/headers/Credito.h
-	$(CC) $(OPCIONES) -c classes/sources/Credito.cpp -o Credito.o
+Funcion.o: classes/sources/Funcion.cpp classes/headers/Funcion.h
+	$(CC) $(OPCIONES) -c classes/sources/Funcion.cpp -o Funcion.o
 
 Comentarios.o: classes/sources/Comentarios.cpp classes/headers/Comentarios.h
 	$(CC) $(OPCIONES) -c classes/sources/Comentarios.cpp -o Comentarios.o
 
-Debito.o: classes/sources/Debito.cpp classes/headers/Debito.h
-	$(CC) $(OPCIONES) -c classes/sources/Debito.cpp -o Debito.o
-
-Funcion.o: classes/sources/Funcion.cpp classes/headers/Funcion.h
-	$(CC) $(OPCIONES) -c classes/sources/Funcion.cpp -o Funcion.o
 
 Pelicula.o: classes/sources/Pelicula.cpp classes/headers/Pelicula.h
 	$(CC) $(OPCIONES) -c classes/sources/Pelicula.cpp -o Pelicula.o
 
 Reserva.o: classes/sources/Reserva.cpp classes/headers/Reserva.h
-	$(CC) $(OPCIONES) -c classes/sources/Reserva.cpp -o Reserva.o
+	$(CC) $(OPCIONES) -c classes/sources/Reserva.cpp -o  Reserva.o
+
+Debito.o: classes/sources/Debito.cpp classes/headers/Debito.h Reserva.o
+	$(CC) $(OPCIONES) -c classes/sources/Debito.cpp -o Debito.o
+Credito.o: classes/sources/Credito.cpp classes/headers/Credito.h Reserva.o
+	$(CC) $(OPCIONES) -c classes/sources/Credito.cpp -o Credito.o
+
 
 Sala.o: classes/sources/Sala.cpp classes/headers/Sala.h
 	$(CC) $(OPCIONES) -c classes/sources/Sala.cpp -o Sala.o
 
 Usuario.o: classes/sources/Usuario.cpp classes/headers/Usuario.h
 	$(CC) $(OPCIONES) -c classes/sources/Usuario.cpp -o Usuario.o
+
+Puntajes.o: classes/sources/Puntajes.cpp classes/headers/Puntajes.h
+	$(CC) $(OPCIONES) -c classes/sources/Puntajes.cpp -o Puntajes.o
 
 ControladorSistema.o: classes/interfaces/ControladorSistema.cpp classes/interfaces/ControladorSistema.h
 	$(CC) $(OPCIONES) -c classes/interfaces/ControladorSistema.cpp -o ControladorSistema.o

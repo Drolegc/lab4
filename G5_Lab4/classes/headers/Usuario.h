@@ -5,9 +5,6 @@
 #include "../../ICollection/interfaces/ICollectible.h"
 #include "../../ICollection/interfaces/ICollection.h"
 #include "../../ICollection/collections/List.h"
-#include "Reserva.h"
-#include "Debito.h"
-#include "Credito.h"
 
 class Usuario : public ICollectible {
     private:
@@ -18,13 +15,13 @@ class Usuario : public ICollectible {
         ICollection* reservas;
     public:
         Usuario(std::string nickname, std::string urlImagen, std::string contrasenia, bool isAdmin);
-        
+
         std::string getNickname();
         std::string getUrlImagen();
         std::string getContrasenia();
         bool getIsAdmin();
         ICollection* getReservas();
-        
+
         void setNickame(std::string nickname);
         void setUrlImagen(std::string urlImagen);
         void setContrasenia(std::string contrasenia);
@@ -33,7 +30,7 @@ class Usuario : public ICollectible {
 
 
         void iniciarSesion(std::string nickname, std::string contrasenia);
-        
+
         ~Usuario();
 };
 
