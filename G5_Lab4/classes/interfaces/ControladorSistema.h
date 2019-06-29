@@ -65,6 +65,7 @@ class ControladorSistema : public ISistema {
 
         void iniciarSesion(string nickname, string password);
         Usuario* getUsuarioLogeado();
+        bool getAdminStatus();
         void MostrarReservas();
         void altaUsuario(std::string nickname, std::string urlimagen, std::string password);
         /**********************************************************************/
