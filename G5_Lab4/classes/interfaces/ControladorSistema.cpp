@@ -187,6 +187,10 @@ void ControladorSistema::comentarPelicula(){
     std::cin >> nombrePelicula;
     StringKey *key = new StringKey(nombrePelicula);
     Pelicula *pelicula = dynamic_cast<Pelicula*>(dicPelicula->find(key));
+    if(pelicula === nullptr){
+        std::__throw_invalid_argument("La pelicula no existe.");
+        return;
+    }
     IDictionary* comentarios =  pelicula->getComentarios();
     int agregarComentarios = 1;
     while(agregarComentarios == 1){
