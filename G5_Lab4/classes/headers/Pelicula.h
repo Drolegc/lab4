@@ -27,6 +27,7 @@ class Pelicula : public ICollectible {
         std::string getUrlPoster();
         std::string getSinopsis();
         void setPuntaje(Puntajes *puntaje);
+        ICollection * getPuntajes();
         void setComentario(std::string comentario, Usuario* usuario);
         void setTitulo(std::string titulo);
         void setUrlPoster(std::string urlPoster);
