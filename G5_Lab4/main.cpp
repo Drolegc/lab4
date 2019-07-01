@@ -154,24 +154,33 @@ int main()
             case 4:
             {    //crear reserva
                 if(controladorSistema->getUsuarioLogeado() != NULL) {
-                    
+
                     logo();
                     controladorSistema->listarPeliculas();
-                    std::cout << "                   ¿Que pelicula quieres ver? ";
+                    std::cout << "                   ¿Que pelicula quieres ver? para cancelar escriba c ";
                     std::string titulo;
                     char YN;
                     std::cin >> titulo;
+                    if(titulo =="c"){
+                        std::__throw_invalid_argument("Reserva cancelada");
+                    }
                     DtPelicula peli = controladorSistema->seleccionarPelicula(titulo);
-                    //std::cout << peli.getTitulo() << std::endl;
-                    std::cout << "                   ¿Quieres ver en que cines esta la pelicula?(Y/N)";
+                    std::cout <<"Poster:"<< peli.getUrlPoster() <<std::endl;
+                    std::cout <<"Sinopsis:"<< peli.getSinopsis() <<std::endl;
+                    std::cout << "                   ¿Quieres cancelar?(Y/N)";
                     std::cin >> YN;
-                    if (YN == 'Y' or YN =='y')
+                    if (YN == 'N' or YN =='n')
                     {
                         //OJO CON ESA VARIABLE CINESfUNCIONES
 
                         ICollection *cinesFunciones = controladorSistema->verInfoAdicional(peli);
                         MostrarCines(cinesFunciones);
-
+                        char cancelarCine;
+                        std::cout << "Para continuar ingrese Y, para salir ingrese N:";
+                        std::cin >> cancelarCine;
+                        if(YN == 'Y' or YN =='y'){
+                            std::__throw_invalid_argument("Reserva cancelada");
+                        }
                         int id_cine;
                         std::cout << "                   ¿En que cine te gustaria? Ingresa su numero: ";
                         std::cin >> id_cine;
@@ -312,7 +321,7 @@ void MostrarFunciones(ICollection *c)
     }
     while (it->hasCurrent())
     {
-        DtFuncion *f = dynamic_cast<DtFuncion *>(it->getCurrent());      
+        DtFuncion *f = dynamic_cast<DtFuncion *>(it->getCurrent());
         std::cout << "                   Funciones disponibles: " << f->getNumero() << " - Fecha: " << f->getFecha().getDia() << "/" << f->getFecha().getMes() << "/" << f->getFecha().getAnio() << " - Hora: " << f->getHora().getHora() <<":"<< f->getHora().getMinutos() <<  std::endl;
         it->next();
     }
