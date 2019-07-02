@@ -106,7 +106,7 @@ void Funcion::listarFunciones(IDictionary* funciones){
                 currentFuncion->getHora(), currentFuncion->getPelicula()->getTitulo());
         it->next();
     }
-    delete it;
+    
 }
 
 void Funcion::setReserva(ICollectible* c){
@@ -124,7 +124,7 @@ void Funcion::FuncionesConPeli(ICollection *c)
     while (it->hasCurrent())
     {
         DtFuncion *f = dynamic_cast<DtFuncion *>(it->getCurrent());
-        std::cout << "Numero de funcion: " << f->getNumero() << std::endl;
+        std::cout << f;
         it->next();
     }
 }

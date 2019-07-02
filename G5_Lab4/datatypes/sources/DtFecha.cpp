@@ -40,6 +40,7 @@ bool DtFecha::isValid() {
             this->anio >= 1900;
 }
 
+
 DtFecha::~DtFecha() {
     
 }

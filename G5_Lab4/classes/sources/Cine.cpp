@@ -32,6 +32,7 @@ void Cine::CinesConPeli(ICollection *c)
     {
         Cine *cine = dynamic_cast<Cine *>(it->getCurrent());
         std::cout << "Id del cine: " << cine->getNumero() << std::endl;
+        
         it->next();
     }
 }
@@ -42,7 +43,7 @@ void Cine::listarCines(IDictionary *cines)
     while (it->hasCurrent())
     {
         Cine *currentCine = dynamic_cast<Cine *>(it->getCurrent());
-        std::cout << new DtCine(currentCine->getDireccion(), currentCine->getNumero());
+        std::cout <<"              " << new DtCine(currentCine->getDireccion(), currentCine->getNumero());
         IDictionary *salas = currentCine->getSalas();
         Sala::listarSalas(salas);
         it->next();
@@ -61,8 +62,15 @@ ICollection *Cine::getFunciones(Pelicula *p)
     {
         Sala *S = dynamic_cast<Sala *>(it->getCurrent());
 
-        DtFuncion *dtf = S->getDtFuncion(p);
-        funciones->add(dynamic_cast<ICollectible *>(dtf));
+        ICollection *col_funciones = S->getDtFuncion(p);
+        IIterator* f_it = col_funciones->getIterator();
+        while(f_it->hasCurrent()){
+            
+            funciones->add(f_it->getCurrent());
+            f_it->next();
+            
+        }
+        
         it->next();
     }
     return funciones;

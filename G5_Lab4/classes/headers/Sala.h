@@ -6,6 +6,7 @@
 #include "../../ICollection/collections/OrderedDictionary.h"
 #include "../../classes/headers/Funcion.h"
 #include "../../datatypes/headers/DtFuncion.h"
+#include "../../classes/interfaces/Fabrica.h"
 class Sala : public ICollectible {
     private:
         int numero;
@@ -20,7 +21,7 @@ class Sala : public ICollectible {
         static void listarSalas(IDictionary *salas);
         void setNumero(int numero);
         void setCapacidad(int capacidad);
-        DtFuncion* getDtFuncion(Pelicula* p);
+        ICollection* getDtFuncion(Pelicula* p);
         Funcion* getFuncion(int id);
 
         void getFunciones();

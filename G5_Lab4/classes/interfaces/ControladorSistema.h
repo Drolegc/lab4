@@ -1,6 +1,5 @@
 #ifndef CONTROLADORSISTEMA_H
 #define CONTROLADORSISTEMA_H
-
 #include "../../ICollection/StringKey.h"
 #include "../../ICollection/interfaces/ICollection.h"
 #include "../../ICollection/collections/List.h"
@@ -18,9 +17,8 @@
 #include "../headers/Debito.h"
 #include "../headers/Funcion.h"
 #include "../headers/Usuario.h"
-#include "../headers/Funcion.h"
 #include "../interfaces/ISistema.h"
-
+#include <ctime>
 //class Funcion;
 
 class ControladorSistema : public ISistema {
@@ -30,9 +28,13 @@ class ControladorSistema : public ISistema {
         IDictionary* dicUsuario;
         IDictionary* dicCines;
         Usuario *sesion;
+        DtHora* horaSystema;
+        DtFecha* fechaSystema;
     public:
         ControladorSistema();
-        
+        /***************** */
+        DtHora* getSystemHour();
+        DtFecha* getSystemDate();
         /******************************** CINES ********************************/
         void infoPeliculas();
         void altaCine(DtDireccion direccion);
@@ -44,7 +46,7 @@ class ControladorSistema : public ISistema {
 //        void listarFunciones();
 
         /****************************** PELICULAS ******************************/
-    
+
         void login(std::string nickname, std::string password);
         void altaPelicula(DtPelicula datos);
         void comentarPelicula();
@@ -55,21 +57,24 @@ class ControladorSistema : public ISistema {
 //        DtPelicula verInfoAdicional();
         ICollection* verInfoAdicional(DtPelicula p);
         ICollection* SeleccionarCine(int numCine,std::string titulo);
-        
+        void puntuarPelicula();
+
         /****************************** RESERVAS ******************************/
 
 //        void reservaCredito(int asientos, std::string financiera, int porcentajeDescuento, int funcion);
 //        void reservaDebito(int asientos, int costoTotal, std::string bancoEmisor, int funcion);
-        void pagoDebito(int asientos,std::string banco,int funcion,int cine);
-        void pagoCredito(int asientos,std::string financiera,int funcion);
+        void pagoDebito(int asientos,std::string banco,int funcion,int cine,int total);
+        void pagoCredito(int asientos,std::string financiera,int funcion, int cine,int total);
 
         /****************************** USUARIOS ******************************/
 
         void iniciarSesion(string nickname, string password);
         Usuario* getUsuarioLogeado();
+        bool getAdminStatus();
         void MostrarReservas();
+        void altaUsuario(std::string nickname, std::string urlimagen, std::string password);
         /**********************************************************************/
-        void verComentariosypuntajedepelicula();
+        void verComentariosypuntajedepelicula(string _titulo);
         ~ControladorSistema();
 };
 
