@@ -23,6 +23,9 @@ std::string Pelicula::getTitulo() {
 IDictionary *Pelicula::getComentarios(){
     return this->comentarios;
 }
+ICollection * Pelicula::getPuntajes(){
+    return this->puntajes;
+}
 void Pelicula::setComentario(std::string comentario, Usuario *usuario){
     int numComentario = this->comentarios->getSize() + 1;
     IntKey* KeyComentario = new IntKey (numComentario);
