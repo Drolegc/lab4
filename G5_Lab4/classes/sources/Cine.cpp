@@ -106,7 +106,7 @@ DtDireccion Cine::getDireccion()
 }
 IDictionary *Cine::getSalas()
 {
-    return dicSalas;
+    return this->dicSalas;
 }
 int Cine::getNumero()
 {

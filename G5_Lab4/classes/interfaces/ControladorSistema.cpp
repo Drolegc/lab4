@@ -154,6 +154,8 @@ void ControladorSistema::puntuarPelicula()
             {
                 puntaje->remove(it->getCurrent());
                 delete punt;
+            }else{
+                return;
             }
         }
         it->next();
@@ -447,10 +449,16 @@ void ControladorSistema::eliminarPelicula()
         }
         iteratorCine->next();
     }
-    IKey *tituloPelicula = new StringKey(titulo);
-    ICollectible *pelicula = dicPelicula->find(tituloPelicula);
-    if (pelicula != NULL)
-    {
+//    IIterator* itUsr = dicUsuario->getIterator();
+//    while(itUsr->getCurrent()) {
+//        Usuario* usuario = dynamic_cast<Usuario*>(itUsr->getCurrent());
+//        IDictionary* reservasUsr = usuario->getReservas();
+//        IIterator*
+//    }
+    
+    IKey* tituloPelicula = new StringKey(titulo);
+    ICollectible* pelicula = dicPelicula->find(tituloPelicula);
+    if(pelicula != NULL) {
         dicPelicula->remove(tituloPelicula);
         delete tituloPelicula;
         delete pelicula;
@@ -568,10 +576,11 @@ void ControladorSistema::pagoDebito(int asientos, std::string banco, int funcion
         Corregir, ya deberia de tener el cine - Ademas diferentes cines pueden tener funciones con el mismo id
 
         */
+        
+        
+        IntKey *k = new IntKey(cine);
 
-    
-    IntKey *k = new IntKey(cine);
-    Cine *c = dynamic_cast<Cine *>(dicCines->find(k));
+        Cine *c = dynamic_cast<Cine *>(dicCines->find(k));
 
     Funcion *f = NULL;
 
