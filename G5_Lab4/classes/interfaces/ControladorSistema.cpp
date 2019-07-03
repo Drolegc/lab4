@@ -423,7 +423,7 @@ void ControladorSistema::eliminarPelicula()
     }
 
     /******************** Elimino las reservas del usuario ********************/
-
+    /*
     IIterator* iteradorUsuarios = dicUsuario->getIterator();
     while(iteradorUsuarios->hasCurrent()) {
         Usuario* usr = dynamic_cast<Usuario*>(iteradorUsuarios->getCurrent());
@@ -438,7 +438,7 @@ void ControladorSistema::eliminarPelicula()
             iteradorReservasUsuario->next();
         }
         iteradorUsuarios->next();
-    }
+    }*/
 
     /*************** Elimino reservas y funciones de la película ***************/
 
@@ -459,6 +459,7 @@ void ControladorSistema::eliminarPelicula()
                 Pelicula *peliculaFuncion = f->getPelicula();
                 if (titulo == peliculaFuncion->getTitulo())
                 {
+
                     ICollection *colReserva = f->getColReserva();
                     IIterator *itColReserva = colReserva->getIterator();
                     while (itColReserva->hasCurrent())
@@ -467,17 +468,22 @@ void ControladorSistema::eliminarPelicula()
                         colReserva->remove(reserva);
                         delete reserva;
                         itColReserva->next();
+
                     }
                     IKey *tituloPelicula = new StringKey(titulo);
                     dicPelicula->remove(tituloPelicula);
-                    delete peliculaFuncion;
-                    delete f;
+                    //delete peliculaFuncion;
                 }
                 ItFunciones->next();
+                funciones->remove(new IntKey(f->getNumero()));
+                delete f;
+
+
             }
             SalaIterator->next();
         }
         iteratorCine->next();
+
     }
 //    IIterator* itUsr = dicUsuario->getIterator();
 //    while(itUsr->getCurrent()) {
@@ -488,11 +494,14 @@ void ControladorSistema::eliminarPelicula()
 
 //    IKey* tituloPelicula = new StringKey(titulo);
 //    ICollectible* pelicula = dicPelicula->find(tituloPelicula);
+
+
     if(pelicula != NULL) {
         dicPelicula->remove(tituloPelicula);
         delete tituloPelicula;
         delete pelicula;
     }
+
 
     //logo();
     //ver cuando no hay peliculas para eliminar o la pelicula no existe?

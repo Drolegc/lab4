@@ -58,11 +58,11 @@ dance();
    std::cout<<"Dia: "<<fecha->getDia()<<std::endl;
    std::cout<<"Mes: "<<fecha->getMes()<<std::endl;
    std::cout<<"Anio: "<<fecha->getAnio()<<std::endl;
-   
+
    std::cout<<"Hora sistema: "<<std::endl;
    std::cout<<"Hora: "<<hora->getHora()<<std::endl;
    std::cout<<"Minutos: "<<hora->getMinutos()<<std::endl;
-   
+
 
 
     int command = -1;
@@ -220,7 +220,7 @@ dance();
                         }else if(YN == 'Y' or YN == 'y'){
                             break;
                         }
-                        
+
                     } while (true);
 
                     std::cout << "                   ¿Pago debito (D) o credito (C)?";
@@ -351,10 +351,11 @@ dance();
                 logo();
                 controladorSistema->verComentariosypuntajedepelicula(nombrePelicula);
             }
+        break;
         case 10:
         {/*funcion para el proceso de testeo, pone sesion a null para poder cambiar de usuario
                 y realizar comentarios y puntajes*/
-                controladorSistema->cerrarSesion();                
+                controladorSistema->cerrarSesion();
             }
         break;
         }
