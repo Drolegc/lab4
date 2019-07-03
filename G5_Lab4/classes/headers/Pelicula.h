@@ -9,8 +9,8 @@
 #include "../../ICollection/IntKey.h"
 #include "../../ICollection/collections/OrderedDictionary.h"
 #include "../../ICollection/interfaces/IIterator.h"
-#include "Comentarios.h"
-#include "Puntajes.h"
+#include "../../classes/headers/Comentarios.h"
+#include "../../classes/headers/Puntajes.h"
 class Pelicula : public ICollectible {
     private:
         std::string titulo;

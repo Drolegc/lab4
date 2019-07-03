@@ -196,7 +196,7 @@ int main()
                         std::cout << "                   Cancelar (C)"<<std::endl;
                         std::cin >> YN;
                         if((YN == 'C') or (YN == 'c')){
-                            std::__throw_invalid_argument("Reserva cancelada");
+                            throw std::invalid_argument("Reserva cancelada");
                         }else if(YN == 'Y' or YN == 'y'){
                             break;
                         }
@@ -230,7 +230,7 @@ int main()
                         }
                         else
                         {
-                            std::__throw_invalid_argument("Reserva cancelada");
+                            throw std::invalid_argument("Reserva cancelada");
                         }
                     }
                     else if (YN == 'C' or YN == 'c')
