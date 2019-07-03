@@ -203,7 +203,7 @@ int main()
                             std::cout << "                   Banco de la tarjeta: " << std::endl;
                             std::cin >> banco;
                             std::cout << "                   Procesando total ..." << std::endl;
-                            controladorSistema->pagoDebito(Asientos, banco, id_cine, id_funcion);
+                            controladorSistema->pagoDebito(Asientos, banco, id_funcion, id_cine);
                             //Falta agregar UserLogeado y setReserva de user
                         }
                         else if (YN == 'C' or YN == 'c')

@@ -4,7 +4,7 @@ DtPelicula::DtPelicula(std::string titulo, std::string urlPoster, std::string si
     this->titulo = titulo;
     this->urlPoster = urlPoster;
     this->sinopsis = sinopsis;
-    this->puntajePromedio = 0;
+    this->puntajePromedio = puntajePromedio;
 }
 
 std::string DtPelicula::getTitulo() {

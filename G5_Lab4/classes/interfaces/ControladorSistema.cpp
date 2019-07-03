@@ -131,6 +131,8 @@ void ControladorSistema::puntuarPelicula(){
             if(modificarPuntaje == 1){
                 puntaje->remove(it->getCurrent());
                 delete punt;
+            }else{
+                return;
             }
         }
         it->next();
@@ -187,7 +189,7 @@ void ControladorSistema::comentarPelicula(){
     std::cin >> nombrePelicula;
     StringKey *key = new StringKey(nombrePelicula);
     Pelicula *pelicula = dynamic_cast<Pelicula*>(dicPelicula->find(key));
-    if(pelicula === nullptr){
+    if(pelicula == nullptr){
         std::__throw_invalid_argument("La pelicula no existe.");
         return;
     }
@@ -388,6 +390,13 @@ void ControladorSistema::eliminarPelicula() {
         }
         iteratorCine->next();
     }
+//    IIterator* itUsr = dicUsuario->getIterator();
+//    while(itUsr->getCurrent()) {
+//        Usuario* usuario = dynamic_cast<Usuario*>(itUsr->getCurrent());
+//        IDictionary* reservasUsr = usuario->getReservas();
+//        IIterator*
+//    }
+    
     IKey* tituloPelicula = new StringKey(titulo);
     ICollectible* pelicula = dicPelicula->find(tituloPelicula);
     if(pelicula != NULL) {
@@ -475,10 +484,10 @@ ICollection *ControladorSistema::verInfoAdicional(DtPelicula p)
 ICollection *ControladorSistema::SeleccionarCine(int numCine, std::string titulo)
 {
     IntKey *k = new IntKey(numCine);
-    Cine *c = dynamic_cast<Cine *>(this->dicCines->find(k));
+    Cine *c = dynamic_cast<Cine *>(dicCines->find(k));
 
     StringKey *tituloKey = new StringKey(titulo);
-    Pelicula *peliAux = dynamic_cast<Pelicula *>(this->dicPelicula->find(tituloKey));
+    Pelicula *peliAux = dynamic_cast<Pelicula *>(dicPelicula->find(tituloKey));
 
     ICollection *funciones = c->getFunciones(peliAux);
     return funciones;
@@ -508,8 +517,10 @@ void ControladorSistema::pagoDebito(int asientos, std::string banco, int funcion
         Corregir, ya deberia de tener el cine - Ademas diferentes cines pueden tener funciones con el mismo id
 
         */
-
+        
+        
         IntKey *k = new IntKey(cine);
+
         Cine *c = dynamic_cast<Cine *>(dicCines->find(k));
 
         Funcion *f = NULL;
@@ -576,8 +587,8 @@ void ControladorSistema::pagoCredito(int asientos, std::string financiera, int f
         /*
         Iterar entre la colleccion de cines para encontrar la funcion
         */
-        IIterator *it = this->dicCines->getIterator();
-        Funcion *f;
+        IIterator *it = dicCines->getIterator();
+        Funcion *f = NULL;
         while (it->hasCurrent())
         {
             Cine *c = dynamic_cast<Cine *>(it->getCurrent());
