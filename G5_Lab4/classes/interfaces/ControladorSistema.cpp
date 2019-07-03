@@ -392,8 +392,9 @@ void ControladorSistema::infoPeliculas(){
     }
     std::cout << "               Para ver informacion de otra pelicula ingrese 1,\n               para salir, ingrese 0:";
     std::cin >> verInfoPeliculas;
-    }
+    
 }
+
 void ControladorSistema::listarCines(){
     if (dicCines->getSize() == 0){
         throw std::invalid_argument("               No hay cines ni salas agregadas.");
@@ -415,6 +416,32 @@ void ControladorSistema::eliminarPelicula()
     {
         return;
     }
+    IKey* tituloPelicula = new StringKey(titulo);
+    ICollectible* pelicula = dicPelicula->find(tituloPelicula);
+    if(pelicula == NULL) {
+        throw std::invalid_argument("La película seleccionada no existe");
+    }
+    
+    /******************** Elimino las reservas del usuario ********************/
+    
+    IIterator* iteradorUsuarios = dicUsuario->getIterator();
+    while(iteradorUsuarios->hasCurrent()) {
+        Usuario* usr = dynamic_cast<Usuario*>(iteradorUsuarios->getCurrent());
+        ICollection* colReservasUsuario = usr->getReservas();
+        IIterator* iteradorReservasUsuario = colReservasUsuario->getIterator();
+        while(iteradorReservasUsuario->hasCurrent()) {
+            Reserva* reservaUsuario = dynamic_cast<Reserva*>(iteradorReservasUsuario->getCurrent());
+            if(reservaUsuario->getF()->getPelicula()->getTitulo() == titulo) {
+                colReservasUsuario->remove(reservaUsuario);
+                delete reservaUsuario;
+            }
+            iteradorReservasUsuario->next();
+        }
+        iteradorUsuarios->next();
+    }
+    
+    /*************** Elimino reservas y funciones de la película ***************/
+    
     IIterator *iteratorCine = dicCines->getIterator();
     while (iteratorCine->hasCurrent())
     {
@@ -436,7 +463,7 @@ void ControladorSistema::eliminarPelicula()
                     IIterator *itColReserva = colReserva->getIterator();
                     while (itColReserva->hasCurrent())
                     {
-                        ICollectible *reserva = dynamic_cast<Reserva *>(itColReserva->getCurrent());
+                        ICollectible *reserva = itColReserva->getCurrent();
                         colReserva->remove(reserva);
                         delete reserva;
                         itColReserva->next();
@@ -459,8 +486,8 @@ void ControladorSistema::eliminarPelicula()
 //        IIterator*
 //    }
 
-    IKey* tituloPelicula = new StringKey(titulo);
-    ICollectible* pelicula = dicPelicula->find(tituloPelicula);
+//    IKey* tituloPelicula = new StringKey(titulo);
+//    ICollectible* pelicula = dicPelicula->find(tituloPelicula);
     if(pelicula != NULL) {
         dicPelicula->remove(tituloPelicula);
         delete tituloPelicula;

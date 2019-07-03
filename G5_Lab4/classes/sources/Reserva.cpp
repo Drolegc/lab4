@@ -14,6 +14,10 @@ int Reserva::getCostoTotal() {
     return this->costoTotal;
 }
 
+Funcion* Reserva::getF() {
+    return this->f;
+}
+
 void Reserva::setAsientos(int asientos) {
     this->asientos = asientos;
 }

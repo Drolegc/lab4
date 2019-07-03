@@ -358,8 +358,6 @@ dance();
             }
         break;
         }
-
-        }
     }
     catch (std::exception &e)
     {

@@ -14,6 +14,7 @@ class Reserva : public ICollectible {
 
         int getAsientos();
         int getCostoTotal();
+        Funcion* getF();
 
         void setAsientos(int asientos);
         void setCostoTotal(int costoTotal);
