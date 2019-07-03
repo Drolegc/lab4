@@ -10,7 +10,7 @@ Pelicula::Pelicula(std::string titulo, std::string urlPoster, std::string sinops
     this->titulo = titulo;
     this->urlPoster = urlPoster;
     this->sinopsis = sinopsis;
-    this->puntajePromedio = 0;
+    this->puntajePromedio = puntajePromedio;
     this->comentarios = new OrderedDictionary();
     this->puntajes = new List();
 }

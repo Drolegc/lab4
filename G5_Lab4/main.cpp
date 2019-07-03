@@ -14,7 +14,7 @@ void MostrarFunciones(ICollection *c);
 
 int main()
 {
-
+dance();
     /**************** Solicitud de la instancia para Singleton ****************/
 
     ISistema *controladorSistema = Fabrica::getISistema();
@@ -50,6 +50,7 @@ int main()
     controladorSistema->altaPelicula(DtPelicula(titulo, urlPoster, sinopsis, puntajePromedio));
     controladorSistema->altaUsuario("usuario1","url","password");
     controladorSistema->altaUsuario("usuario2","url","password2");
+    controladorSistema->altaUsuario("usuario3","url","password3");
     int command = -1;
     while (command != 0)
     {
@@ -127,9 +128,14 @@ int main()
                         std::cout << "              Seleccione la película deseada (titulo): ";
                         std::cin >> titulo;
                         std::cout << std::endl;
+                        std::cout << "           ═══════════════════════════════════════════════════════════          " << std::endl;
+                        std::cout << "                 CINES" << std::endl;
+                        std::cout << std::endl;
                         controladorSistema->listarCines();
                         std::cout << std::endl;
-                        std::cout << "              Seleccione el cine deseado (numeroCine): ";
+                        std::cout << "           ═══════════════════════════════════════════════════════════          " << std::endl;
+                        std::cout << std::endl;
+                        std::cout << "              Ingrese numero de cine: ";
                         std::cin >> numeroCine;
                         std::cout << "              Seleccione la sala deseada (numeroSala): ";
                         std::cin >> numeroSala;
@@ -138,6 +144,8 @@ int main()
                         std::cout << "              Ingrese la hora de la función (Hora - Minutos): ";
                         std::cin >> hora >> minutos;
                         controladorSistema->altaFuncion(titulo, numeroCine, numeroSala, DtFecha(dia, mes, anio), DtHora(hora, minutos));
+                        std::cout << "           ═══════════════════════════════════════════════════════════          " << std::endl;
+
                         std::cout << "\n                                    Presione enter  para continuar..." << std::endl;
                         std::getchar();
                         std::getchar();
@@ -165,9 +173,9 @@ int main()
                         std::__throw_invalid_argument("Reserva cancelada");
                     }
                     DtPelicula peli = controladorSistema->seleccionarPelicula(titulo);
-                    std::cout <<"Poster:"<< peli.getUrlPoster() <<std::endl;
-                    std::cout <<"Sinopsis:"<< peli.getSinopsis() <<std::endl;
-                    std::cout << "                   ¿Quieres cancelar?(Y/N)";
+                    std::cout <<"             Poster:"<< peli.getUrlPoster() <<std::endl;
+                    std::cout <<"             Sinopsis:"<< peli.getSinopsis() <<std::endl;
+                    std::cout << "                                    ¿Quieres cancelar?(Y/N)";
                     std::cin >> YN;
                     if (YN == 'N' or YN =='n')
                     {
@@ -176,7 +184,7 @@ int main()
                         ICollection *cinesFunciones = controladorSistema->verInfoAdicional(peli);
                         MostrarCines(cinesFunciones);
                         char cancelarCine;
-                        std::cout << "Para continuar ingrese Y, para salir ingrese N:";
+                        std::cout << "                  Para continuar ingrese Y, para salir ingrese N:";
                         std::cin >> cancelarCine;
                         if(YN == 'Y' or YN =='y'){
                             std::__throw_invalid_argument("Reserva cancelada");
@@ -200,9 +208,9 @@ int main()
                             std::string banco;
                             std::cout << "                   ¿Cantidad de asientos?";
                             std::cin >> Asientos;
-                            std::cout << "                   Banco de la tarjeta: " << std::endl;
+                            std::cout << "                   Banco de la tarjeta: ";
                             std::cin >> banco;
-                            std::cout << "                   Procesando total ..." << std::endl;
+                            std::cout << "                   Procesando total ...";
                             controladorSistema->pagoDebito(Asientos, banco, id_cine, id_funcion);
                             //Falta agregar UserLogeado y setReserva de user
                         }
@@ -283,11 +291,19 @@ int main()
                 logo();
                 controladorSistema->verComentariosypuntajedepelicula(nombrePelicula);
             }
+             case 10:
+            {/*funcion para el proceso de testeo, pone sesion a null para poder cambiar de usuario
+                y realizar comentarios y puntajes*/
+                controladorSistema->cerrarSesion();                
+            }
+            break;
             }
         }
         catch (std::exception& e)
         {
             std::cout << "\n                      \033[1;31m Error:\033[0m "<< e.what() << std::endl;
+            system(" aplay error.wav  > /dev/null 2>&1  ");
+
             std::getchar();
             std::getchar();
         }

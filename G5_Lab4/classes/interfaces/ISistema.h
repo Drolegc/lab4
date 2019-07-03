@@ -20,6 +20,7 @@ class ISistema {
         virtual void infoPeliculas() = 0;
         virtual void eliminarPelicula() = 0;
        virtual void iniciarSesion(std::string nickname, std::string contrasenia)=0;
+       virtual void cerrarSesion()=0;
        virtual Usuario* getUsuarioLogeado() = 0;
        virtual bool getAdminStatus() = 0;
         virtual void listarPeliculas() = 0;

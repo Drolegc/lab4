@@ -64,6 +64,7 @@ class ControladorSistema : public ISistema {
         /****************************** USUARIOS ******************************/
 
         void iniciarSesion(string nickname, string password);
+        void cerrarSesion();
         Usuario* getUsuarioLogeado();
         bool getAdminStatus();
         void MostrarReservas();
