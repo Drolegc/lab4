@@ -13,7 +13,7 @@ void MostrarDtPelicula(DtPelicula p);
 
 int main()
 {
-
+dance();
     /**************** Solicitud de la instancia para Singleton ****************/
 
     ISistema *controladorSistema = Fabrica::getISistema();
@@ -58,11 +58,11 @@ int main()
    std::cout<<"Dia: "<<fecha->getDia()<<std::endl;
    std::cout<<"Mes: "<<fecha->getMes()<<std::endl;
    std::cout<<"Anio: "<<fecha->getAnio()<<std::endl;
-   
+
    std::cout<<"Hora sistema: "<<std::endl;
    std::cout<<"Hora: "<<hora->getHora()<<std::endl;
    std::cout<<"Minutos: "<<hora->getMinutos()<<std::endl;
-   
+
 
 
     int command = -1;
@@ -127,32 +127,52 @@ int main()
             case 3:
             {
                 //ALTA FUNCION
-                int dia;
-                int mes;
-                int anio;
-                int hora;
-                int minutos;
-                int numeroCine;
-                int numeroSala;
-                std::string titulo;
-                logo();
-                std::cout << std::endl;
-                controladorSistema->listarPeliculas();
-                std::cout << std::endl;
-                std::cout << "Seleccione la película deseada (titulo): ";
-                std::cin >> titulo;
-                std::cout << std::endl;
-                controladorSistema->listarCines();
-                std::cout << std::endl;
-                std::cout << "Seleccione el cine deseado (numeroCine): ";
-                std::cin >> numeroCine;
-                std::cout << "Seleccione la sala deseada (numeroSala): ";
-                std::cin >> numeroSala;
-                std::cout << "Ingrese la fecha de la función (Dia - Mes - Año): ";
-                std::cin >> dia >> mes >> anio;
-                std::cout << "Ingrese la hora de la función (Hora - Minutos): ";
-                std::cin >> hora >> minutos;
-                controladorSistema->altaFuncion(titulo, numeroCine, numeroSala, DtFecha(dia, mes, anio), DtHora(hora, minutos));
+                if(controladorSistema->getUsuarioLogeado() != NULL) {
+                    if(controladorSistema->getAdminStatus() == true) {
+                        int dia;
+                        int mes;
+                        int anio;
+                        int hora;
+                        int minutos;
+                        int numeroCine;
+                        int numeroSala;
+                        std::string titulo;
+                         logo();
+                        std::cout << std::endl;
+                        controladorSistema->listarPeliculas();
+                        std::cout << std::endl;
+                        std::cout << "              Seleccione la película deseada (titulo): ";
+                        std::cin >> titulo;
+                        std::cout << std::endl;
+                        std::cout << "           ═══════════════════════════════════════════════════════════          " << std::endl;
+                        std::cout << "                 CINES" << std::endl;
+                        std::cout << std::endl;
+                        controladorSistema->listarCines();
+                        std::cout << std::endl;
+                        std::cout << "           ═══════════════════════════════════════════════════════════          " << std::endl;
+                        std::cout << std::endl;
+                        std::cout << "              Ingrese numero de cine: ";
+                        std::cin >> numeroCine;
+                        std::cout << "              Seleccione la sala deseada (numeroSala): ";
+                        std::cin >> numeroSala;
+                        std::cout << "              Ingrese la fecha de la función (Dia - Mes - Año): ";
+                        std::cin >> dia >> mes >> anio;
+                        std::cout << "              Ingrese la hora de la función (Hora - Minutos): ";
+                        std::cin >> hora >> minutos;
+                        controladorSistema->altaFuncion(titulo, numeroCine, numeroSala, DtFecha(dia, mes, anio), DtHora(hora, minutos));
+                        std::cout << "           ═══════════════════════════════════════════════════════════          " << std::endl;
+
+                        std::cout << "\n                                    Presione enter  para continuar..." << std::endl;
+                        std::getchar();
+                        std::getchar();
+                    }
+                    else {
+                        throw std::invalid_argument("Debe iniciar sesión como administrador para realizar ésta acción");
+                    }
+                }
+                else {
+                    throw std::invalid_argument("Debe iniciar sesión para realizar ésta acción");
+                }
             }
             break;
             case 4:
@@ -200,7 +220,7 @@ int main()
                         }else if(YN == 'Y' or YN == 'y'){
                             break;
                         }
-                        
+
                     } while (true);
 
                     std::cout << "                   ¿Pago debito (D) o credito (C)?";
@@ -322,23 +342,31 @@ int main()
             controladorSistema->infoPeliculas();
         }
         break;
-        case 9:
-        {
-            logo();
-            std::string nombrePelicula;
-            controladorSistema->listarPeliculas();
-            std::cout << "               Ingrese nombre de la pelicula:";
-            std::cin >> nombrePelicula;
-            logo();
-            controladorSistema->verComentariosypuntajedepelicula(nombrePelicula);
-        }
+        case 9: {
+                logo();
+                std::string nombrePelicula;
+                controladorSistema->listarPeliculas();
+                std::cout << "               Ingrese nombre de la pelicula:";
+                std::cin >> nombrePelicula;
+                logo();
+                controladorSistema->verComentariosypuntajedepelicula(nombrePelicula);
+            }
+        break;
+        case 10:
+        {/*funcion para el proceso de testeo, pone sesion a null para poder cambiar de usuario
+                y realizar comentarios y puntajes*/
+                controladorSistema->cerrarSesion();
+            }
+        break;
         }
     }
     catch (std::exception &e)
     {
-        std::cout << "\n                      \033[1;31m Error:\033[0m " << e.what() << std::endl;
+        std::cout << "\n                      \033[1;31m Error:\033[0m "<< e.what() << std::endl;
+        system(" aplay error.wav  > /dev/null 2>&1  ");
         std::getchar();
         std::getchar();
+
     }
 }
 return 0;

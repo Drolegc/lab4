@@ -15,8 +15,8 @@ ControladorSistema::ControladorSistema()
     tm *ltm = localtime(&now);
     horaSystema = new DtHora(ltm->tm_hour,ltm->tm_min);
     fechaSystema = new DtFecha(ltm->tm_mday,ltm->tm_mon,ltm->tm_year+1900);
-    
-   
+
+
 }
 
 DtHora* ControladorSistema::getSystemHour(){
@@ -46,9 +46,8 @@ void ControladorSistema::altaFuncion(std::string titulo, int numeroCine, int num
 { /********************* Obtengo la película específica *********************/
 
     IKey *keyPelicula = new StringKey(titulo);
-    if (dicPelicula->find(keyPelicula) == nullptr)
-    {
-        throw std::invalid_argument("No existe la película seleccionada");
+    if(dicPelicula->find(keyPelicula) == nullptr) {
+        throw std::invalid_argument("           No existe la película seleccionada");
     }
     Pelicula *pelicula = (Pelicula *)dicPelicula->find(keyPelicula);
     delete keyPelicula;
@@ -90,7 +89,7 @@ void ControladorSistema::altaFuncion(std::string titulo, int numeroCine, int num
     //Falta que la pelicula se sume al diccionario de peliculas de cine
     //Ahora que se creo la funcion con la pelicula...
     cine->addPelicula(pelicula);
-    
+
 }
 
 Usuario *ControladorSistema::getUsuarioLogeado()
@@ -115,13 +114,23 @@ void ControladorSistema::verComentariosypuntajedepelicula(std::string _titulo)
     std::cout << "                  Puntaje promedio: " << puntaje << "(" << cantidadVecesPuntuada << " Usuarios)" << std::endl;
     std::cout << "           ───────────────────────────────────────────────────────────          " << std::endl;
     std::cout << "                COMENTARIOS:" << std::endl;
-    IDictionary *comentarios = pelicula->getComentarios();
-    Comentarios::listaComentarios(comentarios);
+    IDictionary* comentarios =  pelicula->getComentarios();
+    Comentarios::listaComentarios(comentarios,0);
     std::cout << " " << std::endl;
     std::cout << "           ───────────────────────────────────────────────────────────          " << std::endl;
     std::cout << "                PUNTAJES " << std::endl;
-    std::cout << "                          USUARIOX: 5 Puntos" << std::endl;
-    std::cout << "                          USUARIOB: 2 Puntos" << std::endl;
+
+
+    ICollection* puntajes =pelicula->getPuntajes();
+    IIterator *it = puntajes->getIterator();
+               while(it->hasCurrent()){
+            Puntajes* p =  dynamic_cast<Puntajes*>(it->getCurrent());
+            std::cout << "                           "<< p->getUsuario()->getNickname() <<" :  "<< p->getPuntaje()<<std::endl;
+            it->next();
+        }
+
+
+
     std::cout << " " << std::endl;
     std::cout << "           ═══════════════════════════════════════════════════════════          " << std::endl;
     std::cout << "                                   Presione enter  para continuar..";
@@ -154,6 +163,8 @@ void ControladorSistema::puntuarPelicula()
             {
                 puntaje->remove(it->getCurrent());
                 delete punt;
+            }else{
+                return;
             }
         }
         it->next();
@@ -223,33 +234,32 @@ void ControladorSistema::comentarPelicula()
     int agregarComentarios = 1;
     while (agregarComentarios == 1)
     {
-        Comentarios::listaComentarios(comentarios);
+        Comentarios::listaComentarios(comentarios,0);
         int accion;
         std::cout << "\n                     Para agregar un nuevo comentario Ingrese 1.";
         if (comentarios->getSize() != 0)
         {
             std::cout << "\n                     Para comentar otro comentario ingrese 2.";
         }
-        std::cout << "Para salir ingrese 0" << std::endl;
-        std::cin >> accion;
-        if (accion == 1)
-        {
-            std::cout << "\n                     Escriba su comentario:" << std::endl;
-            std::cin >> comentario;
+        std::cout <<"Para salir ingrese 0"<<std::endl;
+        std::cin >>accion;
+        if(accion==1){
+            std::cout <<"\n                     Escriba su comentario:";
+            std::cin >>comentario;
             pelicula->setComentario(comentario, sesion);
         }
-        if (comentarios->getSize() != 0)
-        {
-            if (accion == 2)
-            {
-                int numeroComentario;
-                std::cout << "Ingrese que comentario desea comentar" << std::endl;
-                std::cin >> numeroComentario;
-                IntKey *key = new IntKey(numeroComentario);
-                Comentarios *comentarioAcomentar = dynamic_cast<Comentarios *>(comentarios->find(key));
-                std::cout << "\n                     Escriba su comentario" << std::endl;
-                std::cin >> comentario;
-                comentarioAcomentar->setComentarios("   " + comentario, sesion);
+        if(comentarios->getSize() != 0){
+            if (accion == 2){
+                std::string numeroComentario;
+                std::cout <<"Ingrese que comentario desea comentar. Ej:(1.2.3)"<<std::endl;
+                std::cin >>numeroComentario;
+                Comentarios * comentarioAcomentar =  Comentarios::buscarComentario(comentarios,numeroComentario);
+                if (comentarioAcomentar==NULL){
+                    std::__throw_invalid_argument("El comentario no existe");
+                }
+                std::cout <<"\n                     Escriba su comentario"<<std::endl;
+                std::cin >>comentario;
+                comentarioAcomentar->setComentarios(comentario, sesion);
             }
         }
         std::cout << "Para agregar otro comentario a la pelicula ingrese 1, para salir, ingrese 0:" << std::endl;
@@ -313,50 +323,44 @@ void ControladorSistema::altaPelicula(DtPelicula datos)
     pelicula->setSinopsis(datos.getSinopsis());
     dicPelicula->add(key, pelicula);
 }
-void ControladorSistema::infoPeliculas()
-{
+
+void ControladorSistema::infoPeliculas(){
     std::string nombrePelicula;
     int verInfoPeliculas = 1;
     int verCines;
-    IIterator *it = dicPelicula->getIterator();
-    while (verInfoPeliculas == 1)
-    {
+    //IIterator *it = dicPelicula->getIterator();
+    while(verInfoPeliculas==1){
 
-        while (it->hasCurrent())
-        {
-            Pelicula *p = dynamic_cast<Pelicula *>(it->getCurrent());
-            std::cout << p->getTitulo() << std::endl;
+    /*    while(it->hasCurrent()){
+            Pelicula* p =  dynamic_cast<Pelicula*>(it->getCurrent());
+            std::cout <<p->getTitulo()<<std::endl;
             it->next();
-        }
-
-        std::cout << "ingrese que pelicula desea buscar" << std::endl;
-        std::cin >> nombrePelicula;
-        StringKey *key = new StringKey(nombrePelicula);
-        Pelicula *p = dynamic_cast<Pelicula *>(dicPelicula->find(key));
-        if (p != NULL)
-        {
-            std::cout << p->getUrlPoster() << std::endl;
-            std::cout << p->getSinopsis() << std::endl;
-            std::cout << "Para ver los cines donde se proyecta la pelicula presione 1 " << std::endl;
-            std::cin >> verCines;
-            if (verCines == 1)
-            {
-                int seleccionarCine, numeroCine;
-                std::cout << "Ingrese 1 para seleccionar un cine o 0 para salir:";
-                Cine::listarCines(dicCines);
-                std::cin >> seleccionarCine;
-                if (seleccionarCine != 1)
-                {
-                    return;
-                }
-                std::cout << "Ingrese el numero del cine:";
-                std::cin >> numeroCine;
-                IntKey *keyCine = new IntKey(numeroCine);
-                Cine *cine = dynamic_cast<Cine *>(dicCines->find(keyCine));
-                if (cine == nullptr)
-                {
-                    std::__throw_invalid_argument("El cine no existe");
-                }
+        }*/
+    Pelicula::listarPeliculas(dicPelicula);
+    std::cout <<"               Ingrese nombre de la pelicula: ";
+    std::cin >>nombrePelicula;
+    StringKey *key = new StringKey(nombrePelicula);
+    Pelicula *p = dynamic_cast<Pelicula*>(dicPelicula->find(key));
+    if(p!=NULL){
+        std::cout << p->getUrlPoster()<<std::endl;
+        std::cout << p->getSinopsis()<<std::endl;
+        std::cout <<"               Ver donde se proyecta la pelicula presione 1(0 salir) ";
+        std::cin >>verCines;
+        if(verCines == 1){
+            int seleccionarCine, numeroCine;
+            std::cout <<"               Ingrese 1 para seleccionar un cine o 0 para salir:";
+            Cine::listarCines(dicCines);
+            std::cin >>seleccionarCine;
+            if(seleccionarCine!=1){
+                return;
+            }
+            std::cout << "               Ingrese el numero del cine:";
+            std::cin >> numeroCine;
+            IntKey *keyCine = new IntKey(numeroCine);
+            Cine* cine =  dynamic_cast<Cine*> (dicCines->find(keyCine));
+            if(cine == nullptr){
+                std::__throw_invalid_argument(" El cine no existe");
+            }
                 IDictionary *sala = cine->getSalas();
                 IIterator *SalaIterator = sala->getIterator();
                 while (SalaIterator->hasCurrent())
@@ -368,6 +372,7 @@ void ControladorSistema::infoPeliculas()
                     {
                         Funcion *f = dynamic_cast<Funcion *>(ItFunciones->getCurrent());
                         Pelicula *peliculas = f->getPelicula();
+                                             if(f->getFecha()>fechaSystema){
                         if (nombrePelicula == peliculas->getTitulo())
                         {
                             std::cout << new DtFuncion(
@@ -377,7 +382,6 @@ void ControladorSistema::infoPeliculas()
                                              f->getPelicula()->getTitulo())
                                       << std::endl;
                         }
-                        ItFunciones->next();
                     }
                     SalaIterator->next();
                 }
@@ -386,12 +390,14 @@ void ControladorSistema::infoPeliculas()
         std::cout << "Para ver informacion de otra pelicula ingrese 1, para salir, ingrese 0:";
         std::cin >> verInfoPeliculas;
     }
+    std::cout << "               Para ver informacion de otra pelicula ingrese 1,\n               para salir, ingrese 0:";
+    std::cin >> verInfoPeliculas;
+
 }
-void ControladorSistema::listarCines()
-{
-    if (dicCines->getSize() == 0)
-    {
-        throw std::invalid_argument("No hay cines ni salas agregadas.");
+}
+void ControladorSistema::listarCines(){
+    if (dicCines->getSize() == 0){
+        throw std::invalid_argument("               No hay cines ni salas agregadas.");
     }
     Cine::listarCines(dicCines);
 }
@@ -404,12 +410,38 @@ void ControladorSistema::eliminarPelicula()
     std::cout << "\n                        Seleccione pelicula a eliminar: ";
     std::cin >> titulo;
     std::string confirmar;
-    std::cout << "Esta seguro que desea eliminar esta pelicula? (Y/N):";
+    std::cout <<"           Esta seguro que desea eliminar esta pelicula? (Y/N):";
     std::cin >> confirmar;
     if (confirmar == "n" || confirmar == "N")
     {
         return;
     }
+    IKey* tituloPelicula = new StringKey(titulo);
+    ICollectible* pelicula = dicPelicula->find(tituloPelicula);
+    if(pelicula == NULL) {
+        throw std::invalid_argument("La película seleccionada no existe");
+    }
+
+    /******************** Elimino las reservas del usuario ********************/
+    /*
+    IIterator* iteradorUsuarios = dicUsuario->getIterator();
+    while(iteradorUsuarios->hasCurrent()) {
+        Usuario* usr = dynamic_cast<Usuario*>(iteradorUsuarios->getCurrent());
+        ICollection* colReservasUsuario = usr->getReservas();
+        IIterator* iteradorReservasUsuario = colReservasUsuario->getIterator();
+        while(iteradorReservasUsuario->hasCurrent()) {
+            Reserva* reservaUsuario = dynamic_cast<Reserva*>(iteradorReservasUsuario->getCurrent());
+            if(reservaUsuario->getF()->getPelicula()->getTitulo() == titulo) {
+                colReservasUsuario->remove(reservaUsuario);
+                delete reservaUsuario;
+            }
+            iteradorReservasUsuario->next();
+        }
+        iteradorUsuarios->next();
+    }*/
+
+    /*************** Elimino reservas y funciones de la película ***************/
+
     IIterator *iteratorCine = dicCines->getIterator();
     while (iteratorCine->hasCurrent())
     {
@@ -427,34 +459,49 @@ void ControladorSistema::eliminarPelicula()
                 Pelicula *peliculaFuncion = f->getPelicula();
                 if (titulo == peliculaFuncion->getTitulo())
                 {
+
                     ICollection *colReserva = f->getColReserva();
                     IIterator *itColReserva = colReserva->getIterator();
                     while (itColReserva->hasCurrent())
                     {
-                        ICollectible *reserva = dynamic_cast<Reserva *>(itColReserva->getCurrent());
+                        ICollectible *reserva = itColReserva->getCurrent();
                         colReserva->remove(reserva);
                         delete reserva;
                         itColReserva->next();
+
                     }
                     IKey *tituloPelicula = new StringKey(titulo);
                     dicPelicula->remove(tituloPelicula);
-                    delete peliculaFuncion;
-                    delete f;
+                    //delete peliculaFuncion;
                 }
                 ItFunciones->next();
+                funciones->remove(new IntKey(f->getNumero()));
+                delete f;
+
+
             }
             SalaIterator->next();
         }
         iteratorCine->next();
+
     }
-    IKey *tituloPelicula = new StringKey(titulo);
-    ICollectible *pelicula = dicPelicula->find(tituloPelicula);
-    if (pelicula != NULL)
-    {
+//    IIterator* itUsr = dicUsuario->getIterator();
+//    while(itUsr->getCurrent()) {
+//        Usuario* usuario = dynamic_cast<Usuario*>(itUsr->getCurrent());
+//        IDictionary* reservasUsr = usuario->getReservas();
+//        IIterator*
+//    }
+
+//    IKey* tituloPelicula = new StringKey(titulo);
+//    ICollectible* pelicula = dicPelicula->find(tituloPelicula);
+
+
+    if(pelicula != NULL) {
         dicPelicula->remove(tituloPelicula);
         delete tituloPelicula;
         delete pelicula;
     }
+
 
     //logo();
     //ver cuando no hay peliculas para eliminar o la pelicula no existe?
@@ -530,8 +577,8 @@ ICollection *ControladorSistema::verInfoAdicional(DtPelicula p)
         it->next();
     }
 
-    
-    
+
+
     return CinesConPeli;
 }
 
@@ -569,20 +616,21 @@ void ControladorSistema::pagoDebito(int asientos, std::string banco, int funcion
 
         */
 
-    
-    IntKey *k = new IntKey(cine);
-    Cine *c = dynamic_cast<Cine *>(dicCines->find(k));
+
+        IntKey *k = new IntKey(cine);
+
+        Cine *c = dynamic_cast<Cine *>(dicCines->find(k));
 
     Funcion *f = NULL;
 
     IDictionary *ds = c->getSalas();
-    
+
     IIterator *it = ds->getIterator();
-    
+
     while (it->hasCurrent())
     {
         Sala *s = dynamic_cast<Sala *>(it->getCurrent());
-        
+
         f = s->getFuncion(funcion);
         if (f != NULL)
         {
@@ -595,7 +643,7 @@ void ControladorSistema::pagoDebito(int asientos, std::string banco, int funcion
        Obtener usuario logeado suponemos que el controlador tiene un usuario loageado que se puede obtener con getUsuarioLogeado
        */
 
-    
+
 
     /*
         3 creamos la reserva con link a funcion
@@ -608,11 +656,11 @@ void ControladorSistema::pagoDebito(int asientos, std::string banco, int funcion
        - Linkear usuario con reserva
        */
     //Creo un setter de reserva
-    
+
 
     ICollectible *res = dynamic_cast<ICollectible *>(RDebito);
     sesion->setReserva(res);
-    
+
 
     /* Link de funcion a reserva */
 
@@ -639,13 +687,13 @@ void ControladorSistema::pagoCredito(int asientos, std::string financiera, int f
     Funcion *f = NULL;
 
     IDictionary *ds = c->getSalas();
-    
+
     IIterator *it = ds->getIterator();
-    
+
     while (it->hasCurrent())
     {
         Sala *s = dynamic_cast<Sala *>(it->getCurrent());
-        
+
         f = s->getFuncion(funcion);
         if (f != NULL)
         {
@@ -701,6 +749,10 @@ void ControladorSistema::MostrarReservas()
         it->next();
     }
 }
+
+void ControladorSistema::cerrarSesion(){
+    sesion=NULL;
+    }
 
 ControladorSistema::~ControladorSistema()
 {
