@@ -19,9 +19,10 @@ class Comentarios :public ICollectible{
         std::string getComentario();
         IDictionary *getComentarios();
         Usuario *getUsuario();
+        static Comentarios * buscarComentario(IDictionary * comentarios, std::string idComentario);
         void setComentarios(std::string comentario, Usuario *usuario);
         void setComentario(std::string comentario);
-        static void listaComentarios(IDictionary * comentarios);
+        static void listaComentarios(IDictionary * comentarios, int nivel);
         ~Comentarios();
 };
 

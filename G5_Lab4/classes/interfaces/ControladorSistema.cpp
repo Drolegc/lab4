@@ -115,8 +115,8 @@ void ControladorSistema::verComentariosypuntajedepelicula(std::string _titulo)
     std::cout << "                  Puntaje promedio: " << puntaje << "(" << cantidadVecesPuntuada << " Usuarios)" << std::endl;
     std::cout << "           ───────────────────────────────────────────────────────────          " << std::endl;
     std::cout << "                COMENTARIOS:" << std::endl;
-    IDictionary *comentarios = pelicula->getComentarios();
-    Comentarios::listaComentarios(comentarios);
+    IDictionary* comentarios =  pelicula->getComentarios();
+    Comentarios::listaComentarios(comentarios,0);
     std::cout << " " << std::endl;
     std::cout << "           ───────────────────────────────────────────────────────────          " << std::endl;
     std::cout << "                PUNTAJES " << std::endl;
@@ -240,18 +240,18 @@ void ControladorSistema::comentarPelicula()
             std::cin >> comentario;
             pelicula->setComentario(comentario, sesion);
         }
-        if (comentarios->getSize() != 0)
-        {
-            if (accion == 2)
-            {
-                int numeroComentario;
-                std::cout << "Ingrese que comentario desea comentar" << std::endl;
-                std::cin >> numeroComentario;
-                IntKey *key = new IntKey(numeroComentario);
-                Comentarios *comentarioAcomentar = dynamic_cast<Comentarios *>(comentarios->find(key));
-                std::cout << "\n                     Escriba su comentario" << std::endl;
-                std::cin >> comentario;
-                comentarioAcomentar->setComentarios("   " + comentario, sesion);
+        if(comentarios->getSize() != 0){
+            if (accion == 2){
+                std::string numeroComentario;
+                std::cout <<"Ingrese que comentario desea comentar. Ej:(1.2.3)"<<std::endl;
+                std::cin >>numeroComentario;
+                Comentarios * comentarioAcomentar =  Comentarios::buscarComentario(comentarios,numeroComentario);
+                if (comentarioAcomentar==NULL){
+                    std::__throw_invalid_argument("El comentario no existe");
+                }
+                std::cout <<"\n                     Escriba su comentario"<<std::endl;
+                std::cin >>comentario;
+                comentarioAcomentar->setComentarios(comentario, sesion);
             }
         }
         std::cout << "Para agregar otro comentario a la pelicula ingrese 1, para salir, ingrese 0:" << std::endl;
