@@ -15,8 +15,8 @@ ControladorSistema::ControladorSistema()
     tm *ltm = localtime(&now);
     horaSystema = new DtHora(ltm->tm_hour,ltm->tm_min);
     fechaSystema = new DtFecha(ltm->tm_mday,ltm->tm_mon,ltm->tm_year+1900);
-    
-   
+
+
 }
 
 DtHora* ControladorSistema::getSystemHour(){
@@ -90,7 +90,7 @@ void ControladorSistema::altaFuncion(std::string titulo, int numeroCine, int num
     //Falta que la pelicula se sume al diccionario de peliculas de cine
     //Ahora que se creo la funcion con la pelicula...
     cine->addPelicula(pelicula);
-    
+
 }
 
 Usuario *ControladorSistema::getUsuarioLogeado()
@@ -225,7 +225,7 @@ void ControladorSistema::comentarPelicula()
     int agregarComentarios = 1;
     while (agregarComentarios == 1)
     {
-        Comentarios::listaComentarios(comentarios);
+        Comentarios::listaComentarios(comentarios,0);
         int accion;
         std::cout << "\n                     Para agregar un nuevo comentario Ingrese 1.";
         if (comentarios->getSize() != 0)
@@ -455,7 +455,7 @@ void ControladorSistema::eliminarPelicula()
 //        IDictionary* reservasUsr = usuario->getReservas();
 //        IIterator*
 //    }
-    
+
     IKey* tituloPelicula = new StringKey(titulo);
     ICollectible* pelicula = dicPelicula->find(tituloPelicula);
     if(pelicula != NULL) {
@@ -538,8 +538,8 @@ ICollection *ControladorSistema::verInfoAdicional(DtPelicula p)
         it->next();
     }
 
-    
-    
+
+
     return CinesConPeli;
 }
 
@@ -576,8 +576,8 @@ void ControladorSistema::pagoDebito(int asientos, std::string banco, int funcion
         Corregir, ya deberia de tener el cine - Ademas diferentes cines pueden tener funciones con el mismo id
 
         */
-        
-        
+
+
         IntKey *k = new IntKey(cine);
 
         Cine *c = dynamic_cast<Cine *>(dicCines->find(k));
@@ -585,13 +585,13 @@ void ControladorSistema::pagoDebito(int asientos, std::string banco, int funcion
     Funcion *f = NULL;
 
     IDictionary *ds = c->getSalas();
-    
+
     IIterator *it = ds->getIterator();
-    
+
     while (it->hasCurrent())
     {
         Sala *s = dynamic_cast<Sala *>(it->getCurrent());
-        
+
         f = s->getFuncion(funcion);
         if (f != NULL)
         {
@@ -604,7 +604,7 @@ void ControladorSistema::pagoDebito(int asientos, std::string banco, int funcion
        Obtener usuario logeado suponemos que el controlador tiene un usuario loageado que se puede obtener con getUsuarioLogeado
        */
 
-    
+
 
     /*
         3 creamos la reserva con link a funcion
@@ -617,11 +617,11 @@ void ControladorSistema::pagoDebito(int asientos, std::string banco, int funcion
        - Linkear usuario con reserva
        */
     //Creo un setter de reserva
-    
+
 
     ICollectible *res = dynamic_cast<ICollectible *>(RDebito);
     sesion->setReserva(res);
-    
+
 
     /* Link de funcion a reserva */
 
@@ -648,13 +648,13 @@ void ControladorSistema::pagoCredito(int asientos, std::string financiera, int f
     Funcion *f = NULL;
 
     IDictionary *ds = c->getSalas();
-    
+
     IIterator *it = ds->getIterator();
-    
+
     while (it->hasCurrent())
     {
         Sala *s = dynamic_cast<Sala *>(it->getCurrent());
-        
+
         f = s->getFuncion(funcion);
         if (f != NULL)
         {

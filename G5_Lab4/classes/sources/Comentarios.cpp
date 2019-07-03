@@ -57,7 +57,6 @@ Comentarios * Comentarios::buscarComentario(IDictionary* comentarios, std::strin
         Comentarios* com = NULL;
         int tamanio = parametros.size();
         for(int x=0; x<tamanio;x++){
-            std::cout <<std::stoi(parametros[x])<<std::endl;
             if(x == 0){
                 com = (Comentarios*)(comentarios->find(new IntKey (std::stoi(parametros[x]))));
             }else{
