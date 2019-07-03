@@ -24,7 +24,7 @@ Usuario* Comentarios::getUsuario(){
     return this->usuario;
 }
 void Comentarios::setComentarios(std::string comentario, Usuario *usuario){
-    int numComentario = this->numero+1;
+    int numComentario = 1;
     while(true){
         if(this->comentarios->find(new IntKey (numComentario))== NULL){
             break;
